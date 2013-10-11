@@ -13,14 +13,18 @@
 		F21551B6180705380020183B /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = F21551B4180705380020183B /* InfoPlist.strings */; };
 		F21551B8180705380020183B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F21551B7180705380020183B /* main.m */; };
 		F21551BC180705380020183B /* BEAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F21551BB180705380020183B /* BEAppDelegate.m */; };
-		F21551BF180705380020183B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F21551BD180705380020183B /* Main.storyboard */; };
 		F21551C2180705380020183B /* BEViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F21551C1180705380020183B /* BEViewController.m */; };
-		F21551C4180705380020183B /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F21551C3180705380020183B /* Images.xcassets */; };
 		F21551CB180705380020183B /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F21551CA180705380020183B /* XCTest.framework */; };
 		F21551CC180705380020183B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F21551AB180705380020183B /* Foundation.framework */; };
 		F21551CD180705380020183B /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F21551AF180705380020183B /* UIKit.framework */; };
 		F21551D5180705380020183B /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = F21551D3180705380020183B /* InfoPlist.strings */; };
 		F21551D7180705380020183B /* badEggTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F21551D6180705380020183B /* badEggTests.m */; };
+		F21551FC18070BE10020183B /* Main_ios5.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F21551F818070BE10020183B /* Main_ios5.storyboard */; };
+		F21551FD18070BE10020183B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F21551FA18070BE10020183B /* Main.storyboard */; };
+		F25C549918083E7B0014AFE1 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F25C549818083E7B0014AFE1 /* Default-568h@2x.png */; };
+		F25C549C180840010014AFE1 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = F25C549A180840010014AFE1 /* Default.png */; };
+		F25C549D180840010014AFE1 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F25C549B180840010014AFE1 /* Default@2x.png */; };
+		F25C549F180841890014AFE1 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F25C549E180841890014AFE1 /* Images.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,15 +48,19 @@
 		F21551B9180705380020183B /* badEgg-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "badEgg-Prefix.pch"; sourceTree = "<group>"; };
 		F21551BA180705380020183B /* BEAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BEAppDelegate.h; sourceTree = "<group>"; };
 		F21551BB180705380020183B /* BEAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BEAppDelegate.m; sourceTree = "<group>"; };
-		F21551BE180705380020183B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		F21551C0180705380020183B /* BEViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BEViewController.h; sourceTree = "<group>"; };
 		F21551C1180705380020183B /* BEViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BEViewController.m; sourceTree = "<group>"; };
-		F21551C3180705380020183B /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		F21551C9180705380020183B /* badEggTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = badEggTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F21551CA180705380020183B /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		F21551D2180705380020183B /* badEggTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "badEggTests-Info.plist"; sourceTree = "<group>"; };
 		F21551D4180705380020183B /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		F21551D6180705380020183B /* badEggTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = badEggTests.m; sourceTree = "<group>"; };
+		F21551F918070BE10020183B /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/Main_ios5.storyboard; sourceTree = "<group>"; };
+		F21551FB18070BE10020183B /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/Main.storyboard; sourceTree = "<group>"; };
+		F25C549818083E7B0014AFE1 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		F25C549A180840010014AFE1 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
+		F25C549B180840010014AFE1 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
+		F25C549E180841890014AFE1 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -112,12 +120,15 @@
 		F21551B1180705380020183B /* badEgg */ = {
 			isa = PBXGroup;
 			children = (
+				F25C549A180840010014AFE1 /* Default.png */,
+				F25C549B180840010014AFE1 /* Default@2x.png */,
+				F25C549818083E7B0014AFE1 /* Default-568h@2x.png */,
+				F21551F818070BE10020183B /* Main_ios5.storyboard */,
+				F21551FA18070BE10020183B /* Main.storyboard */,
 				F21551BA180705380020183B /* BEAppDelegate.h */,
 				F21551BB180705380020183B /* BEAppDelegate.m */,
-				F21551BD180705380020183B /* Main.storyboard */,
 				F21551C0180705380020183B /* BEViewController.h */,
 				F21551C1180705380020183B /* BEViewController.m */,
-				F21551C3180705380020183B /* Images.xcassets */,
 				F21551B2180705380020183B /* Supporting Files */,
 			);
 			path = badEgg;
@@ -126,6 +137,7 @@
 		F21551B2180705380020183B /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				F25C549E180841890014AFE1 /* Images.xcassets */,
 				F21551B3180705380020183B /* badEgg-Info.plist */,
 				F21551B4180705380020183B /* InfoPlist.strings */,
 				F21551B7180705380020183B /* main.m */,
@@ -229,9 +241,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F21551C4180705380020183B /* Images.xcassets in Resources */,
+				F25C549C180840010014AFE1 /* Default.png in Resources */,
+				F21551FC18070BE10020183B /* Main_ios5.storyboard in Resources */,
+				F25C549F180841890014AFE1 /* Images.xcassets in Resources */,
+				F25C549918083E7B0014AFE1 /* Default-568h@2x.png in Resources */,
+				F21551FD18070BE10020183B /* Main.storyboard in Resources */,
+				F25C549D180840010014AFE1 /* Default@2x.png in Resources */,
 				F21551B6180705380020183B /* InfoPlist.strings in Resources */,
-				F21551BF180705380020183B /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -283,20 +299,28 @@
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
 		};
-		F21551BD180705380020183B /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				F21551BE180705380020183B /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		F21551D3180705380020183B /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
 				F21551D4180705380020183B /* en */,
 			);
 			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		F21551F818070BE10020183B /* Main_ios5.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F21551F918070BE10020183B /* en */,
+			);
+			name = Main_ios5.storyboard;
+			sourceTree = "<group>";
+		};
+		F21551FA18070BE10020183B /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F21551FB18070BE10020183B /* en */,
+			);
+			name = Main.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -335,7 +359,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 			};
@@ -368,7 +392,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -461,6 +485,7 @@
 				F21551DC180705380020183B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		F21551DD180705380020183B /* Build configuration list for PBXNativeTarget "badEggTests" */ = {
 			isa = XCConfigurationList;
@@ -469,6 +494,7 @@
 				F21551DF180705380020183B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

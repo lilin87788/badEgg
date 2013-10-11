@@ -7,9 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#define System_Version_Small_Than_(v) (DeviceSystemMajorVersion() < v)
 @interface BEAppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
-
+@property (strong, nonatomic) UIStoryboard *mainStoryboard;
+NSUInteger DeviceSystemMajorVersion();
 @end

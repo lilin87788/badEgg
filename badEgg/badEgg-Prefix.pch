@@ -14,3 +14,30 @@
     #import <UIKit/UIKit.h>
     #import <Foundation/Foundation.h>
 #endif
+
+//判断是不是iphone5
+#define IS_IPHONE_5 ( fabs( ( double )[ [ UIScreen mainScreen ] bounds ].size.height - ( double )568 ) < DBL_EPSILON )
+
+#define IS_IOS7 [[[UIDevice currentDevice] systemVersion] floatValue] >= 7
+//判断登陆是否有效
+
+#define SCREEN_WIDTH ([UIScreen mainScreen].bounds.size.width)
+
+#define SCREEN_HEIGHT ([UIScreen mainScreen].bounds.size.height)
+
+#define SAFE_RELEASE(x) [x release];x=nil
+
+//构建一个颜色
+#define COLOR(r,g,b) [UIColor colorWithRed:r/255.0 green:g/255.0 blue:b/255.0 alpha:1]
+
+#define RGBACOLOR(r,g,b,a) [UIColor colorWithRed:(r)/255.0f green:(g)/255.0f blue:(b)/255.0f alpha:(a)]
+
+#define Image(_pointer) [UIImage imageNamed:_pointer]
+
+
+#define ZZZobt @"http://tam.hngytobacco.com/ZZZobtb/aaa-agents/avs"
+
+typedef void (^basicBlock)(void);
+
+//判断 手机的版本是不是大于某个值
+#define SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(v) ([[[UIDevice currentDevice] systemVersion] compare:(v) options:NSNumericSearch] != NSOrderedAscending)
