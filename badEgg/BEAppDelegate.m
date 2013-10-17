@@ -22,15 +22,19 @@ NSUInteger DeviceSystemMajorVersion() {
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     //[[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
-    if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"6.0")) {
+    if (System_Version_Small_Than_(7)) {
+        if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"6.0")) {
+            _mainStoryboard = [UIStoryboard storyboardWithName:@"Main_ios6" bundle:nil];
+        }else {
+            _mainStoryboard = [UIStoryboard storyboardWithName:@"Main_ios5" bundle:nil];
+        }
+    }else{
         _mainStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-    } else {
-        _mainStoryboard = [UIStoryboard storyboardWithName:@"Main_ios5" bundle:nil];
     }
+    
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     self.window.rootViewController = [_mainStoryboard instantiateInitialViewController];
     [self.window makeKeyAndVisible];
-    
     return YES;
 
 }
