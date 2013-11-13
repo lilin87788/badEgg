@@ -11,7 +11,7 @@
                 <tabBarController definesPresentationContext="YES" id="C3j-ex-aas" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" title="坏蛋调频" id="Z4M-Ac-kVu"/>
                     <nil key="simulatedBottomBarMetrics"/>
-                    <tabBar key="tabBar" contentMode="scaleToFill" id="0NS-KT-Eg4">
+                    <tabBar key="tabBar" contentMode="scaleToFill" backgroundImage="tabbar49.png" id="0NS-KT-Eg4">
                         <rect key="frame" x="129" y="330" width="163" height="49"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -107,7 +107,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uAw-wG-7SJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="803" y="-120"/>
+            <point key="canvasLocation" x="695" y="-120"/>
         </scene>
         <!--Table View Controller - VIP-->
         <scene sceneID="RiF-2L-ZyI">
@@ -137,7 +137,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QOd-iN-aRs" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="803" y="486"/>
+            <point key="canvasLocation" x="695" y="486"/>
         </scene>
         <!--Navigation Controller - NEW-->
         <scene sceneID="3Fb-30-NsD">
@@ -171,7 +171,7 @@
             </objects>
             <point key="canvasLocation" x="301" y="-120"/>
         </scene>
-        <!--News Controller - 坏蛋调频-->
+        <!--News Controller - NEW-->
         <scene sceneID="gII-ae-nJq">
             <objects>
                 <viewController id="yFr-G3-QxG" customClass="BENewsController" sceneMemberID="viewController">
@@ -183,40 +183,55 @@
                         <rect key="frame" x="0.0" y="64" width="320" height="367"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EYu-gC-iN5">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="background.png" translatesAutoresizingMaskIntoConstraints="NO" id="E1h-IZ-wGv">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="367"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EYu-gC-iN5">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="367"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                <color key="backgroundColor" red="0.066666666669999999" green="0.6588235294" blue="0.6705882353" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </scrollView>
                             <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="aZh-yV-w4R">
                                 <rect key="frame" x="141" y="331" width="38" height="36"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="36" id="i5g-rP-jb2"/>
                                     <constraint firstAttribute="width" constant="38" id="lZg-DD-plt"/>
                                 </constraints>
                             </pageControl>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.066666666669999999" green="0.6588235294" blue="0.6705882353" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="EYu-gC-iN5" firstAttribute="top" secondItem="7wd-vZ-UfM" secondAttribute="bottom" id="1FU-Su-y13"/>
                             <constraint firstItem="P3U-WF-P9P" firstAttribute="top" secondItem="EYu-gC-iN5" secondAttribute="bottom" id="9qN-NV-11P"/>
                             <constraint firstAttribute="trailing" secondItem="aZh-yV-w4R" secondAttribute="trailing" constant="141" id="OBL-VI-20G"/>
                             <constraint firstItem="aZh-yV-w4R" firstAttribute="leading" secondItem="qed-GR-Kr8" secondAttribute="leading" constant="141" id="Sjn-gz-qGk"/>
                             <constraint firstItem="EYu-gC-iN5" firstAttribute="leading" secondItem="qed-GR-Kr8" secondAttribute="leading" id="Xek-8Z-2Fn"/>
+                            <constraint firstItem="E1h-IZ-wGv" firstAttribute="top" secondItem="7wd-vZ-UfM" secondAttribute="bottom" id="bXA-ja-cUR"/>
+                            <constraint firstItem="P3U-WF-P9P" firstAttribute="top" secondItem="E1h-IZ-wGv" secondAttribute="bottom" id="exx-N7-KRU"/>
+                            <constraint firstItem="E1h-IZ-wGv" firstAttribute="leading" secondItem="qed-GR-Kr8" secondAttribute="leading" id="h5E-MZ-wIB"/>
+                            <constraint firstAttribute="trailing" secondItem="E1h-IZ-wGv" secondAttribute="trailing" id="ht0-os-Y0q"/>
                             <constraint firstItem="P3U-WF-P9P" firstAttribute="top" secondItem="aZh-yV-w4R" secondAttribute="bottom" id="kfe-5E-c7C"/>
                             <constraint firstAttribute="trailing" secondItem="EYu-gC-iN5" secondAttribute="trailing" id="xGU-ta-rsE"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="NEW" id="IAB-l1-hno"/>
-                    <navigationItem key="navigationItem" title="坏蛋调频" id="TCV-oZ-dQQ"/>
+                    <navigationItem key="navigationItem" id="TCV-oZ-dQQ"/>
+                    <connections>
+                        <outlet property="bgScrollView" destination="EYu-gC-iN5" id="RXc-hc-z44"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2ek-o7-qVv" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="695" y="-685"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="background.png" width="640" height="1136"/>
+        <image name="tabbar49.png" width="320" height="49"/>
+    </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

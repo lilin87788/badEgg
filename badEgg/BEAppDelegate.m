@@ -18,7 +18,6 @@ NSUInteger DeviceSystemMajorVersion() {
     return _deviceSystemMajorVersion;
 }
 
-
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     //[[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];

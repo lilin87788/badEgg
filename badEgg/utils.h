@@ -10,5 +10,5 @@
 #define badEgg_utils_h
 
 #import "BEAppDelegate.h"
-
+#import "APPUtils.h"
 #endif

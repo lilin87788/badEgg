@@ -13,6 +13,8 @@
 #ifdef __OBJC__
     #import <UIKit/UIKit.h>
     #import <Foundation/Foundation.h>
+    #import <QuartzCore/QuartzCore.h>
+    #import "UIImage+rescale.h"
     #import "utils.h"
 #endif
 
@@ -35,6 +37,9 @@
 
 #define Image(_pointer) [UIImage imageNamed:_pointer]
 
+#define TopY ((IS_IOS7) ? (64) : (0))
+#define BottomY ((IS_IOS7) ? ([UIScreen mainScreen].bounds.size.height) : ([UIScreen mainScreen].bounds.size.height - 20 - 44))
+#define ScreenHeight ((IS_IOS7) ? ([UIScreen mainScreen].bounds.size.height) : ([UIScreen mainScreen].bounds.size.height - 64))
 
 #define ZZZobt @"http://tam.hngytobacco.com/ZZZobtb/aaa-agents/avs"
 
