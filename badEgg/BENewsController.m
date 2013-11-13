@@ -22,13 +22,11 @@
     self.navigationItem.backBarButtonItem.title = @"返回";
     UIImage* navbgImage;
     if (System_Version_Small_Than_(7)) {
-        navbgImage = [UIImage imageNamed:@"navbar44"];
+        navbgImage = [UIImage imageNamed:@"navbar441"];
 
     }else{
-        navbgImage = [UIImage imageNamed:@"navbar64"] ;
-        self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
+        navbgImage = [UIImage imageNamed:@"navibar641"] ;
     }
-    [self.navigationController.navigationBar setBackgroundColor:[UIColor redColor]];
     [self.navigationController.navigationBar setBackgroundImage:navbgImage  forBarMetrics:UIBarMetricsDefault];
 }
 
@@ -66,7 +64,7 @@
 {
     [super viewDidLoad];
     [self initData];
-    //[self initNavBar];
+    [self initNavBar];
     [self initPageController];
     
     [_bgScrollView setContentSize:CGSizeMake(320* 3,_bgScrollView.frame.size.height)];
