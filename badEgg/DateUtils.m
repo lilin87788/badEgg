@@ -84,9 +84,9 @@
                                                     NSSecondCalendarUnit|NSMinuteCalendarUnit) 
                                           fromDate:date];
     
-    NSString* now = [NSString stringWithFormat:@"%.4d-%.2d-%.2d %.2d:%.2d:%.2d",   [comps year],[comps month], 
-                     [comps day],[comps hour],
-                     [comps minute],[comps second]];
+    NSString* now = [NSString stringWithFormat:@"%.4ld-%.2ld%.2ldd %.2ld%.2ld2d:%.2ld",   (long)[comps year],(long)[comps month],
+                     (long)[comps day],(long)[comps hour],
+                     (long)[comps minute],(long)[comps second]];
     return now;
 }
 
@@ -96,8 +96,8 @@
 //备注:11/3 lilin 添加
 +(NSString*)curerntTime
 {
-    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init]; 
-    [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"]; 
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
     NSString *strDate = [dateFormatter stringFromDate:[NSDate date]];
     return strDate;
 }
@@ -403,7 +403,7 @@
 -(NSString*)dateToDetail
 {
     NSDate *now = [NSDate date];
-    int timeRange = [now daysAfterDate:self];
+    NSInteger timeRange = [now daysAfterDate:self];
     NSString* datestr = [DateUtils dateToString:self DateFormat:@"yy-MM-dd"];
     if ([self isSameWeekAsDate:now] && timeRange == 0) {
         return @"今天";
@@ -584,8 +584,8 @@
         ,268949,3402,3493,133973,1386,464219,605,2349,334123,2709
         ,2890,267946,2773,592565,1210,2651,395863,1323,2707,265877};
     
-    static int wCurYear,wCurMonth,wCurDay;
-    static int nTheDate,nIsEnd,m,k,n,i,nBit;
+    static NSInteger wCurYear,wCurMonth,wCurDay;
+    static NSInteger nTheDate,nIsEnd,m,k,n,i,nBit;
     
     //取当前公历年、月、日
     NSDateComponents *components = [[NSCalendar currentCalendar] components:NSDayCalendarUnit |NSMonthCalendarUnit | NSYearCalendarUnit fromDate:self];

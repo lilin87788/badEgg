@@ -497,14 +497,6 @@
                                 <rect key="frame" x="40" y="68" width="240" height="150"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="text.png" translatesAutoresizingMaskIntoConstraints="NO" id="LCl-gM-TcB">
-                                <rect key="frame" x="104" y="232" width="191" height="127"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="date.png" translatesAutoresizingMaskIntoConstraints="NO" id="ihv-xY-dIE">
-                                <rect key="frame" x="0.0" y="232" width="96" height="127"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
@@ -810,7 +802,6 @@
     <resources>
         <image name="4grid.png" width="320" height="95"/>
         <image name="background.png" width="640" height="1136"/>
-        <image name="date.png" width="104" height="119"/>
         <image name="download.png" width="40" height="39"/>
         <image name="intro.png" width="323" height="484"/>
         <image name="introduce.png" width="321" height="120"/>
@@ -820,7 +811,6 @@
         <image name="setting.png" width="94" height="56"/>
         <image name="share.png" width="87" height="57"/>
         <image name="tablebar.png" width="320" height="49"/>
-        <image name="text.png" width="204" height="127"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
