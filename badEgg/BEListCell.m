@@ -39,7 +39,7 @@
 
 -(void)setRadioItems:(NSDictionary*)radio
 {
-    titleLabel.text = radio[@"title"];
+    titleLabel.text = radio[@"proname"];
 }
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier

@@ -14,6 +14,8 @@
 @interface BEListController ()
 {
     NSArray* contentList;
+    TFHpple *xpathParser;
+    NSArray *elements;
 }
 @end
 
@@ -55,11 +57,38 @@
     [self.navigationController.navigationBar setBackgroundImage:navbgImage  forBarMetrics:UIBarMetricsDefault];
 }
 
+-(void)initData
+{
+    NSString *htmlString=[NSString stringWithContentsOfURL:[NSURL URLWithString: @"http://www.itings.com/badfm/usercontent_2590p0"] encoding: NSUTF8StringEncoding error:nil];
+    NSLog(@"%@",htmlString);
+    NSData *htmlData=[htmlString dataUsingEncoding:NSUTF8StringEncoding];
+    xpathParser = [[TFHpple alloc] initWithHTMLData:htmlData];
+    contentList  = [xpathParser searchWithXPathQuery:@"//div[@class='Ra_FXlist']"];     NSLog(@"------------------------------------------------------------------------------------------------");
+    for (TFHppleElement *element in contentList) {
+        for (NSString* key in [[element attributes] allKeys]) {
+            NSLog(@"%@ :%@",key,[[element attributes] objectForKey:key]);
+        }
+        NSLog(@"------------------------------------------------------------------------------------------------");
+    }
+    
+    [self.tableView reloadData];
+}
+
+/**
+ *  学习xpath
+ */
+
+//1
+
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     [self initNavBar];
-    contentList = @[@"五一通州的坏体验",@"明星与我苏中场",@"问题少年的春天",@"再说手机号",@"开车有妞不听歌",@"说说唐朝这些年",@"我爱看AV",@"永远爱苍老师"];
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
+        [self initData];
+    });
+    contentList = [NSMutableArray array];
     UIRefreshControl* refreshcontrol = [[UIRefreshControl alloc]init];
     refreshcontrol.tintColor = COLOR(17, 168, 171);
     refreshcontrol.attributedTitle = [[NSAttributedString alloc]initWithString:@"下拉刷新"];
@@ -99,7 +128,8 @@
             cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
         }
         cell.useDarkBackground = (indexPath.row % 2 == 0);
-        [cell setRadioItems:@{@"title": contentList[indexPath.row - 1]}];
+        TFHppleElement *element = contentList[indexPath.row - 1];
+        [cell setRadioItems:element.attributes];
         return cell;
     }
 }

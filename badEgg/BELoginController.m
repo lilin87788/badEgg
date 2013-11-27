@@ -26,7 +26,8 @@
 - (void)reback
 {
     //返回
-    [self dismissModalViewControllerAnimated:YES];
+    [self dismissViewControllerAnimated:YES completion:^{
+    }];
 }
 
 - (void)viewWillAppear:(BOOL)animated

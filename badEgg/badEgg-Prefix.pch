@@ -14,8 +14,11 @@
     #import <UIKit/UIKit.h>
     #import <Foundation/Foundation.h>
     #import <QuartzCore/QuartzCore.h>
+    #import <SystemConfiguration/SystemConfiguration.h>
+    #import <MobileCoreServices/MobileCoreServices.h>
     #import "UIImage+rescale.h"
     #import "utils.h"
+    #import "TFHpple.h"
 #endif
 
 //判断是不是iphone5
