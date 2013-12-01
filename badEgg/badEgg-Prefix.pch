@@ -18,7 +18,10 @@
     #import <MobileCoreServices/MobileCoreServices.h>
     #import "UIImage+rescale.h"
     #import "utils.h"
+    #import "AFNetworking.h"
+    #import "UIKit+AFNetworking.h"
     #import "TFHpple.h"
+
 #endif
 
 //判断是不是iphone5
@@ -50,3 +53,9 @@ typedef void (^basicBlock)(void);
 
 //判断 手机的版本是不是大于某个值
 #define SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(v) ([[[UIDevice currentDevice] systemVersion] compare:(v) options:NSNumericSearch] != NSOrderedAscending)
+
+//*************
+//**百度的API
+//*************
+//请求百度音乐下载地址的API，好像不是百度官方的
+#define BAIDUMUSIC_API(MUSICNAME) [[NSString stringWithFormat:@"http://box.zhangmen.baidu.com/x?op=12&count=1&title=%@$$$$$$",MUSICNAME] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]

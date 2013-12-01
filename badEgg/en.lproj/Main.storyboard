@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4514" systemVersion="13A603" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="C3j-ex-aas">
     <dependencies>
-        <deployment version="1536" defaultVersion="1280" identifier="iOS"/>
+        <deployment version="1536" defaultVersion="1536" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3746"/>
     </dependencies>
     <scenes>
         <!--Tab Bar Controller - 坏蛋调频-->
         <scene sceneID="SnC-m0-Wtt">
             <objects>
-                <tabBarController definesPresentationContext="YES" id="C3j-ex-aas" sceneMemberID="viewController">
+                <tabBarController definesPresentationContext="YES" hidesBottomBarWhenPushed="YES" id="C3j-ex-aas" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" title="坏蛋调频" id="Z4M-Ac-kVu"/>
                     <nil key="simulatedBottomBarMetrics"/>
-                    <tabBar key="tabBar" contentMode="scaleToFill" barStyle="black" backgroundImage="tablebar.png" id="0NS-KT-Eg4">
+                    <tabBar key="tabBar" contentMode="scaleToFill" barStyle="black" backgroundImage="tabbar.png" id="0NS-KT-Eg4">
                         <rect key="frame" x="129" y="330" width="163" height="49"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -25,7 +25,7 @@
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dxu-zB-9XS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-582" y="193"/>
+            <point key="canvasLocation" x="-3006" y="225"/>
         </scene>
         <!--Controller - MORE-->
         <scene sceneID="kNm-pG-0Z9">
@@ -154,7 +154,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4RW-IZ-G27" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="385" y="1080"/>
+            <point key="canvasLocation" x="-1823" y="1080"/>
         </scene>
         <!--Intro Controller-->
         <scene sceneID="Q8F-4s-IBt">
@@ -172,7 +172,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="intro.png" translatesAutoresizingMaskIntoConstraints="NO" id="bH0-jF-nbC">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="bH0-jF-nbC">
                                 <rect key="frame" x="0.0" y="64" width="320" height="416"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
@@ -194,7 +194,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yJn-9J-GL5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="917" y="338"/>
+            <point key="canvasLocation" x="-1311" y="496"/>
         </scene>
         <!--Navigation Controller - VIP-->
         <scene sceneID="8t5-hm-VzG">
@@ -210,12 +210,11 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WiN-iF-0Px" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-5" y="496"/>
+            <point key="canvasLocation" x="-2213" y="496"/>
         </scene>
         <!--Navigation Controller - MORE-->
         <scene sceneID="o8v-1b-dHA">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="d8J-u4-diZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController definesPresentationContext="YES" id="hAp-ub-G6i" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="MORE" id="c2R-WJ-tYc"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Hzx-9O-s1z">
@@ -225,8 +224,9 @@
                         <segue destination="svV-x8-1fa" kind="relationship" relationship="rootViewController" id="qso-7W-690"/>
                     </connections>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="d8J-u4-diZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-5" y="1080"/>
+            <point key="canvasLocation" x="-2213" y="1080"/>
         </scene>
         <!--List Controller - LIST-->
         <scene sceneID="egr-Xp-2kD">
@@ -261,7 +261,7 @@
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="五一通州坏体验" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aNS-Ho-peM">
                                             <rect key="frame" x="20" y="12" width="235" height="21"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="19"/>
+                                            <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                             <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                             <nil key="highlightedColor"/>
                                         </label>
@@ -272,15 +272,15 @@
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="01:12:24" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pdo-VR-VMt">
                                             <rect key="frame" x="20" y="41" width="77" height="21"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                            <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="8.27 MB" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RtZ-RC-mKv">
                                             <rect key="frame" x="122" y="41" width="77" height="21"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                            <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
@@ -290,6 +290,7 @@
                                     <outlet property="sizeLabel" destination="RtZ-RC-mKv" id="6Rv-yT-hSj"/>
                                     <outlet property="timeLabel" destination="pdo-VR-VMt" id="lfm-aT-c0l"/>
                                     <outlet property="titleLabel" destination="aNS-Ho-peM" id="c9U-Nv-jeG"/>
+                                    <segue destination="eBu-87-Z1Y" kind="push" identifier="player" id="MsV-XO-8R8"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -314,7 +315,66 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uAw-wG-7SJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="385" y="-114"/>
+            <point key="canvasLocation" x="-1823" y="-114"/>
+        </scene>
+        <!--Player Controller-->
+        <scene sceneID="s7E-4o-LH4">
+            <objects>
+                <viewController id="eBu-87-Z1Y" customClass="BEPlayerController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="8Mq-oH-r5L"/>
+                        <viewControllerLayoutGuide type="bottom" id="zpX-da-9j2"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="hTZ-kn-rOY">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QYl-PZ-W5y">
+                                <rect key="frame" x="0.0" y="436" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="a4C-2e-Jje"/>
+                                    <constraint firstAttribute="width" constant="320" id="o9C-wf-DMR"/>
+                                </constraints>
+                                <items>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="I2o-lK-o9F"/>
+                                    <barButtonItem systemItem="rewind" id="ABT-KR-2oT"/>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="EEq-XQ-kxv"/>
+                                    <barButtonItem style="plain" id="adr-zY-sLy">
+                                        <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="PvC-Mt-Foh" customClass="AudioButton">
+                                            <rect key="frame" x="138" y="0.0" width="44" height="44"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                            <state key="normal">
+                                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                            </state>
+                                            <connections>
+                                                <action selector="playFMMusic:" destination="eBu-87-Z1Y" eventType="touchUpInside" id="eLa-Yz-AxT"/>
+                                            </connections>
+                                        </button>
+                                    </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="clJ-44-fmg"/>
+                                    <barButtonItem systemItem="fastForward" id="efa-a9-zKK"/>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="RF8-7N-6E5"/>
+                                </items>
+                            </toolbar>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="QYl-PZ-W5y" firstAttribute="leading" secondItem="hTZ-kn-rOY" secondAttribute="leading" id="C7s-Od-1Mt"/>
+                            <constraint firstAttribute="trailing" secondItem="QYl-PZ-W5y" secondAttribute="trailing" id="H4i-nG-aD7"/>
+                            <constraint firstItem="zpX-da-9j2" firstAttribute="top" secondItem="QYl-PZ-W5y" secondAttribute="bottom" id="MZb-fl-Jsj"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="Rrd-yA-IEx"/>
+                    <nil key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="audioPlayerButton" destination="PvC-Mt-Foh" id="HQR-Ts-w9i"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="SbI-6K-YEF" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1272" y="-114"/>
         </scene>
         <!--Controller - VIP-->
         <scene sceneID="RiF-2L-ZyI">
@@ -388,7 +448,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QOd-iN-aRs" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="385" y="496"/>
+            <point key="canvasLocation" x="-1823" y="496"/>
         </scene>
         <!--Navigation Controller - NEW-->
         <scene sceneID="3Fb-30-NsD">
@@ -404,7 +464,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="U95-MV-O2Q" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-5" y="-679"/>
+            <point key="canvasLocation" x="-2213" y="-679"/>
         </scene>
         <!--Navigation Controller - LIST-->
         <scene sceneID="bWD-ZX-3Zg">
@@ -420,7 +480,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xtA-jz-uuE" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-5" y="-114"/>
+            <point key="canvasLocation" x="-2221" y="-74"/>
         </scene>
         <!--News Controller - NEW-->
         <scene sceneID="gII-ae-nJq">
@@ -458,7 +518,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2ek-o7-qVv" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="385" y="-679"/>
+            <point key="canvasLocation" x="-1823" y="-679"/>
         </scene>
         <!--News Detail Controller-->
         <scene sceneID="z9s-3a-PPc">
@@ -506,7 +566,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4PM-9b-ACH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="763" y="-679"/>
+            <point key="canvasLocation" x="-1285" y="-687"/>
         </scene>
         <!--Set Up View Controller-->
         <scene sceneID="EMl-kZ-Kn7">
@@ -622,7 +682,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OdK-aZ-Drb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="917" y="1071"/>
+            <point key="canvasLocation" x="-1311" y="1071"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="TBn-bg-a78">
@@ -637,7 +697,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="anf-Dr-ekf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="917" y="1705"/>
+            <point key="canvasLocation" x="-1311" y="1705"/>
         </scene>
         <!--Login Controller-->
         <scene sceneID="sCi-Am-eVG">
@@ -723,7 +783,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nil-kV-ToD" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1431" y="1798"/>
+            <point key="canvasLocation" x="-793" y="1705"/>
         </scene>
         <!--Controller-->
         <scene sceneID="h4n-qQ-soj">
@@ -757,7 +817,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fXq-Df-9d5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2177" y="2267"/>
+            <point key="canvasLocation" x="-171" y="2095"/>
         </scene>
         <!--Register Controller-->
         <scene sceneID="MOX-yO-x4L">
@@ -796,21 +856,20 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BhB-Hp-qoF" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2161" y="1383"/>
+            <point key="canvasLocation" x="-171" y="1255"/>
         </scene>
     </scenes>
     <resources>
         <image name="4grid.png" width="320" height="95"/>
         <image name="background.png" width="640" height="1136"/>
         <image name="download.png" width="40" height="39"/>
-        <image name="intro.png" width="323" height="484"/>
         <image name="introduce.png" width="321" height="120"/>
         <image name="photo.png" width="546" height="327"/>
         <image name="playing.png" width="110" height="57"/>
         <image name="send.png" width="310" height="76"/>
         <image name="setting.png" width="94" height="56"/>
         <image name="share.png" width="87" height="57"/>
-        <image name="tablebar.png" width="320" height="49"/>
+        <image name="tabbar.png" width="320" height="49"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>

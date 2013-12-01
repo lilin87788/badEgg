@@ -18,6 +18,15 @@ NSUInteger DeviceSystemMajorVersion() {
     return _deviceSystemMajorVersion;
 }
 
+- (void)customizeAppearance
+{
+    // Customizing the tab bar
+    UIImage *tabBackground = [[UIImage imageNamed:@"tabbar.png"]
+                              resizableImageWithCapInsets:UIEdgeInsetsMake(0, 0, 0, 0)];
+    [[UITabBar appearance] setBackgroundImage:tabBackground];
+//    [[UITabBar appearance] setSelectionIndicatorImage:
+//     [UIImage imageNamed:@"select.png"]];
+}
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     //[[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
@@ -27,6 +36,7 @@ NSUInteger DeviceSystemMajorVersion() {
         }else {
             _mainStoryboard = [UIStoryboard storyboardWithName:@"Main_ios5" bundle:nil];
         }
+        [self customizeAppearance];
     }else{
         _mainStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     }

@@ -8,6 +8,7 @@
 
 #import "BEListController.h"
 #import "BEListCell.h"
+#import "BEPlayerController.h"
 #define DARK_BACKGROUND  [UIColor colorWithRed:151.0/255.0 green:152.0/255.0 blue:155.0/255.0 alpha:1.0]
 #define LIGHT_BACKGROUND [UIColor colorWithRed:172.0/255.0 green:173.0/255.0 blue:175.0/255.0 alpha:1.0]
 
@@ -50,28 +51,58 @@
     self.navigationItem.backBarButtonItem.title = @"返回";
     UIImage* navbgImage;
     if (System_Version_Small_Than_(7)) {
-        navbgImage = [UIImage imageNamed:@"navibar441"];        
+        navbgImage = [UIImage imageNamed:@"navbar44"];
     }else{
-        navbgImage = [UIImage imageNamed:@"navibar641"] ;
+        navbgImage = [UIImage imageNamed:@"navbar64"] ;
+        self.navigationController.navigationBar.tintColor = [UIColor blackColor];
     }
     [self.navigationController.navigationBar setBackgroundImage:navbgImage  forBarMetrics:UIBarMetricsDefault];
 }
 
 -(void)initData
 {
-    NSString *htmlString=[NSString stringWithContentsOfURL:[NSURL URLWithString: @"http://www.itings.com/badfm/usercontent_2590p0"] encoding: NSUTF8StringEncoding error:nil];
-    NSLog(@"%@",htmlString);
-    NSData *htmlData=[htmlString dataUsingEncoding:NSUTF8StringEncoding];
-    xpathParser = [[TFHpple alloc] initWithHTMLData:htmlData];
-    contentList  = [xpathParser searchWithXPathQuery:@"//div[@class='Ra_FXlist']"];     NSLog(@"------------------------------------------------------------------------------------------------");
-    for (TFHppleElement *element in contentList) {
-        for (NSString* key in [[element attributes] allKeys]) {
-            NSLog(@"%@ :%@",key,[[element attributes] objectForKey:key]);
-        }
-        NSLog(@"------------------------------------------------------------------------------------------------");
-    }
     
-    [self.tableView reloadData];
+    NSURL *URL = [NSURL URLWithString:@"http://www.itings.com/badfm/usercontent_2590p0"];
+    NSURLRequest *request = [NSURLRequest requestWithURL:URL];
+    AFHTTPRequestOperation *op = [[AFHTTPRequestOperation alloc] initWithRequest:request];
+    op.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
+    [op setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSLog(@"JSON: %@", [responseObject class]);
+        xpathParser = [[TFHpple alloc] initWithHTMLData:responseObject];
+        contentList  = [xpathParser searchWithXPathQuery:@"//div[@class='Ra_FXlist']"];     NSLog(@"------------------------------------------------------------------------------------------------");
+        for (TFHppleElement *element in contentList) {
+            for (NSString* key in [[element attributes] allKeys]) {
+                NSLog(@"%@ :%@",key,[[element attributes] objectForKey:key]);
+            }
+            NSLog(@"------------------------------------------------------------------------------------------------");
+        }
+        [self.tableView reloadData];
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"Error: %@", error);
+    }];
+    [[NSOperationQueue mainQueue] addOperation:op];
+    
+//    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+//    [manager GET:@"http://www.itings.com/badfm/usercontent_2590p0" parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+//        NSLog(@"JSON: %@", responseObject);
+//         [self.tableView reloadData];
+//    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+//        NSLog(@"Error: %@", error);
+//    }];
+    //op.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
+//    NSString *htmlString=[NSString stringWithContentsOfURL:[NSURL URLWithString: @"http://www.itings.com/badfm/usercontent_2590p0"] encoding: NSUTF8StringEncoding error:nil];
+//    NSLog(@"%@",htmlString);
+//    NSData *htmlData=[htmlString dataUsingEncoding:NSUTF8StringEncoding];
+//    xpathParser = [[TFHpple alloc] initWithHTMLData:htmlData];
+//    contentList  = [xpathParser searchWithXPathQuery:@"//div[@class='Ra_FXlist']"];     NSLog(@"------------------------------------------------------------------------------------------------");
+//    for (TFHppleElement *element in contentList) {
+//        for (NSString* key in [[element attributes] allKeys]) {
+//            NSLog(@"%@ :%@",key,[[element attributes] objectForKey:key]);
+//        }
+//        NSLog(@"------------------------------------------------------------------------------------------------");
+//    }
+    
+   
 }
 
 /**
@@ -96,6 +127,19 @@
              forControlEvents:UIControlEventValueChanged];
     self.refreshControl = refreshcontrol;
 }
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    [segue.destinationViewController setHidesBottomBarWhenPushed:YES];
+    if ([segue.identifier isEqualToString:@"player"])
+	{
+        TFHppleElement *element = contentList[[self.tableView indexPathForSelectedRow].row - 1];
+        BEPlayerController *playerController = segue.destinationViewController;
+        playerController.FMUrl = [element attributes][@"audiopath"];
+	}
+}
+
+
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView

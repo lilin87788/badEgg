@@ -22,10 +22,10 @@
     self.navigationItem.backBarButtonItem.title = @"返回";
     UIImage* navbgImage;
     if (System_Version_Small_Than_(7)) {
-        navbgImage = [UIImage imageNamed:@"navibar441"];
+        navbgImage = [UIImage imageNamed:@"navbar44"];
 
     }else{
-        navbgImage = [UIImage imageNamed:@"navibar641"] ;
+        navbgImage = [UIImage imageNamed:@"navbar64"] ;
     }
     [self.navigationController.navigationBar setBackgroundImage:navbgImage  forBarMetrics:UIBarMetricsDefault];
 }
@@ -72,6 +72,8 @@
     
     [self loadScrollViewWithPage:0];
     [self loadScrollViewWithPage:1];
+    
+    [self.tabBarItem setSelectedImage:Image(@"select.png")];
 }
 
 - (void)loadScrollViewWithPage:(NSUInteger)page
