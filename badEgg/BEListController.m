@@ -9,8 +9,9 @@
 #import "BEListController.h"
 #import "BEListCell.h"
 #import "BEPlayerController.h"
-#define DARK_BACKGROUND  [UIColor colorWithRed:151.0/255.0 green:152.0/255.0 blue:155.0/255.0 alpha:1.0]
-#define LIGHT_BACKGROUND [UIColor colorWithRed:172.0/255.0 green:173.0/255.0 blue:175.0/255.0 alpha:1.0]
+#import "UIColor+FlatUI.h"
+//#define DARK_BACKGROUND  [UIColor colorWithRed:151.0/255.0 green:152.0/255.0 blue:155.0/255.0 alpha:1.0]
+//#define LIGHT_BACKGROUND [UIColor colorWithRed:172.0/255.0 green:173.0/255.0 blue:175.0/255.0 alpha:1.0]
 
 @interface BEListController ()
 {
@@ -57,6 +58,11 @@
         self.navigationController.navigationBar.tintColor = [UIColor blackColor];
     }
     [self.navigationController.navigationBar setBackgroundImage:navbgImage  forBarMetrics:UIBarMetricsDefault];
+
+    UIBarButtonItem* backItem = [[UIBarButtonItem alloc] init];
+    [backItem setBackButtonBackgroundImage:[Image(@"back") resizableImageWithCapInsets:UIEdgeInsetsMake(0, 13, 0, 13)] forState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
+    backItem.title = @"     ";
+    self.navigationItem.backBarButtonItem = backItem;
 }
 
 -(void)initData
@@ -82,14 +88,17 @@
     }];
     [[NSOperationQueue mainQueue] addOperation:op];
     
+    
+    
+//    //http://www.itings.com/record/webfile_play/Mg/MTA1MV81OTBfNTg0MDZfMg/L3dpenphcmRhdWRpbzEvMjAxMzEyLzI4NjkxMGE2LTUxYjUtNDY4Mi05NTk0LWRlMmYzMzFjNzYyMi5tcDM.mp3?dow=true
 //    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-//    [manager GET:@"http://www.itings.com/badfm/usercontent_2590p0" parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+//    [manager GET:@"http://www.itings.com/discover/proalbum/proalbum_listAlbum.action?proAlbumId=590&userOtherId=1051&pageNo=1" parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
 //        NSLog(@"JSON: %@", responseObject);
 //         [self.tableView reloadData];
 //    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
 //        NSLog(@"Error: %@", error);
 //    }];
-    //op.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
+
 //    NSString *htmlString=[NSString stringWithContentsOfURL:[NSURL URLWithString: @"http://www.itings.com/badfm/usercontent_2590p0"] encoding: NSUTF8StringEncoding error:nil];
 //    NSLog(@"%@",htmlString);
 //    NSData *htmlData=[htmlString dataUsingEncoding:NSUTF8StringEncoding];
@@ -181,7 +190,7 @@
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (indexPath.row) {
-        cell.backgroundColor = ((BEListCell *)cell).useDarkBackground ? DARK_BACKGROUND : LIGHT_BACKGROUND;
+        cell.backgroundColor = ((BEListCell *)cell).useDarkBackground ? [UIColor DARK_BACKGROUND] : [UIColor LIGHT_BACKGROUND];
     }
 }
 

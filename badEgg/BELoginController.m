@@ -7,8 +7,9 @@
 //
 
 #import "BELoginController.h"
-
+#import "BEVIPController.h"
 @interface BELoginController ()
+@property (weak, nonatomic) IBOutlet UITableView *tableview;
 
 @end
 
@@ -30,18 +31,39 @@
     }];
 }
 
-- (void)viewWillAppear:(BOOL)animated
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    UIImage *leftButtonImage = [UIImage imageNamed:@"back.png"];
-    UIImage *leftbuttonNormal = [leftButtonImage
-                                 stretchableImageWithLeftCapWidth:10 topCapHeight:20];
-    UIButton *leftButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    [leftButton setFrame: CGRectMake(0, 0, 54, 32)];
-    [leftButton setBackgroundImage:leftbuttonNormal forState:UIControlStateNormal];
-    [leftButton addTarget:self action:@selector(reback) forControlEvents:UIControlEventTouchDown];
-    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]initWithCustomView:leftButton];
+    [segue.destinationViewController setHidesBottomBarWhenPushed:YES];
 }
 
+- (void)viewWillAppear:(BOOL)animated
+{
+//    UIImage *leftButtonImage = [UIImage imageNamed:@"back.png"];
+//    UIImage *leftbuttonNormal = [leftButtonImage
+//                                 stretchableImageWithLeftCapWidth:10 topCapHeight:20];
+//    UIButton *leftButton = [UIButton buttonWithType:UIButtonTypeCustom];
+//    [leftButton setFrame: CGRectMake(0, 0, 54, 32)];
+//    [leftButton setBackgroundImage:leftbuttonNormal forState:UIControlStateNormal];
+//    [leftButton addTarget:self action:@selector(reback) forControlEvents:UIControlEventTouchDown];
+//    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]initWithCustomView:leftButton];
+}
+
+- (IBAction)login:(UIButton *)sender {
+    NSMutableArray* controllerArray =[NSMutableArray arrayWithArray:self.tabBarController.viewControllers];
+    for (id obj in controllerArray) {
+        NSLog(@"%@",obj);
+    }
+    BEVIPController* vip = [[APPUtils AppStoryBoard] instantiateViewControllerWithIdentifier:@"BEVIPNav"];
+    [controllerArray replaceObjectAtIndex:2 withObject:vip];
+    //[self.tabBarController setViewControllers:controllerArray animated:YES];
+    
+    [self addChildViewController:vip];
+    [self.view addSubview:vip.view];
+}
+
+- (IBAction)registerBadEgg:(id)sender {
+    [self performSegueWithIdentifier:@"register" sender:self];
+}
 
 -(void)initNavBar
 {
@@ -51,21 +73,83 @@
         navbgImage = [UIImage imageNamed:@"navbar44"];
     }else{
         navbgImage = [UIImage imageNamed:@"navbar64"] ;
+        self.navigationController.navigationBar.tintColor = [UIColor blackColor];
     }
     [self.navigationController.navigationBar setBackgroundImage:navbgImage  forBarMetrics:UIBarMetricsDefault];
+    
+    UIBarButtonItem* backItem = [[UIBarButtonItem alloc] init];
+    [backItem setBackButtonBackgroundImage:[Image(@"back") resizableImageWithCapInsets:UIEdgeInsetsMake(0, 13, 0, 13)] forState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
+    backItem.title = @"     ";
+    self.navigationItem.backBarButtonItem = backItem;
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     [self initNavBar];
-	// Do any additional setup after loading the view.
+    _tableview.layer.cornerRadius=6;
+    _tableview.layer.masksToBounds=YES;
+    _tableview.backgroundColor=[UIColor whiteColor];
 }
 
-- (void)didReceiveMemoryWarning
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{ return 2;}
+
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{ return 40;}
+
+-(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    static NSString *CellIdentifier = @"Cell";
+    UITableViewCell *cell=[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    if (!cell) {
+        cell=[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault
+                                     reuseIdentifier:CellIdentifier];
+        cell.textLabel.font = [UIFont systemFontOfSize:15];
+        if (indexPath.row == 0) {
+            cell.textLabel.text = @"帐号：";
+            IDTextFiled = [[UITextField alloc] initWithFrame:CGRectMake(60, 6, 200, 30)];
+            IDTextFiled.placeholder = @"输入账号";
+            IDTextFiled.delegate =self;
+            IDTextFiled.autocorrectionType = UITextAutocorrectionTypeNo;
+            IDTextFiled.tag = 101;
+            IDTextFiled.keyboardType = UIKeyboardTypeURL;
+            IDTextFiled.keyboardType = UIKeyboardTypeASCIICapable;
+            IDTextFiled.autocapitalizationType = UITextAutocapitalizationTypeNone;
+            IDTextFiled.returnKeyType = UIReturnKeyNext;
+            IDTextFiled.font = [UIFont systemFontOfSize:14];
+            [cell.contentView addSubview:IDTextFiled];
+        }else{
+            cell.textLabel.text = @"密码：";
+            PSTexrField = [[UITextField alloc] initWithFrame:CGRectMake(60, 6, 200, 30)];
+            PSTexrField.secureTextEntry = YES;
+            PSTexrField.placeholder = @"输入密码";
+            PSTexrField.secureTextEntry = YES;
+            PSTexrField.keyboardType = UIKeyboardTypeASCIICapable;
+            PSTexrField.autocapitalizationType = UITextAutocapitalizationTypeNone;
+            PSTexrField.delegate =self;
+            PSTexrField.returnKeyType = UIReturnKeyDone;
+            PSTexrField.font = [UIFont systemFontOfSize:14];
+            [cell.contentView addSubview:PSTexrField];
+        }
+    }
+    
+    return  cell;
 }
+
+-(BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    if (textField == IDTextFiled) {
+        [PSTexrField becomeFirstResponder];
+    }else{
+        [PSTexrField resignFirstResponder];
+    }
+    return YES;
+}
+
+-(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    [IDTextFiled resignFirstResponder];
+    [PSTexrField resignFirstResponder];
+}
+
 
 @end

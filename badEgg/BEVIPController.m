@@ -8,8 +8,10 @@
 
 #import "BEVIPController.h"
 #import "BEListCell.h"
-#define DARK_BACKGROUND  [UIColor colorWithRed:151.0/255.0 green:152.0/255.0 blue:155.0/255.0 alpha:1.0]
-#define LIGHT_BACKGROUND [UIColor colorWithRed:172.0/255.0 green:173.0/255.0 blue:175.0/255.0 alpha:1.0]
+#import "UIColor+FlatUI.h"
+#import "BELoginController.h"
+//#define DARK_BACKGROUND  [UIColor colorWithRed:151.0/255.0 green:152.0/255.0 blue:155.0/255.0 alpha:1.0]
+//#define LIGHT_BACKGROUND [UIColor colorWithRed:172.0/255.0 green:173.0/255.0 blue:175.0/255.0 alpha:1.0]
 
 @interface BEVIPController ()
 {
@@ -66,6 +68,12 @@
     [refreshcontrol addTarget:self action:@selector(RefreshViewControlEventValueChanged)
              forControlEvents:UIControlEventValueChanged];
     self.refreshControl = refreshcontrol;
+    if (1) {
+//        BELoginController* loginer = [[APPUtils AppStoryBoard] instantiateViewControllerWithIdentifier:@"BELogin"];
+//        [self addChildViewController:loginer];
+//        [self.view addSubview:loginer.view];
+//        [self performSegueWithIdentifier:@"aaa" sender:self];
+    }
 }
 
 #pragma mark - Table view data source
@@ -76,7 +84,6 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
         static NSString *CellIdentifier = @"Cell";
         BEListCell *cell;
         if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"6.0")) {
@@ -85,15 +92,13 @@
             cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
         }
         cell.useDarkBackground = (indexPath.row % 2 == 0);
-        [cell setRadioItems:@{@"title": contentList[indexPath.row]}];
+        [cell setRadioItems:@{@"proname": contentList[indexPath.row]}];
         return cell;
 }
 
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.row) {
-        cell.backgroundColor = ((BEListCell *)cell).useDarkBackground ? DARK_BACKGROUND : LIGHT_BACKGROUND;
-    }
+    cell.backgroundColor = ((BEListCell *)cell).useDarkBackground ? [UIColor DARK_BACKGROUND] : [UIColor LIGHT_BACKGROUND];
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath

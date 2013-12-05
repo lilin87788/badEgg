@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface BERegisterController : UITableViewController<UIActionSheetDelegate>
+@interface BERegisterController : UIViewController<UIActionSheetDelegate>
 
 @end

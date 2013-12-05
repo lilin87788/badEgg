@@ -9,6 +9,7 @@
 #import "BEIntroController.h"
 
 @interface BEIntroController ()
+@property (weak, nonatomic) IBOutlet UIImageView *introImageView;
 
 @end
 
@@ -26,6 +27,13 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    _introImageView.image = Image(@"intro_4-568h");
+
+    if (IS_IPHONE_5) {
+        _introImageView.image = Image(@"intro_5");
+    }else{
+            Image(@"intro_4");
+    }
 }
 
 -(void)viewWillAppear:(BOOL)animated

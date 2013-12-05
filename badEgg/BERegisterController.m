@@ -9,6 +9,8 @@
 #import "BERegisterController.h"
 
 @interface BERegisterController ()
+@property (weak, nonatomic) IBOutlet UIImageView *imageView;
+@property (weak, nonatomic) IBOutlet UITableView *tableview;
 
 @end
 
@@ -32,25 +34,42 @@
     [leftButton setBackgroundImage:leftbuttonNormal forState:UIControlStateNormal];
     [leftButton addTarget:self action:@selector(reback) forControlEvents:UIControlEventTouchDown];
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]initWithCustomView:leftButton];
-    
-    UIImage *rightButtonImage = [UIImage imageNamed:@"sure.png"];
-    UIImage *rightbuttonNormal = [rightButtonImage
-                                  stretchableImageWithLeftCapWidth:10 topCapHeight:20];
-    UIButton *rightButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    [rightButton setFrame: CGRectMake(0, 0, 54, 33)];
-    [rightButton setBackgroundImage:rightbuttonNormal forState:UIControlStateNormal];
-    [rightButton addTarget:self action:@selector(goRegister) forControlEvents:UIControlEventTouchDown];
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithCustomView:rightButton];
+//    
+//    UIImage *rightButtonImage = [UIImage imageNamed:@"sure.png"];
+//    UIImage *rightbuttonNormal = [rightButtonImage
+//                                  stretchableImageWithLeftCapWidth:10 topCapHeight:20];
+//    UIButton *rightButton = [UIButton buttonWithType:UIButtonTypeCustom];
+//    [rightButton setFrame: CGRectMake(0, 0, 54, 33)];
+//    [rightButton setBackgroundImage:rightbuttonNormal forState:UIControlStateNormal];
+//    [rightButton addTarget:self action:@selector(goRegister) forControlEvents:UIControlEventTouchDown];
+//    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithCustomView:rightButton];
 }
+
 - (void)reback
 {
     //返回
-    [self.navigationController popViewControllerAnimated:YES];
+    [self dismissViewControllerAnimated:YES completion:^{
+    
+    }];
 }
 - (void)goRegister
 {
     //注册
 }
+
+-(void)initNavBar
+{
+    self.navigationItem.backBarButtonItem.title = @"返回";
+    UIImage* navbgImage;
+    if (System_Version_Small_Than_(7)) {
+        navbgImage = [UIImage imageNamed:@"navi"];
+    }else{
+        navbgImage = [UIImage imageNamed:@"navi5"] ;
+    }
+    [self.navigationController.navigationBar setBackgroundImage:navbgImage  forBarMetrics:UIBarMetricsDefault];
+}
+
+
 - (void)getPhotos
 {
     UIActionSheet *photoSheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"从相册选择",@"从拍摄选择", nil];
@@ -60,7 +79,10 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.tableView.backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"background.png"]];
+    //_tableview.backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"background.png"]];
+    _tableview.layer.cornerRadius=6;
+    _tableview.layer.masksToBounds=YES;
+    [self initNavBar];
 }
 
 #pragma mark - Table view data source
@@ -73,40 +95,14 @@
 {
     return 5;
 }
-- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
-{
-    return 146;
-}
-- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
-{
-    //View
-    UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 146)];
-    headerView.backgroundColor = [UIColor blackColor];
-    //image
-    UIImageView *headerImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 320, 146)];
-    headerImageView.image = [UIImage imageNamed:@"picBack.png"];
-    [headerView addSubview:headerImageView];
-    //button
-    UIButton *picButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    picButton.frame = CGRectMake(116, 29, 88, 88);
-    [picButton setImage:[UIImage imageNamed:@"pic.png"] forState:UIControlStateNormal];
-    [picButton addTarget:self action:@selector(getPhotos) forControlEvents:UIControlEventTouchDown];
-    [headerView addSubview:picButton];
-    return headerView;
-}
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     //    static NSString *CellIdentifier = @"Cell";
     //    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     
     // Configure the cell...
-    UITableViewCell *cell = [tableView  dequeueReusableCellWithIdentifier:@"registerCell"];
-    NSArray *titleArray = [NSArray arrayWithObjects:@"验 证 码:",
-                           @"昵   称:",
-                           @"手机号码:",
-                           @"密   码:",
-                           @"确认密码:", nil];
-    cell.textLabel.text = [titleArray objectAtIndex:indexPath.row];
+    UITableViewCell *cell = [tableView  dequeueReusableCellWithIdentifier:[NSString stringWithFormat:@"registerCell%d",indexPath.row]];
+
     return cell;
 }
 

@@ -8,6 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
-@interface BELoginController : UIViewController
-
+@interface BELoginController : UIViewController<UITextFieldDelegate>
+{
+    UITextField* IDTextFiled;
+    UITextField* PSTexrField;
+    UIActivityIndicatorView* activity;
+}
 @end

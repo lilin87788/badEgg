@@ -26,7 +26,6 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [self.phoneTextfiled becomeFirstResponder];
-    
     UIImage *leftButtonImage = [UIImage imageNamed:@"back.png"];
     UIImage *leftbuttonNormal = [leftButtonImage
                                  stretchableImageWithLeftCapWidth:10 topCapHeight:20];

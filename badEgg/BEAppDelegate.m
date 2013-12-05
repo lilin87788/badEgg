@@ -20,27 +20,28 @@ NSUInteger DeviceSystemMajorVersion() {
 
 - (void)customizeAppearance
 {
-    // Customizing the tab bar
-    UIImage *tabBackground = [[UIImage imageNamed:@"tabbar.png"]
-                              resizableImageWithCapInsets:UIEdgeInsetsMake(0, 0, 0, 0)];
-    [[UITabBar appearance] setBackgroundImage:tabBackground];
-//    [[UITabBar appearance] setSelectionIndicatorImage:
-//     [UIImage imageNamed:@"select.png"]];
+//    UIImage *tabBackground = [[UIImage imageNamed:@"tabbar.png"]
+//                              resizableImageWithCapInsets:UIEdgeInsetsMake(0, 0, 0, 0)];
+//    [[UITabBar appearance] setBackgroundImage:tabBackground];
+
+//    UIImage *buttonBack30 = [[UIImage imageNamed:@"back"]
+//                             resizableImageWithCapInsets:UIEdgeInsetsMake(0, 13, 0, 13)];
+//    [[UIBarButtonItem appearance] setBackButtonBackgroundImage:buttonBack30
+//                                                      forState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
 }
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    //[[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
     if (System_Version_Small_Than_(7)) {
         if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"6.0")) {
             _mainStoryboard = [UIStoryboard storyboardWithName:@"Main_ios6" bundle:nil];
         }else {
             _mainStoryboard = [UIStoryboard storyboardWithName:@"Main_ios5" bundle:nil];
         }
-        [self customizeAppearance];
     }else{
         _mainStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     }
     
+    [self customizeAppearance];
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     self.window.rootViewController = [_mainStoryboard instantiateInitialViewController];
     [self.window makeKeyAndVisible];

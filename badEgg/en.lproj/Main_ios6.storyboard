@@ -5,10 +5,10 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3746"/>
     </dependencies>
     <scenes>
-        <!--Tab Bar Controller - 坏蛋调频-->
+        <!--View Controller - 坏蛋调频-->
         <scene sceneID="D0r-Po-4Z0">
             <objects>
-                <tabBarController definesPresentationContext="YES" id="9A4-rh-2cX" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="BEViewController" definesPresentationContext="YES" useStoryboardIdentifierAsRestorationIdentifier="YES" id="9A4-rh-2cX" customClass="BEViewController" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" title="坏蛋调频" id="bKO-7U-VE9"/>
                     <nil key="simulatedBottomBarMetrics"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" barStyle="black" id="kdq-gf-8TR">
@@ -27,7 +27,7 @@
             </objects>
             <point key="canvasLocation" x="-582" y="193"/>
         </scene>
-        <!--Controller - MORE-->
+        <!--Controller-->
         <scene sceneID="66l-kx-oeG">
             <objects>
                 <viewController storyboardIdentifier="BEMORE" useStoryboardIdentifierAsRestorationIdentifier="YES" id="PfF-X8-rl5" customClass="BEMOREController" sceneMemberID="viewController">
@@ -138,7 +138,7 @@
                             <constraint firstAttribute="bottom" secondItem="z3Z-6x-cQD" secondAttribute="bottom" id="zef-n8-Ew7"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="MORE" id="55q-3Q-1Up"/>
+                    <tabBarItem key="tabBarItem" title="" id="55q-3Q-1Up"/>
                     <navigationItem key="navigationItem" id="YR4-rp-YXe">
                         <barButtonItem key="leftBarButtonItem" style="done" id="yxR-oW-g9q">
                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="PZo-PF-s7p">
@@ -228,7 +228,7 @@
             </objects>
             <point key="canvasLocation" x="-5" y="1080"/>
         </scene>
-        <!--List Controller - LIST-->
+        <!--List Controller-->
         <scene sceneID="5qa-Kq-VLl">
             <objects>
                 <tableViewController useStoryboardIdentifierAsRestorationIdentifier="YES" id="Ipv-Xq-jh2" customClass="BEListController" sceneMemberID="viewController">
@@ -299,7 +299,7 @@
                             <outlet property="delegate" destination="Ipv-Xq-jh2" id="oU7-GG-0QZ"/>
                         </connections>
                     </tableView>
-                    <tabBarItem key="tabBarItem" title="LIST" id="d7K-iZ-bBY"/>
+                    <tabBarItem key="tabBarItem" title="" id="d7K-iZ-bBY"/>
                     <navigationItem key="navigationItem" id="pyr-BO-ztA">
                         <barButtonItem key="rightBarButtonItem" style="done" id="AQL-fB-W3Y">
                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="efB-Fz-mMr">
@@ -317,7 +317,7 @@
             </objects>
             <point key="canvasLocation" x="385" y="-114"/>
         </scene>
-        <!--Controller - VIP-->
+        <!--Controller-->
         <scene sceneID="V1d-ab-ZvJ">
             <objects>
                 <tableViewController storyboardIdentifier="BEVIP" useStoryboardIdentifierAsRestorationIdentifier="YES" id="pBJ-u7-Gbu" customClass="BEVIPController" sceneMemberID="viewController">
@@ -373,7 +373,7 @@
                             <outlet property="delegate" destination="pBJ-u7-Gbu" id="k8A-iQ-CWp"/>
                         </connections>
                     </tableView>
-                    <tabBarItem key="tabBarItem" title="VIP" id="kNH-M4-LPt"/>
+                    <tabBarItem key="tabBarItem" title="" id="kNH-M4-LPt"/>
                     <navigationItem key="navigationItem" id="TcE-ii-ZPe">
                         <barButtonItem key="leftBarButtonItem" style="done" id="CwC-c4-XHN">
                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="xd4-F6-y42">
@@ -425,7 +425,7 @@
             </objects>
             <point key="canvasLocation" x="-5" y="-114"/>
         </scene>
-        <!--News Controller - NEW-->
+        <!--News Controller-->
         <scene sceneID="9qf-GX-cfw">
             <objects>
                 <viewController automaticallyAdjustsScrollViewInsets="NO" id="imR-sT-537" customClass="BENewsController" sceneMemberID="viewController">
@@ -453,7 +453,7 @@
                             <constraint firstAttribute="bottom" secondItem="4mh-Pt-EXG" secondAttribute="bottom" id="uks-Cl-Ao5"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="NEW" id="S3d-7X-Okn"/>
+                    <tabBarItem key="tabBarItem" title="" id="S3d-7X-Okn"/>
                     <navigationItem key="navigationItem" id="Wky-YF-A93"/>
                     <connections>
                         <outlet property="bgScrollView" destination="4mh-Pt-EXG" id="Hy6-re-ZG4"/>
