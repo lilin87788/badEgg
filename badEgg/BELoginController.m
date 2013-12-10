@@ -50,15 +50,9 @@
 
 - (IBAction)login:(UIButton *)sender {
     NSMutableArray* controllerArray =[NSMutableArray arrayWithArray:self.tabBarController.viewControllers];
-    for (id obj in controllerArray) {
-        NSLog(@"%@",obj);
-    }
     BEVIPController* vip = [[APPUtils AppStoryBoard] instantiateViewControllerWithIdentifier:@"BEVIPNav"];
     [controllerArray replaceObjectAtIndex:2 withObject:vip];
-    //[self.tabBarController setViewControllers:controllerArray animated:YES];
-    
-    [self addChildViewController:vip];
-    [self.view addSubview:vip.view];
+    [self.tabBarController setViewControllers:controllerArray animated:YES];
 }
 
 - (IBAction)registerBadEgg:(id)sender {
