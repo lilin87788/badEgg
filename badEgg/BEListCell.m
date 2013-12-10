@@ -37,9 +37,9 @@
     }
 }
 
--(void)setRadioItems:(NSDictionary*)radio
+-(void)setRadioItems:(BEAlbumItem*)radio
 {
-    titleLabel.text = radio[@"proname"];
+    titleLabel.text = radio.proName;
 }
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier

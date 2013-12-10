@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "BEAlbumItem.h"
 
 @interface BEListCell : UITableViewCell
 @property BOOL useDarkBackground;
--(void)setRadioItems:(NSDictionary*)radio;
+-(void)setRadioItems:(BEAlbumItem*)radio;
 @end

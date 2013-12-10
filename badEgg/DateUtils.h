@@ -69,7 +69,9 @@
 +(NSInteger)weekToNumber:(NSString*)weekString;
 +(NSString*)numberToWeek:(NSInteger)weekNumber;
 
-
++(NSString*)secondsToTime:(NSInteger)seconds;
++ (void)displayTimeWithSecond:(NSInteger)seconds;
++ (NSString *)convertTimeFromSeconds:(NSInteger)sec;
 //今天 昨天 前天....
 -(NSString*)dateToDetail;
 //日期转农历

@@ -13,12 +13,30 @@
 #import <CFNetwork/CFNetwork.h>
 #import <MediaPlayer/MPVolumeView.h>
 #import "AudioButton.h"
+#import "BESlider.h"
+static AudioStreamer *player = nil;
+static AVQueuePlayer  *queueplayer = nil;
 @interface BEPlayerController ()
 @property (weak, nonatomic) IBOutlet AudioButton *audioPlayerButton;
+@property (weak, nonatomic) IBOutlet UILabel *titleLabel;
+@property (weak, nonatomic) IBOutlet UILabel *curTimeLabel;
+@property (weak, nonatomic) IBOutlet UILabel *totalTimeLabel;
+@property (weak, nonatomic) IBOutlet UILabel *protroLabel;
+@property (weak, nonatomic) IBOutlet UIButton *PlayButton;
+@property (weak, nonatomic) IBOutlet UIProgressView *progressView;
+@property (weak, nonatomic) IBOutlet UISlider *BEPlaySlider;
+@property (weak, nonatomic) IBOutlet BESlider *playSlider;
 
 @end
 
 @implementation BEPlayerController
++(AVQueuePlayer*)sharedAudio
+{
+    if (queueplayer == nil) {
+        queueplayer = [[AVQueuePlayer alloc] init];
+    }
+    return queueplayer;
+}
 
 - (void)destroyStreamer
 {
@@ -147,15 +165,101 @@
     [streamer start];
 }
 
+/**
+ *  下一首 或者 上一首
+ *
+ *  @param n 通知
+ */
+-(void)AVPlayerItemTimeJumped:(NSNotification*)n
+{
+    NSLog(@"AVPlayerItemTimeJumped");
+}
+
+/**
+ * 音乐播放到末尾
+ *
+ *  @param n 通知
+ */
+-(void)AVPlayerItemDidPlayToEndTime:(NSNotification*)n
+{
+    NSLog(@"AVPlayerItemDidPlayToEndTime");
+}
+
+-(void)AVPlayerItemFailedToPlayToEndTime:(NSNotification*)n
+{
+    NSLog(@"AVPlayerItemFailedToPlayToEndTimeErrorKey");
+}
+
+- (void)configNowPlayingInfoCenter
+{
+    if (NSClassFromString(@"MPNowPlayingInfoCenter"))
+    {
+        
+        NSMutableDictionary * dict = [[NSMutableDictionary alloc] init];
+        
+        [dict setObject:@"林哥" forKey:MPMediaItemPropertyTitle];
+        
+        [dict setObject:@"林哥" forKey:MPMediaItemPropertyArtist];
+        
+        [dict setObject:@"日语" forKey:MPMediaItemPropertyAlbumTitle];
+        
+        MPMediaItemArtwork * mArt = [[MPMediaItemArtwork alloc] initWithImage:[UIImage imageNamed:@"girl"]];
+        [dict setObject:mArt forKey:MPMediaItemPropertyArtwork];
+        [[MPNowPlayingInfoCenter defaultCenter] setNowPlayingInfo:dict];
+    }
+}
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self createStreamer];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(AVPlayerItemTimeJumped:) name:AVPlayerItemTimeJumpedNotification object:0];
     
-    MPVolumeView *volumeView = [[MPVolumeView alloc] initWithFrame:CGRectMake(0, 0, 200, 20)];
-    volumeView.center = CGPointMake(150,370);
-    [volumeView sizeToFit];
-    [self.view addSubview:volumeView];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(AVPlayerItemDidPlayToEndTime:) name:AVPlayerItemDidPlayToEndTimeNotification object:0];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(AVPlayerItemFailedToPlayToEndTime:) name:AVPlayerItemFailedToPlayToEndTimeNotification object:0];
+    
+    _BEPlaySlider.thumbTintColor = COLOR(17, 168, 171);
+    [_BEPlaySlider setThumbImage:Image(@"player-progress") forState:UIControlStateNormal];
+    
+    for (BEAlbumItem* item in _albumItems) {
+        [[BEPlayerController sharedAudio] insertItem:item afterItem:0];
+    }
+    
+    [[BEPlayerController sharedAudio] play];
+
+    [[BEPlayerController sharedAudio] addPeriodicTimeObserverForInterval:CMTimeMakeWithSeconds(1, 1)
+                                                                   queue:nil
+                                                              usingBlock:^(CMTime time)
+    {
+        BEAlbumItem* currentItem = (BEAlbumItem*)[BEPlayerController sharedAudio].currentItem;
+        _titleLabel.text = currentItem.proName;
+        _protroLabel.text = currentItem.proIntro;
+        NSArray* loadedRanges = currentItem.seekableTimeRanges;
+        if (loadedRanges.count > 0)
+        {
+            CMTimeRange range = [[loadedRanges objectAtIndex:0] CMTimeRangeValue];
+            int duration = (int)(CMTimeGetSeconds(range.start) + CMTimeGetSeconds(range.duration));
+            _totalTimeLabel.text = [NSDate convertTimeFromSeconds:duration];
+            CMTime currentTime = [BEPlayerController sharedAudio].currentItem.currentTime;
+            _curTimeLabel.text = [NSDate convertTimeFromSeconds:(int)CMTimeGetSeconds(currentTime)];
+            _progressView.progress = CMTimeGetSeconds(currentTime)/duration;
+            _BEPlaySlider.value = CMTimeGetSeconds(currentTime)/duration;
+        }
+    }];
 }
+
+- (IBAction)sliderValueChanged:(UISlider*)slider
+{
+    BEAlbumItem* currentItem = (BEAlbumItem*)[BEPlayerController sharedAudio].currentItem;
+    NSArray* loadedRanges = currentItem.seekableTimeRanges;
+    if (loadedRanges.count > 0)
+    {
+        CMTimeRange range = [[loadedRanges objectAtIndex:0] CMTimeRangeValue];
+        float duration = CMTimeGetSeconds(range.start) + CMTimeGetSeconds(range.duration);
+        int value = (int)duration * slider.value;
+        [[BEPlayerController sharedAudio] seekToTime:CMTimeMakeWithSeconds(value, NSEC_PER_SEC)];
+        [[BEPlayerController sharedAudio] play];
+    }
+}
+
 @end

@@ -92,7 +92,7 @@
             cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
         }
         cell.useDarkBackground = (indexPath.row % 2 == 0);
-        [cell setRadioItems:@{@"proname": contentList[indexPath.row]}];
+        [cell setRadioItems:contentList[indexPath.row]];
         return cell;
 }
 

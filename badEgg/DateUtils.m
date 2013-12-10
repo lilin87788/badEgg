@@ -538,6 +538,76 @@
     }
 }
 
++(NSString*)secondsToTime:(NSInteger)seconds
+{
+    NSString* result;
+//    h=seconds/3600
+//    m=(seconds-h*3600)/60
+//    s=(seconds-h*3600) mod 60
+//    s = modff(<#float#>, 60)
+    return result;
+}
+
++ (void)displayTimeWithSecond:(NSInteger)seconds
+{
+    NSInteger remindMinute = seconds / 60;
+    NSInteger remindHours = remindMinute / 60;
+    
+    NSInteger remindMinutes = seconds - (remindHours * 3600);
+    NSInteger remindMinuteNew = remindMinutes / 60;
+    
+    NSInteger remindSecond = seconds - (remindMinuteNew * 60) - (remindHours * 3600);
+    
+    NSLog(@"Hours = %@", [NSString stringWithFormat:@"%02d",remindHours]);
+    NSLog(@"Minute = %@", [NSString stringWithFormat:@"%02d",remindMinuteNew]);
+    NSLog(@"Seconds = %@", [NSString stringWithFormat:@"%02d",remindSecond]);
+}
+
++ (NSString *)convertTimeFromSeconds:(NSInteger)sec {
+    NSString* seconds = [NSString stringWithFormat:@"%d",sec];
+    NSString *result = @"";
+    
+    int secs = [seconds intValue];
+    int tempHour    = 0;
+    int tempMinute  = 0;
+    int tempSecond  = 0;
+    
+    NSString *hour      = @"";
+    NSString *minute    = @"";
+    NSString *second    = @"";
+    
+    tempHour    = secs / 3600;
+    tempMinute  = secs / 60 - tempHour * 60;
+    tempSecond  = secs - (tempHour * 3600 + tempMinute * 60);
+    
+    hour    = [[NSNumber numberWithInt:tempHour] stringValue];
+    minute  = [[NSNumber numberWithInt:tempMinute] stringValue];
+    second  = [[NSNumber numberWithInt:tempSecond] stringValue];
+    
+    if (tempHour < 10) {
+        hour = [@"0" stringByAppendingString:hour];
+    }
+    
+    if (tempMinute < 10) {
+        minute = [@"0" stringByAppendingString:minute];
+    }
+    
+    if (tempSecond < 10) {
+        second = [@"0" stringByAppendingString:second];
+    }
+    
+    if (tempHour == 0) {
+        
+        result = [NSString stringWithFormat:@"%@:%@", minute, second];
+    } else {
+        result = [NSString stringWithFormat:@"%@:%@:%@",hour, minute, second];
+        
+    }
+    return result;
+}
+
+
+
 +(NSInteger)weekToNumber:(NSString*)weekString
 {
     if ([weekString isEqualToString:@"星期一"])return 1;

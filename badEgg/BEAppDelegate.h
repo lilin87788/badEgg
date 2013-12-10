@@ -7,10 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <AVFoundation/AVFoundation.h>
+#import <MediaPlayer/MediaPlayer.h>
 #define System_Version_Small_Than_(v) (DeviceSystemMajorVersion() < v)
 @interface BEAppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
 @property (strong, nonatomic) UIStoryboard *mainStoryboard;
+@property (nonatomic, retain) AVQueuePlayer *queuePlayer;
+
 NSUInteger DeviceSystemMajorVersion();
 @end
