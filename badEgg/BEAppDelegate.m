@@ -29,6 +29,14 @@ NSUInteger DeviceSystemMajorVersion() {
 //    [[UIBarButtonItem appearance] setBackButtonBackgroundImage:buttonBack30
 //                                                      forState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
 }
+
+-(void)initAudioSession
+{
+    AVAudioSession *session = [AVAudioSession sharedInstance];
+    [session setCategory:AVAudioSessionCategoryPlayback error:nil];
+    [session setActive:YES error:nil];
+}
+
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {    
     if (System_Version_Small_Than_(7)) {
@@ -42,11 +50,11 @@ NSUInteger DeviceSystemMajorVersion() {
     }
     
     [self customizeAppearance];
+    [self initAudioSession];//
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     self.window.rootViewController = [_mainStoryboard instantiateInitialViewController];
     [self.window makeKeyAndVisible];
     return YES;
-
 }
 							
 - (void)applicationWillResignActive:(UIApplication *)application

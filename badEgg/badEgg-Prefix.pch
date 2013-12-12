@@ -60,6 +60,6 @@ typedef void (^basicBlock)(void);
 //请求百度音乐下载地址的API，好像不是百度官方的
 #define BAIDUMUSIC_API(MUSICNAME) [[NSString stringWithFormat:@"http://box.zhangmen.baidu.com/x?op=12&count=1&title=%@$$$$$$",MUSICNAME] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]
 
-#define BADEGGFMDATA_PAGE(PAGENUMBER) [[NSString stringWithFormat:@"http://www.itings.com/discover/proalbum/proalbum_listAlbum.action?proAlbumId=590&userOtherId=1051&pageNo=%d",PAGENUMBER] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]
+#define BADEGGFMDATA_PAGE(PAGENUMBER) [[NSString stringWithFormat:@"http://www.itings.com/discover/proalbum/proalbum_listAlbum.action?proAlbumId=590&userOtherId=1051&pageNo=%ld",PAGENUMBER] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]
 
 #define BLog(formatString, ...) NSLog((@"%s " formatString), __PRETTY_FUNCTION__, ##__VA_ARGS__);

@@ -73,6 +73,12 @@
 		F2877B471856DF1000F0A470 /* BEPopover.m in Sources */ = {isa = PBXBuildFile; fileRef = F2877B461856DF1000F0A470 /* BEPopover.m */; };
 		F2877B4A1856E3B700F0A470 /* BESlider.m in Sources */ = {isa = PBXBuildFile; fileRef = F2877B491856E3B700F0A470 /* BESlider.m */; };
 		F2877B4C1856E8C000F0A470 /* player-progress@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F2877B4B1856E8C000F0A470 /* player-progress@2x.png */; };
+		F2877B4E185705EE00F0A470 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F2877B4D185705EE00F0A470 /* AVFoundation.framework */; };
+		F2877B50185705F500F0A470 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F2877B4F185705F500F0A470 /* CoreMedia.framework */; };
+		F2877B551857060F00F0A470 /* HysteriaPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = F2877B531857060F00F0A470 /* HysteriaPlayer.m */; };
+		F2877B561857060F00F0A470 /* point1sec.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = F2877B541857060F00F0A470 /* point1sec.mp3 */; };
+		F2877B9A185804C300F0A470 /* BEQueuePlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = F2877B99185804C300F0A470 /* BEQueuePlayer.m */; };
+		F2877B9C1858060100F0A470 /* badegg.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F2877B9B1858060100F0A470 /* badegg.jpg */; };
 		F28CDEC91844DCF9004C35AE /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F28CDEC81844DCF9004C35AE /* Security.framework */; };
 		F295E4131810236300E154A4 /* background.png in Resources */ = {isa = PBXBuildFile; fileRef = F295E4121810236300E154A4 /* background.png */; };
 		F295E4151810236900E154A4 /* board.png in Resources */ = {isa = PBXBuildFile; fileRef = F295E4141810236900E154A4 /* board.png */; };
@@ -147,6 +153,7 @@
 		F2E5D87B1844E584001FD033 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F2E5D87A1844E584001FD033 /* CFNetwork.framework */; };
 		F2E5D87D1844E58F001FD033 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F2E5D87C1844E58F001FD033 /* AudioToolbox.framework */; };
 		F2E5D8801844E5C4001FD033 /* AudioStreamer.m in Sources */ = {isa = PBXBuildFile; fileRef = F2E5D87F1844E5C4001FD033 /* AudioStreamer.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		F2E9E4541858302700AC655E /* BEAudioHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = F2E9E4531858302700AC655E /* BEAudioHelper.m */; };
 		F2F773D2180B87360070EF24 /* Icon-72.png in Resources */ = {isa = PBXBuildFile; fileRef = F2F773CC180B87360070EF24 /* Icon-72.png */; };
 		F2F773D3180B87360070EF24 /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F2F773CD180B87360070EF24 /* Icon@2x.png */; };
 		F2F773D7180B87E50070EF24 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = F2F773D4180B87E50070EF24 /* Default.png */; };
@@ -260,6 +267,14 @@
 		F2877B481856E3B700F0A470 /* BESlider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BESlider.h; sourceTree = "<group>"; };
 		F2877B491856E3B700F0A470 /* BESlider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BESlider.m; sourceTree = "<group>"; };
 		F2877B4B1856E8C000F0A470 /* player-progress@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "player-progress@2x.png"; sourceTree = "<group>"; };
+		F2877B4D185705EE00F0A470 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		F2877B4F185705F500F0A470 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
+		F2877B521857060F00F0A470 /* HysteriaPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HysteriaPlayer.h; sourceTree = "<group>"; };
+		F2877B531857060F00F0A470 /* HysteriaPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HysteriaPlayer.m; sourceTree = "<group>"; };
+		F2877B541857060F00F0A470 /* point1sec.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = point1sec.mp3; sourceTree = "<group>"; };
+		F2877B98185804C300F0A470 /* BEQueuePlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BEQueuePlayer.h; sourceTree = "<group>"; };
+		F2877B99185804C300F0A470 /* BEQueuePlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BEQueuePlayer.m; sourceTree = "<group>"; };
+		F2877B9B1858060100F0A470 /* badegg.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = badegg.jpg; sourceTree = "<group>"; };
 		F28CDEC81844DCF9004C35AE /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		F28CE506184C7F7A00839FB2 /* data.geojson */ = {isa = PBXFileReference; lastKnownFileType = text; path = data.geojson; sourceTree = "<group>"; };
 		F295E4121810236300E154A4 /* background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = background.png; sourceTree = "<group>"; };
@@ -372,6 +387,8 @@
 		F2E5D87C1844E58F001FD033 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		F2E5D87E1844E5C4001FD033 /* AudioStreamer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioStreamer.h; sourceTree = "<group>"; };
 		F2E5D87F1844E5C4001FD033 /* AudioStreamer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AudioStreamer.m; sourceTree = "<group>"; };
+		F2E9E4521858302700AC655E /* BEAudioHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BEAudioHelper.h; sourceTree = "<group>"; };
+		F2E9E4531858302700AC655E /* BEAudioHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BEAudioHelper.m; sourceTree = "<group>"; };
 		F2F773CC180B87360070EF24 /* Icon-72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-72.png"; sourceTree = "<group>"; };
 		F2F773CD180B87360070EF24 /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon@2x.png"; sourceTree = "<group>"; };
 		F2F773D4180B87E50070EF24 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
@@ -387,6 +404,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F2877B50185705F500F0A470 /* CoreMedia.framework in Frameworks */,
+				F2877B4E185705EE00F0A470 /* AVFoundation.framework in Frameworks */,
 				F2B8411C185189AD001DA858 /* libsqlite3.0.dylib in Frameworks */,
 				F2E5D87D1844E58F001FD033 /* AudioToolbox.framework in Frameworks */,
 				F2E5D87B1844E584001FD033 /* CFNetwork.framework in Frameworks */,
@@ -443,6 +462,8 @@
 			children = (
 				F2B8411B185189AD001DA858 /* libsqlite3.0.dylib */,
 				F299A5E91839EF6600ACFDC6 /* libxml2.2.dylib */,
+				F2877B4F185705F500F0A470 /* CoreMedia.framework */,
+				F2877B4D185705EE00F0A470 /* AVFoundation.framework */,
 				F2E5D87C1844E58F001FD033 /* AudioToolbox.framework */,
 				F2E5D87A1844E584001FD033 /* CFNetwork.framework */,
 				F2E5D8781844E574001FD033 /* MediaPlayer.framework */,
@@ -611,6 +632,7 @@
 		F22F357418334DB600FE96B5 /* pic */ = {
 			isa = PBXGroup;
 			children = (
+				F2877B9B1858060100F0A470 /* badegg.jpg */,
 				F2C54AA6184DC47F003791D3 /* into_4@2x.png */,
 				F2C54AA7184DC47F003791D3 /* intro_5@2x.png */,
 				F29924F9184ADCCA00695048 /* intro_4-568h@2x.png */,
@@ -725,6 +747,16 @@
 			name = slider;
 			sourceTree = "<group>";
 		};
+		F2877B511857060F00F0A470 /* HysteriaPlayer */ = {
+			isa = PBXGroup;
+			children = (
+				F2877B521857060F00F0A470 /* HysteriaPlayer.h */,
+				F2877B531857060F00F0A470 /* HysteriaPlayer.m */,
+				F2877B541857060F00F0A470 /* point1sec.mp3 */,
+			);
+			path = HysteriaPlayer;
+			sourceTree = "<group>";
+		};
 		F295E42A1810238E00E154A4 /* pic */ = {
 			isa = PBXGroup;
 			children = (
@@ -743,6 +775,7 @@
 		F299A5EB1839EF7100ACFDC6 /* opensource */ = {
 			isa = PBXGroup;
 			children = (
+				F2877B511857060F00F0A470 /* HysteriaPlayer */,
 				F2877B441856DE8E00F0A470 /* slider */,
 				F24485A318556A2900BAAEC7 /* MJRefresh */,
 				F2B8410818517E8B001DA858 /* fmdb */,
@@ -810,6 +843,10 @@
 		F2B8411D1851A127001DA858 /* model */ = {
 			isa = PBXGroup;
 			children = (
+				F2E9E4521858302700AC655E /* BEAudioHelper.h */,
+				F2E9E4531858302700AC655E /* BEAudioHelper.m */,
+				F2877B98185804C300F0A470 /* BEQueuePlayer.h */,
+				F2877B99185804C300F0A470 /* BEQueuePlayer.m */,
 				F2B8411E1851A1C7001DA858 /* BEAlbum.h */,
 				F2B8411F1851A1C7001DA858 /* BEAlbum.m */,
 				F2B841211851A24A001DA858 /* BEAlbumItem.h */,
@@ -1015,6 +1052,7 @@
 				F29924FA184ADCCA00695048 /* intro_4-568h@2x.png in Resources */,
 				F2F773D2180B87360070EF24 /* Icon-72.png in Resources */,
 				F22F357B18334DBF00FE96B5 /* feedback.png in Resources */,
+				F2877B9C1858060100F0A470 /* badegg.jpg in Resources */,
 				F295E4241810238100E154A4 /* line2.png in Resources */,
 				F22F354A1833304000FE96B5 /* download.png in Resources */,
 				F2C54A92184DB767003791D3 /* backwardfm@2x.png in Resources */,
@@ -1033,6 +1071,7 @@
 				F295E4211810238100E154A4 /* dot.png in Resources */,
 				F295E4171810237600E154A4 /* board2.png in Resources */,
 				F2C54A8C184DB4A9003791D3 /* vip@2x.png in Resources */,
+				F2877B561857060F00F0A470 /* point1sec.mp3 in Resources */,
 				F2C54A8D184DB4A9003791D3 /* list@2x.png in Resources */,
 				F21551B6180705380020183B /* InfoPlist.strings in Resources */,
 				F22F354C1833304000FE96B5 /* grid.png in Resources */,
@@ -1069,6 +1108,7 @@
 			files = (
 				F2E5D8721844E24F001FD033 /* UIButton+AFNetworking.m in Sources */,
 				F2C54AA0184DB9F3003791D3 /* UIColor+FlatUI.m in Sources */,
+				F2877B551857060F00F0A470 /* HysteriaPlayer.m in Sources */,
 				F299A5F11839EFAB00ACFDC6 /* TFHppleElement.m in Sources */,
 				F2D42C86183AFCFE00345107 /* BEPraseMusicController.m in Sources */,
 				F22F356018333FB100FE96B5 /* BEVIPController.m in Sources */,
@@ -1081,6 +1121,8 @@
 				F2B8411A18517EA9001DA858 /* FMDatabase+InMemoryOnDiskIO.m in Sources */,
 				F22F358E1833801300FE96B5 /* BERegisterController.m in Sources */,
 				F246DBCB1846DF1700CC64D7 /* AudioButton.m in Sources */,
+				F2877B9A185804C300F0A470 /* BEQueuePlayer.m in Sources */,
+				F2E9E4541858302700AC655E /* BEAudioHelper.m in Sources */,
 				F21551C2180705380020183B /* BEViewController.m in Sources */,
 				F24485AF18556A2900BAAEC7 /* MJRefreshHeaderView.m in Sources */,
 				F2B322081808F28F0008FDBB /* BENewsController.m in Sources */,

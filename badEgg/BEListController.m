@@ -74,9 +74,8 @@
 -(void)BEFMDataFromServer
 {
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    NSLog(@"curPage = %d",curPage);
     if (curPage <= totalPages) {
-        [manager GET:BADEGGFMDATA_PAGE(curPage) parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        [manager GET:BADEGGFMDATA_PAGE((long)curPage) parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
             BEAlbum* album = [[BEAlbum alloc] initWithDictionary:responseObject];
             totalPages = album.totalPage.intValue;
             [contentList addObjectsFromArray:album.albumItem];

@@ -101,7 +101,7 @@
     //    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     
     // Configure the cell...
-    UITableViewCell *cell = [tableView  dequeueReusableCellWithIdentifier:[NSString stringWithFormat:@"registerCell%d",indexPath.row]];
+    UITableViewCell *cell = [tableView  dequeueReusableCellWithIdentifier:[NSString stringWithFormat:@"registerCell%ld",(long)indexPath.row]];
 
     return cell;
 }

@@ -52,7 +52,7 @@
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [tableView  dequeueReusableCellWithIdentifier:[NSString stringWithFormat:@"setCell%d%d",indexPath.section,indexPath.row]];
+    UITableViewCell *cell = [tableView  dequeueReusableCellWithIdentifier:[NSString stringWithFormat:@"setCell%ld%ld",(long)indexPath.section,(long)indexPath.row]];
     return cell;
 }
 

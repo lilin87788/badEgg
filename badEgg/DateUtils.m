@@ -558,13 +558,13 @@
     
     NSInteger remindSecond = seconds - (remindMinuteNew * 60) - (remindHours * 3600);
     
-    NSLog(@"Hours = %@", [NSString stringWithFormat:@"%02d",remindHours]);
-    NSLog(@"Minute = %@", [NSString stringWithFormat:@"%02d",remindMinuteNew]);
-    NSLog(@"Seconds = %@", [NSString stringWithFormat:@"%02d",remindSecond]);
+    NSLog(@"Hours = %@", [NSString stringWithFormat:@"%02ld",(long)remindHours]);
+    NSLog(@"Minute = %@", [NSString stringWithFormat:@"%02ld",(long)remindMinuteNew]);
+    NSLog(@"Seconds = %@", [NSString stringWithFormat:@"%02ld",(long)remindSecond]);
 }
 
 + (NSString *)convertTimeFromSeconds:(NSInteger)sec {
-    NSString* seconds = [NSString stringWithFormat:@"%d",sec];
+    NSString* seconds = [NSString stringWithFormat:@"%ld",(long)sec];
     NSString *result = @"";
     
     int secs = [seconds intValue];
