@@ -11,11 +11,12 @@
 @interface BERegisterController ()
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;
 @property (weak, nonatomic) IBOutlet UITableView *tableview;
+@property (weak, nonatomic) IBOutlet UIButton *buttonWithBackgroundImage;
 
 @end
 
 @implementation BERegisterController
-
+@synthesize imagePickerDelegate;
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -24,34 +25,15 @@
     }
     return self;
 }
-- (void)viewWillAppear:(BOOL)animated
-{
-    UIImage *leftButtonImage = [UIImage imageNamed:@"back.png"];
-    UIImage *leftbuttonNormal = [leftButtonImage
-                                 stretchableImageWithLeftCapWidth:10 topCapHeight:20];
-    UIButton *leftButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    [leftButton setFrame: CGRectMake(0, 0, 54, 32)];
-    [leftButton setBackgroundImage:leftbuttonNormal forState:UIControlStateNormal];
-    [leftButton addTarget:self action:@selector(reback) forControlEvents:UIControlEventTouchDown];
-    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]initWithCustomView:leftButton];
-//    
-//    UIImage *rightButtonImage = [UIImage imageNamed:@"sure.png"];
-//    UIImage *rightbuttonNormal = [rightButtonImage
-//                                  stretchableImageWithLeftCapWidth:10 topCapHeight:20];
-//    UIButton *rightButton = [UIButton buttonWithType:UIButtonTypeCustom];
-//    [rightButton setFrame: CGRectMake(0, 0, 54, 33)];
-//    [rightButton setBackgroundImage:rightbuttonNormal forState:UIControlStateNormal];
-//    [rightButton addTarget:self action:@selector(goRegister) forControlEvents:UIControlEventTouchDown];
-//    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithCustomView:rightButton];
-}
 
-- (void)reback
+- (IBAction)reback
 {
     //返回
     [self dismissViewControllerAnimated:YES completion:^{
     
     }];
 }
+
 - (void)goRegister
 {
     //注册
@@ -79,10 +61,18 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    //_tableview.backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"background.png"]];
     _tableview.layer.cornerRadius=6;
     _tableview.layer.masksToBounds=YES;
     [self initNavBar];
+    
+    
+    if ([[NSUserDefaults standardUserDefaults] objectForKey:@"savedImage"]) { // test cached image
+        NSString *urlString = [[NSUserDefaults standardUserDefaults] objectForKey:@"savedImage"];
+        UIImage *cachedImage = [NSData imageFromFile:[[[NSFileManager defaultManager] cacheDataPath] stringByAppendingPathComponent:urlString]];
+        if (cachedImage) {
+            [self setOriginalImage:[UIImage imageNamed:@"camera"] resizedImage:cachedImage];
+        }
+    }
 }
 
 #pragma mark - Table view data source
@@ -93,7 +83,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 5;
+    return 4;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -106,5 +96,71 @@
     return cell;
 }
 
+- (IBAction)presentPhotoPicker
+{
+    if (!imagePickerDelegate) {
+        self.imagePickerDelegate = [[EIImagePickerDelegate alloc] init];
+        
+        __weak BERegisterController *weakController = self;
+        [imagePickerDelegate setImagePickerCompletionBlock:^(UIImage *pickerImage) {
+            
+            __strong BERegisterController *strongController = weakController;
+            
+            NSLog(@"logical size is %f:%f scale %f", pickerImage.size.width, pickerImage.size.height, pickerImage.scale);
+            UIImage *resizedImage = [pickerImage resizedImageWithContentMode:UIViewContentModeScaleAspectFill bounds:CGSizeMake(80, 80) interpolationQuality:kCGInterpolationDefault];
+            
+            // Use uncompressed size to constrain resizing
+            //            UIImage *resizedImage = [pickerImage resizedImageWithUncompressedSizeInMB:1.0 interpolationQuality:kCGInterpolationDefault];
+     
+            [strongController setOriginalImage:pickerImage resizedImage:resizedImage];
+            
+            if ([[NSUserDefaults standardUserDefaults] objectForKey:@"savedImage"]) {
+                NSString *cachedFilePath = [[NSUserDefaults standardUserDefaults] objectForKey:@"savedImage"];
+                [[NSFileManager defaultManager] removeItemAtURL:[NSURL URLWithString:cachedFilePath] error:NULL];
+            }
+            
+            NSString *assetName = [NSString stringWithFormat:@"%@.png", [[NSProcessInfo processInfo]     globallyUniqueString]];
+            assetName = [assetName stringByAppendingScaleSuffix]; // add scale suffix to extension
+            NSString *assetPath     = [[[NSFileManager defaultManager] cacheDataPath] stringByAppendingPathComponent:assetName];
+            
+            // saving synchronously
+            //            [UIImagePNGRepresentation(resizedImage) writeToFile:assetPath atomically:NO];
+            //            [[NSUserDefaults standardUserDefaults] setObject:[NSString stringWithFormat:@"%@", assetName] forKey:@"savedImage"];
+            
+            [[EIOperationManager defaultManager] saveImage:resizedImage toPath:assetPath withBlock:^(BOOL success) {
+                [[NSUserDefaults standardUserDefaults] setObject:[NSString stringWithFormat:@"%@", assetName] forKey:@"savedImage"];
+            }];
+            
+        }];
+    }
+    
+    if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
+        UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"相册", @"相机", nil];
+        [actionSheet showInView:self.view];
+        
+    } else {
+        UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"相册", nil];
+        [actionSheet showInView:self.view];
+    }
+}
 
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
+    switch (buttonIndex) {
+        case 0:
+            [imagePickerDelegate presentFromController:self withSourceType:UIImagePickerControllerSourceTypePhotoLibrary];
+            break;
+        case 1:
+            if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
+                [imagePickerDelegate presentFromController:self withSourceType:UIImagePickerControllerSourceTypeCamera];
+            }
+            break;
+        default:
+            break;
+    }
+}
+
+- (void)setOriginalImage:(UIImage *)aImage resizedImage:(UIImage *)bImage
+{
+    [_buttonWithBackgroundImage setBackgroundImage:bImage forState:UIControlStateNormal];
+}
 @end

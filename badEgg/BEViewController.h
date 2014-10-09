@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
-
-@interface BEViewController : UITabBarController<UITabBarControllerDelegate>
-
+#import "UMFeedback.h"
+@interface BEViewController : UITabBarController<UITabBarControllerDelegate,UMFeedbackDataDelegate>
+{
+    UMFeedback *_umFeedback;
+}
+- (void)feedbackSend;
 @end

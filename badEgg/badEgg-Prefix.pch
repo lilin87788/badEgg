@@ -10,6 +10,8 @@
 #warning "This project uses features only available in iOS SDK 5.0 and later."
 #endif
 
+typedef void (^BEBaseCompleteBlock)();
+
 #ifdef __OBJC__
     #import <UIKit/UIKit.h>
     #import <Foundation/Foundation.h>
@@ -22,7 +24,13 @@
     #import "UIKit+AFNetworking.h"
     #import "TFHpple.h"
     #import "DateUtils.h"
+    #import "FileUtils.h"
+    #import "DBQueue.h"
+    #import "UIColor+Colours.h"
+    #import "EssentialImager.h"
+    #import "MobClick.h"
 #endif
+
 
 //判断是不是iphone5
 #define IS_IPHONE_5 ( fabs( ( double )[ [ UIScreen mainScreen ] bounds ].size.height - ( double )568 ) < DBL_EPSILON )

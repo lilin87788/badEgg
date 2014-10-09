@@ -38,6 +38,8 @@
      "fileTime":null,
      "proAlias":null}],"prosimilaralbumlist":null,"pageNo":1,"entity":null,"totalPages":14}
 
+http://www.itings.com/record/webfile_play/Mg/MTA1MV81OTBfNTgyMjVfMg/L3dpenphcmRhdWRpbzEvMjAxMzExLzk3ZWNmYTBkLTYwOGQtNGY0NC05ZThmLTIxYWMxYTJiZTA0MS5tcDM.mp3?dow=true
+
 {
     "showName":"坏蛋调频",
     "userMarkedId":"badfm",
@@ -77,3 +79,33 @@
     "proPhoneSort":false,
     "contentLevel":null,
     "lastUpdateTime":null}
+
+
+{"c":"CHANNEL","f":"aaa","k":"159285","t":"0","m":"2013-12-23T16:03:53.135","s":[
+                                                                                 
+{"v":{"CODE":"copublicnotice","NAME":"公司公告","OWNERAPP":"company","LOGO":"http://tam.hngytobacco.com/ZZZobta/public/icon/copublicnotice.png","FIDLIST":"1010101","HASSUBTYPE":"0","ENABLED":"1"}},
+{"v":{"CODE":"conotification","NAME":"公司通知","OWNERAPP":"company","TYPELABLE":"","LOGO":"http://tam.hngytobacco.com/ZZZobta/public/icon/conotification.png","FIDLIST":"1010102","HASSUBTYPE":"0","ENABLED":"1"}},
+ {"v":{"CODE":"comeeting","NAME":"公司会议","OWNERAPP":"company","TYPELABLE":"meeting,","LOGO":"http://tam.hngytobacco.com/ZZZobta/public/icon/comeeting.png","FIDLIST":"1010103","HASSUBTYPE":"0","ENABLED":"1"}},
+{"v":{"CODE":"conews","NAME":"公司新闻","OWNERAPP":"company","TYPELABLE":"","LOGO":"http://tam.hngytobacco.com/ZZZobta/public/icon/conews.png","FIDLIST":"10102,1010103","HASSUBTYPE":"0","ENABLED":"1"}},
+{"v":{"CODE":"coworknews","NAME":"工作动态","OWNERAPP":"company","LOGO":"http://tam.hngytobacco.com/ZZZobta/public/icon/coworknews.png","FIDLIST":"10106","HASSUBTYPE":"0","ENABLED":"1"}},
+{"v":{"CODE":"coleaderspeech","NAME":"领导讲话","OWNERAPP":"company","FIDLIST":"1010601","HASSUBTYPE":"0","ENABLED":"1"}},
+{"v":{"CODE":"coworkdetail","NAME":"工作要情","OWNERAPP":"company","FIDLIST":"1010602","HASSUBTYPE":"0","ENABLED":"1"}},
+{"v":{"CODE":"copublicdocs","NAME":"公司公文","OWNERAPP":"company","LOGO":"http://tam.hngytobacco.com/ZZZobta/public/icon/copublicdocs.png","FIDLIST":"1010801","HASSUBTYPE":"1","ENABLED":"1"}},
+{"v":{"CODE":"copartyorgfile","NAME":"党组织文件","OWNERAPP":"company","FIDLIST":"101080101","HASSUBTYPE":"0","ENABLED":"1"}},
+{"v":{"CODE":"cofille","NAME":"公司文件","OWNERAPP":"company","FIDLIST":"101080102","HASSUBTYPE":"0","ENABLED":"1"}},
+{"v":{"CODE":"coofficefile","NAME":"办公室文件","OWNERAPP":"company","FIDLIST":"101080103","HASSUBTYPE":"0","ENABLED":"1"}},
+{"v":{"CODE":"coother","NAME":"其它","OWNERAPP":"company","FIDLIST":"101080104","HASSUBTYPE":"0","ENABLED":"1"}},
+{"v":{"CODE":"coreceipt","NAME":"收文","OWNERAPP":"company","FIDLIST":"101080106","HASSUBTYPE":"0","ENABLED":"1"}},
+{"v":{"CODE":"copetition","NAME":"签呈","OWNERAPP":"company","FIDLIST":"101080107","HASSUBTYPE":"0","ENABLED":"1"}},
+{"v":{"CODE":"coletter","NAME":"发函","OWNERAPP":"company","FIDLIST":"101080108","HASSUBTYPE":"0","ENABLED":"1"}},
+{"v":{"CODE":"company","NAME":"公司主页","OWNERAPP":"company","HASSUBTYPE":"1","ENABLED":"1"}}]}
+
+
+
+
+
+
+{"c":"ECMDATAINFO","f":"aaa","k":"ECMDATAINFO20131224171856979","t":"0","m":"2013-12-24T17:18:56.979","s":
+    {"v":{"CHANNELCODE":"comeeting","UPDATEFLAG":"1","ADDNUM":"8","MODIFYNUM":"0","DELETENUM":"3"}},{"v":{"CHANNELCODE":"company","UPDATEFLAG":"0","ADDNUM":"0","MODIFYNUM":"0","DELETENUM":"0"}},{"v":{"CHANNELCODE":"conews","UPDATEFLAG":"1","ADDNUM":"7","MODIFYNUM":"0","DELETENUM":"4"}},{"v":{"CHANNELCODE":"conotification","UPDATEFLAG":"1","ADDNUM":"1","MODIFYNUM":"0","DELETENUM":"0"}},{"v":{"CHANNELCODE":"copublicdocs","UPDATEFLAG":"0","ADDNUM":"0","MODIFYNUM":"0","DELETENUM":"0"}},{"v":{"CHANNELCODE":"copublicnotice","UPDATEFLAG":"0","ADDNUM":"0","MODIFYNUM":"0","DELETENUM":"0"}},{"v":{"CHANNELCODE":"coworknews","UPDATEFLAG":"0","ADDNUM":"0","MODIFYNUM":"0","DELETENUM":"0"}}]}
+
+

@@ -86,6 +86,7 @@
 @property (readonly) NSInteger seconds;
 @property (readonly) NSInteger day;//几号
 @property (readonly) NSInteger month;
+@property (readonly) NSString* monthString;
 @property (readonly) NSInteger week;//这一年的第几周
 @property (readonly) NSInteger weekday;
 @property (readonly) NSInteger nthWeekday; // e.g. 2nd Tuesday of the month == 2

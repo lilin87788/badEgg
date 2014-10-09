@@ -10,7 +10,7 @@
 #import <QuartzCore/QuartzCore.h>
 #include <math.h>
 
-static inline double radians (double degrees) {return degrees * M_PI/180;}
+//static inline double radians (double degrees) {return degrees * M_PI/180;}
 
 NSString *playImage = @"play.png";
 NSString *stopImage = @"stop.png";
@@ -273,7 +273,7 @@ NSString *stopImage = @"stop.png";
 - (void)startSpin
 {
     if (!loadingView) {
-        loadingView = [[UIImageView alloc] initWithFrame:CGRectMake(3, 3, self.frame.size.width-6, self.frame.size.height-6)];
+        loadingView = [[UIImageView alloc] initWithFrame:CGRectMake(-5.5, -5.5, self.frame.size.width+11, self.frame.size.height+11)];
         loadingView.image = [UIImage imageNamed:@"loading"];
         [self addSubview:loadingView];
     }

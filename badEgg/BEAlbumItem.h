@@ -6,6 +6,13 @@
 //  Copyright (c) 2013年 surekam. All rights reserved.
 //
 
+typedef enum : NSUInteger {
+    BEUNDownload,
+    BEDownloading,
+    BEDownloaded
+} BEdownloadStatus;
+
+
 #import <Foundation/Foundation.h>
 /**
  *  存储一条fm数据
@@ -32,4 +39,5 @@
 @property(nonatomic,strong)NSString* proCreater;
 @property(nonatomic,strong)NSString* listenNum;
 @property(nonatomic,strong)NSString* proId;
+@property(nonatomic,strong)NSString* dowStatus;
 @end

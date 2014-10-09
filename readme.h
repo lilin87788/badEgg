@@ -28,4 +28,18 @@
  * 怎么设置拔出耳机时 声音不停止
  */
 
+/**
+ *  知识点总结
+ */
+
+/**
+ *  1Provisioning profile is expiring: 0409inHouse
+ */
+
+/**
+ *  This seems to be a problem with trying to play videos on the simulator. I've had this problem for months now, and just ran into it again today when I was trying to play video on my simulator.
+ 
+ The solution, while not great, is to use an actual device instead of the simulator for testing video playing.
+ */
+
 #endif

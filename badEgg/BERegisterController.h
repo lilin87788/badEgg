@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface BERegisterController : UIViewController<UIActionSheetDelegate>
-
+@property (nonatomic, strong) EIImagePickerDelegate *imagePickerDelegate;
 @end

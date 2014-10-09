@@ -25,7 +25,7 @@
 //    [leftButton addTarget:self action:@selector(reback) forControlEvents:UIControlEventTouchDown];
 //    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]initWithCustomView:leftButton];
 //}
-- (void)reback
+- (IBAction)reback
 {
     //返回
     [self.navigationController popViewControllerAnimated:YES];
@@ -47,7 +47,7 @@
     if (section == 0) {
         return 1;
     }else{
-        return 4;
+        return 3;
     }
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath

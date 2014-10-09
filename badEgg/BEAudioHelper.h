@@ -9,5 +9,10 @@
 #import <Foundation/Foundation.h>
 
 @interface BEAudioHelper : NSObject
-
+/**
+ *   检测声音输入设备
+ *
+ *  @return
+ */
++ (BOOL)hasMicphone;
 @end

@@ -9,29 +9,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "badEgg/BESetUpViewController.m"
-            timestampString = "408333576.596455"
+            filePath = "badEgg/BEListController.m"
+            timestampString = "418819379.036935"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "23"
-            endingLineNumber = "23"
-            landmarkName = "@implementation BESetUpViewController"
-            landmarkType = "3">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "badEgg/BESlider.m"
-            timestampString = "408348430.930116"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "69"
-            endingLineNumber = "69"
-            landmarkName = "-touchesBegan:withEvent:"
+            startingLineNumber = "84"
+            endingLineNumber = "84"
+            landmarkName = "-BERefreshFMDataFromServer:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

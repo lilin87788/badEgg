@@ -9,5 +9,8 @@
 #import "BEAlbumItem.h"
 
 @implementation BEAlbumItem
-
+-(void)show
+{
+    
+}
 @end

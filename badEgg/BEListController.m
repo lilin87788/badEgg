@@ -13,49 +13,54 @@
 #import "BEAlbum.h"
 #import "BEAlbumItem.h"
 #import "MJRefresh.h"
-//#define DARK_BACKGROUND  [UIColor colorWithRed:151.0/255.0 green:152.0/255.0 blue:155.0/255.0 alpha:1.0]
-//#define LIGHT_BACKGROUND [UIColor colorWithRed:172.0/255.0 green:173.0/255.0 blue:175.0/255.0 alpha:1.0]
+#import "HysteriaPlayer.h"
+#import "AFURLSessionManager.h"
+#import "UIProgressView+AFNetworking.h"
+#import "AFHTTPRequestOperationManager.h"
 
 @interface BEListController ()
 {
     NSMutableArray* contentList;
     TFHpple *xpathParser;
     NSArray *elements;
-    MJRefreshFooterView *_footer;
     NSInteger curPage;
     NSInteger totalPages;
+    NSString* maxPublishTime;
 }
+@property MJRefreshFooterView *footer;
 @end
 
 @implementation BEListController
-
-- (id)initWithStyle:(UITableViewStyle)style
-{
-    self = [super initWithStyle:style];
-    if (self) {
-        
-    }
-    return self;
-}
-
 - (void) handleData
 {
-    [self.refreshControl endRefreshing];
-    self.refreshControl.attributedTitle = [[NSAttributedString alloc]initWithString:@"下拉刷新"];
-    [self.tableView reloadData];
+    curPage = 1;
+    [self BERefreshFMDataFromServer:^{
+        maxPublishTime = [self maxPublishTime];
+        [contentList removeAllObjects];
+        [self BEFMDataFromDataBase:^{
+            HysteriaPlayer* beplayer = [HysteriaPlayer sharedInstance];
+            [beplayer setupSourceGetter:^BEAlbumItem *(NSUInteger index){
+                return contentList[index];
+            } ItemsCount:contentList.count];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self.tableView reloadData];
+                [self.refreshControl endRefreshing];
+                self.refreshControl.attributedTitle = [[NSAttributedString alloc]initWithString:@"下拉刷新"];
+            });
+        }];
+    }];
 }
 
 -(void)RefreshViewControlEventValueChanged
 {
     if (self.refreshControl.refreshing) {
         self.refreshControl.attributedTitle = [[NSAttributedString alloc]initWithString:@"刷新中"];
-        [self performSelector:@selector(handleData) withObject:nil afterDelay:2];
+        [self handleData];
     }
 }
 
 -(void)initNavBar
 {
-    self.navigationItem.backBarButtonItem.title = @"返回";
     UIImage* navbgImage;
     if (System_Version_Small_Than_(7)) {
         navbgImage = [UIImage imageNamed:@"navbar44"];
@@ -64,53 +69,161 @@
         self.navigationController.navigationBar.tintColor = [UIColor blackColor];
     }
     [self.navigationController.navigationBar setBackgroundImage:navbgImage  forBarMetrics:UIBarMetricsDefault];
-
-    UIBarButtonItem* backItem = [[UIBarButtonItem alloc] init];
-    [backItem setBackButtonBackgroundImage:[Image(@"back") resizableImageWithCapInsets:UIEdgeInsetsMake(0, 13, 0, 13)] forState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
-    backItem.title = @"     ";
-    self.navigationItem.backBarButtonItem = backItem;
 }
 
--(void)BEFMDataFromServer
+-(void)BERefreshFMDataFromServer:(BEBaseCompleteBlock)block
 {
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    if (curPage <= totalPages) {
-        [manager GET:BADEGGFMDATA_PAGE((long)curPage) parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
-            BEAlbum* album = [[BEAlbum alloc] initWithDictionary:responseObject];
-            totalPages = album.totalPage.intValue;
-            [contentList addObjectsFromArray:album.albumItem];
-            [self.tableView reloadData];
-            if ([_footer isRefreshing]) {
-                [_footer endRefreshing];
-            }
-            curPage+=1;
-        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-            NSLog(@"Error: %@", error);
-        }];
-    }else{
-        if ([_footer isRefreshing]) {
-            [_footer endRefreshing];
+    [manager GET:BADEGGFMDATA_PAGE((long)curPage) parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        BEAlbum* album = [[BEAlbum alloc] initWithDictionary:responseObject];
+        totalPages = album.totalPage.intValue;
+        [[DBQueue sharedbQueue] insertDataToLocalDataBaseWithAlbum:album completeBlock:^{}];
+        NSString* minpublishTime =[(BEAlbumItem*)album.albumItem.lastObject publishTime];
+        curPage++;
+        if (minpublishTime.intValue >= maxPublishTime.intValue) {
+            [self BERefreshFMDataFromServer:block];
         }
-    }
+        if (minpublishTime.intValue <  maxPublishTime.intValue) {
+            if (block) {
+                block();
+            }
+        }
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"Error: %@", error);
+    }];
+}
+
+-(void)BEFirstFMDataFromServer:(BEBaseCompleteBlock)block
+{
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    [manager GET:BADEGGFMDATA_PAGE((long)curPage) parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        BEAlbum* album = [[BEAlbum alloc] initWithDictionary:responseObject];
+        totalPages = album.totalPage.intValue;
+        [[DBQueue sharedbQueue] insertDataToLocalDataBaseWithAlbum:album completeBlock:^{}];
+        curPage++;
+        if (curPage <= totalPages) {
+            [self BEFirstFMDataFromServer:block];
+        }
+        if (curPage > totalPages) {
+            [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"firstRefreshData"];
+            [[NSUserDefaults standardUserDefaults] synchronize];
+            if (block) {
+                block();
+            }
+        }
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"Error: %@", error);
+    }];
 }
 
 - (void)loadMoreButtonPressed:(id)sender
 {
-    //[self addItems];
     [self.tableView reloadData];
+}
+
+-(void)BEFMDataFromDataBase:(BEBaseCompleteBlock)block
+{
+    NSString* sql = [NSString stringWithFormat:@"select * from T_BADEGGALBUMS order by publishTime desc limit %lu,15",(unsigned long)contentList.count];
+    NSArray* array = [[DBQueue sharedbQueue] recordFromTableBySQL:sql];
+    for (NSDictionary*dict in array) {
+        BEAlbumItem* item = [[BEAlbumItem alloc] initWithURL:[NSURL URLWithString:dict[@"audioPathHttp"]]];
+        item.proName = dict[@"proName"];
+        item.fileName = dict[@"fileName"];
+        item.proTags = dict[@"proTags"];
+        item.proIntro = dict[@"proIntro"];
+        item.proIntroDto = dict[@"proIntroDto"];
+        item.proIntroToSubString = dict[@"proIntroToSubString"];
+        
+        item.audioPathHttp = dict[@"audioPathHttp"];
+        item.audioPath = dict[@"audioPath"];
+        item.virtualAddress = dict[@"virtualAddress"];
+        item.virtualAddressOld = dict[@"virtualAddressOld"];
+        
+        item.createTime = dict[@"createTime"];
+        item.updateTime = dict[@"updateTime"];
+        item.publishTime = dict[@"publishTime"];
+        item.playTime = dict[@"playTime"];
+        
+        item.proAlbumId = dict[@"proAlbumId"];
+        item.proCreater = dict[@"proCreater"];
+        item.listenNum = dict[@"listenNum"];
+        item.proId = dict[@"proId"];
+        item.dowStatus = dict[@"dowStatus"];
+        [contentList addObject:item];
+    }
+    if (block) {
+        block();
+    }
+}
+
+-(NSString*)maxPublishTime
+{
+    NSString* sql =  @"select max(publishTime) publishTime from T_BADEGGALBUMS;";
+     NSString*result = [[DBQueue sharedbQueue] getSingleRowBySQL:sql][@"publishTime"];
+    if ([result isEqual:[NSNull null]]) {
+        return @"0";
+    }else{
+        return result;
+    }
+}
+
+-(id)initWithCoder:(NSCoder *)aDecoder
+{
+    self = [super initWithCoder:aDecoder];
+    if (self) {
+        curPage = 1;
+        totalPages = 1;
+        contentList = [NSMutableArray array];
+        maxPublishTime = [self maxPublishTime];
+
+    }
+    return self;
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     [self initNavBar];
-    curPage = 1;
-    totalPages = 1;
     contentList = [NSMutableArray array];
+    maxPublishTime = [self maxPublishTime];
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
-        [self BEFMDataFromServer];
+        [self BEFMDataFromDataBase:^{
+            [self.tableView reloadData];
+            HysteriaPlayer* beplayer = [HysteriaPlayer sharedInstance];
+            [beplayer setupSourceGetter:^BEAlbumItem *(NSUInteger index){
+                return contentList[index];
+            } ItemsCount:contentList.count];
+            
+            
+            if([[NSUserDefaults standardUserDefaults] boolForKey:@"firstRefreshData"] == NO){
+                [self BEFirstFMDataFromServer:^{
+                    [self BEFMDataFromDataBase:^{
+                        [[NSNotificationCenter defaultCenter] postNotificationName:@"refreshCompleted" object:0];
+                        maxPublishTime = [self maxPublishTime];
+                        HysteriaPlayer* beplayer = [HysteriaPlayer sharedInstance];
+                        [beplayer setupSourceGetter:^BEAlbumItem *(NSUInteger index){
+                            return contentList[index];
+                        } ItemsCount:contentList.count];
+                        [self.tableView reloadData];
+                    }];
+                }];
+            }else{
+                [self BERefreshFMDataFromServer:^{
+                    maxPublishTime = [self maxPublishTime];
+                    [contentList removeAllObjects];
+                    [self BEFMDataFromDataBase:^{
+                        [[NSNotificationCenter defaultCenter] postNotificationName:@"refreshCompleted" object:0];
+                        HysteriaPlayer* beplayer = [HysteriaPlayer sharedInstance];
+                        [beplayer setupSourceGetter:^BEAlbumItem *(NSUInteger index){
+                            return contentList[index];
+                        } ItemsCount:contentList.count];
+                        [self.tableView reloadData];
+                    }];
+                }];
+            }
+        }];
     });
-    contentList = [NSMutableArray array];
+    
     UIRefreshControl* refreshcontrol = [[UIRefreshControl alloc]init];
     refreshcontrol.tintColor = COLOR(17, 168, 171);
     refreshcontrol.attributedTitle = [[NSAttributedString alloc]initWithString:@"下拉刷新"];
@@ -118,20 +231,23 @@
              forControlEvents:UIControlEventValueChanged];
     self.refreshControl = refreshcontrol;
     
-//    UIButton *loadMoreButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-//    loadMoreButton.frame = CGRectMake(40, 7, 240, 44);
-//    loadMoreButton.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin;
-//    [loadMoreButton setTitle:@"Load more" forState:UIControlStateNormal];
-//    [loadMoreButton addTarget:self action:@selector(loadMoreButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
-//    
-//    self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 58)];
-//    [self.tableView.tableFooterView addSubview:loadMoreButton];
+    HysteriaPlayer *bePlayer = [HysteriaPlayer sharedInstance];
+    [bePlayer registerHandlerFailed:^(HysteriaPlayerFailed identifier, NSError *error){
+        NSLog(@"%@",error);
+    }];
     
     __weak BEListController* vc = self;
     _footer = [MJRefreshFooterView footer];
     _footer.scrollView = self.tableView;
     _footer.beginRefreshingBlock = ^(MJRefreshBaseView *refreshView) {
-        [vc BEFMDataFromServer];
+        [vc BEFMDataFromDataBase:^{
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [vc.tableView reloadData];
+                if ([vc.footer isRefreshing]) {
+                    [vc.footer endRefreshing];
+                }
+            });
+        }];
     };
 }
 
@@ -145,28 +261,33 @@
     [segue.destinationViewController setHidesBottomBarWhenPushed:YES];
     if ([segue.identifier isEqualToString:@"player"])
 	{
-        BEAlbumItem *item = contentList[[self.tableView indexPathForSelectedRow].row - 1];
-        //如果此时正在播放
-        if ([[BEPlayerController sharedAudio] rate] != 0) {
-            BEAlbumItem* curentItem = (BEAlbumItem*)[[BEPlayerController sharedAudio] currentItem];
-            if (curentItem.proId.intValue != item.proId.intValue) {
-                [[BEPlayerController sharedAudio] pause];
-                [[BEPlayerController sharedAudio] removeAllItems];
-                BEPlayerController *playerController = segue.destinationViewController;
-                playerController.FMUrl = item.audioPathHttp;
-                playerController.albumItems = [contentList subarrayWithRange:NSMakeRange([self.tableView indexPathForSelectedRow].row - 1, contentList.count  - [self.tableView indexPathForSelectedRow].row + 1)];
-            }else{
-                //界面显示正在播放的信息 包括点击正在播放的按钮
-            }
-        }else{//如果此时没有播放
-            BEPlayerController *playerController = segue.destinationViewController;
-            playerController.FMUrl = item.audioPathHttp;
-            playerController.albumItems = [contentList subarrayWithRange:NSMakeRange([self.tableView indexPathForSelectedRow].row - 1, contentList.count  - [self.tableView indexPathForSelectedRow].row + 1)];
-        }
+        HysteriaPlayer* beplayer = [HysteriaPlayer sharedInstance];
+        [beplayer setupSourceGetter:^BEAlbumItem *(NSUInteger index){
+            return contentList[index];
+        } ItemsCount:contentList.count];
+        [beplayer removeAllItems];
+        BEPlayerController *playerController = segue.destinationViewController;
+        playerController.currentItems = contentList[[self.tableView indexPathForSelectedRow].row-1];
+        playerController.currentIndex = [self.tableView indexPathForSelectedRow].row-1;
+        playerController.isClickPlaingBtn = NO;
+    }
+    
+    if ([segue.identifier isEqualToString:@"playing"])
+	{
+        HysteriaPlayer *player = [HysteriaPlayer sharedInstance];
+         NSUInteger index = [[player getHysteriaOrder:[player getCurrentItem]] unsignedIntegerValue];
+        BEPlayerController *playerController = segue.destinationViewController;
+        playerController.currentIndex = index;
+        playerController.isClickPlaingBtn = YES;
     }
 }
 
+
 #pragma mark - Table view data source
+- (IBAction)downloadRadio:(UIButton *)sender {
+    //BEListCell* cell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:sender.tag + 1 inSection:1]];
+    //NSLog(@"%d %@",sender.tag,cell.class);
+}
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
@@ -197,8 +318,10 @@
         }else {
             cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
         }
+        BEAlbumItem* item = contentList[indexPath.row-1];
         cell.useDarkBackground = (indexPath.row % 2 == 0);
-        [cell setRadioItems:contentList[indexPath.row-1]];
+        cell.tableView = tableView;
+        [cell setRadioItems:item];
         return cell;
     }
 }

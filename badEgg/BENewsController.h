@@ -10,5 +10,4 @@
 
 @interface BENewsController : UIViewController
 @property (weak, nonatomic) IBOutlet UIScrollView *bgScrollView;
-
 @end

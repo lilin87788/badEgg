@@ -70,11 +70,6 @@
         self.navigationController.navigationBar.tintColor = [UIColor blackColor];
     }
     [self.navigationController.navigationBar setBackgroundImage:navbgImage  forBarMetrics:UIBarMetricsDefault];
-    
-    UIBarButtonItem* backItem = [[UIBarButtonItem alloc] init];
-    [backItem setBackButtonBackgroundImage:[Image(@"back") resizableImageWithCapInsets:UIEdgeInsetsMake(0, 13, 0, 13)] forState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
-    backItem.title = @"     ";
-    self.navigationItem.backBarButtonItem = backItem;
 }
 
 - (void)viewDidLoad

@@ -11,5 +11,7 @@
 
 @interface BEListCell : UITableViewCell
 @property BOOL useDarkBackground;
+@property(nonatomic,weak)UITableView* tableView;
+@property (weak, nonatomic) IBOutlet UIProgressView *taskProgressView;
 -(void)setRadioItems:(BEAlbumItem*)radio;
 @end

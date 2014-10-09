@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "BENewsController.h"
 @interface BENewsDetailController : UIViewController
-
+@property NSInteger pageindex;
+@property (weak,nonatomic)BENewsController* rootController;
 @end

@@ -43,7 +43,7 @@
         _databasePath       = [aPath copy];
         _openResultSets     = [[NSMutableSet alloc] init];
         _db                 = nil;
-        _logsErrors         = YES;
+        _logsErrors         = NO;
         _crashOnErrors      = NO;
         _busyRetryTimeout   = 0;
     }

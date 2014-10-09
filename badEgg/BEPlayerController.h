@@ -7,19 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
-#import <AVFoundation/AVFoundation.h>
-#import <MediaPlayer/MediaPlayer.h>
 #import "BEAlbumItem.h"
-#import "BEPlayerItem.h"
-@class AudioStreamer;
+#import "AudioButton.h"
 @interface BEPlayerController : UIViewController
 {
-    AudioStreamer *streamer;
-    NSTimer *progressUpdateTimer;
+    
 }
 
-@property(nonatomic,strong)NSString* FMUrl;
-@property(nonatomic,strong)NSArray* albumItems;
-
-+(AVQueuePlayer*)sharedAudio;
+@property(nonatomic,strong)BEAlbumItem* currentItems;
+@property(nonatomic)NSUInteger currentIndex;
+@property BOOL isClickPlaingBtn;
 @end

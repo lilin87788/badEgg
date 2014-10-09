@@ -86,9 +86,11 @@
     if ((NSNull *)controller == [NSNull null])
     {
         controller = [[APPUtils AppStoryBoard] instantiateViewControllerWithIdentifier:@"BENewsDetail"];
+        controller.pageindex = page;
+        controller.rootController = self;
         [viewControllers replaceObjectAtIndex:page withObject:controller];
     }
-    
+    //111
     // add the controller's view to the scroll view
     if (controller.view.superview == nil)
     {
@@ -109,13 +111,9 @@
     CGFloat pageWidth = CGRectGetWidth(_bgScrollView.frame);
     NSUInteger page = floor((_bgScrollView.contentOffset.x - pageWidth / 2) / pageWidth) + 1;
     pageController.currentPage = page;
-    
-    // load the visible page and the page on either side of it (to avoid flashes when the user starts scrolling)
     [self loadScrollViewWithPage:page - 1];
     [self loadScrollViewWithPage:page];
     [self loadScrollViewWithPage:page + 1];
-    
-    // a possible optimization would be to unload the views+controllers which are no longer visible
 }
 
 - (void)gotoPage:(BOOL)animated

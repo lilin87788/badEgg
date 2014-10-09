@@ -24,15 +24,18 @@
     return self;
 }
 
+-(IBAction)back:(id)sender
+{
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    _introImageView.image = Image(@"intro_4-568h");
-
     if (IS_IPHONE_5) {
         _introImageView.image = Image(@"intro_5");
     }else{
-            Image(@"intro_4");
+        _introImageView.image = Image(@"intro_4");
     }
 }
 
