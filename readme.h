@@ -9,11 +9,14 @@
 #ifndef badEgg_readme_h
 #define badEgg_readme_h
 /**
- *  Album 专辑
+ * 更新日记 2014年10月09日14:10:01
+ * 注意即将维护的新版本 即将放弃对ios5.x的支持
+ * 本次维护即将集成cocoapods 方便对第三方库的管理 
+ * 感谢 HysteriaPlayer 代码的支持 感谢 魏泽 对UI设计的贡献（如果上架侵犯了版权的话马上下架）
  */
 
 /**
- *  Descriptio
+ *  Album 专辑
  */
 
 /**
@@ -40,6 +43,10 @@
  *  This seems to be a problem with trying to play videos on the simulator. I've had this problem for months now, and just ran into it again today when I was trying to play video on my simulator.
  
  The solution, while not great, is to use an actual device instead of the simulator for testing video playing.
+ */
+
+/**
+ *  集成友盟的注意事项还没有添加
  */
 
 #endif

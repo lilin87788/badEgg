@@ -9,7 +9,7 @@
 #import "BEVIPController.h"
 #import "UIColor+FlatUI.h"
 #import "BELoginController.h"
-#import "AFNetworking/AFURLSessionManager.h"
+#import "AFURLSessionManager.h"
 #import "BEURLRequest.h"
 #import "HysteriaPlayer.h"
 #import "BEPlayerController.h"
