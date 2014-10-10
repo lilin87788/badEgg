@@ -10,7 +10,11 @@
 
 @implementation BEAudioHelper
 + (BOOL)hasMicphone {
-    return [[AVAudioSession sharedInstance] inputIsAvailable];
+    AudioSessionInitialize(NULL, NULL, NULL, NULL);
+    UInt32 propertySize, micConnected;
+    AudioSessionGetProperty(kAudioSessionProperty_AudioInputAvailable, &propertySize, &micConnected);
+    return micConnected;
+    //return [[AVAudioSession sharedInstance] inputIsAvailable];
 }
 
 //是不是有耳机

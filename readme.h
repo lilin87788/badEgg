@@ -9,10 +9,14 @@
 #ifndef badEgg_readme_h
 #define badEgg_readme_h
 /**
- * 更新日记 2014年10月09日14:10:01
+ * 更新日记 2014年10月09日
  * 注意即将维护的新版本 即将放弃对ios5.x的支持
  * 本次维护即将集成cocoapods 方便对第三方库的管理 
  * 感谢 HysteriaPlayer 代码的支持 感谢 魏泽 对UI设计的贡献（如果上架侵犯了版权的话马上下架）
+ 
+ * [!] The use of implicit sources has been deprecated. To continue using all of the sources currently on your machine, add the following to the top of your Podfile:
+ 
+    source 'https://github.com/CocoaPods/Specs.git'
  */
 
 /**
