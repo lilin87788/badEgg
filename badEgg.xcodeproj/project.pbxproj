@@ -135,13 +135,6 @@
 		3B714DCF19E658AD00831C7C /* libWeChatSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B714DB519E658AC00831C7C /* libWeChatSDK.a */; };
 		3B714DD019E658AD00831C7C /* libSocialYiXin.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B714DBA19E658AD00831C7C /* libSocialYiXin.a */; };
 		3B714DD319E658B800831C7C /* libMobClickLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B714DD119E658B800831C7C /* libMobClickLibrary.a */; };
-		3B94FB1E19E76BD80039506B /* icon-40@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B94FB1719E76BD80039506B /* icon-40@2x.png */; };
-		3B94FB1F19E76BD80039506B /* icon-60@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B94FB1819E76BD80039506B /* icon-60@2x.png */; };
-		3B94FB2019E76BD80039506B /* Icon-72.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B94FB1919E76BD80039506B /* Icon-72.png */; };
-		3B94FB2119E76BD80039506B /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B94FB1A19E76BD80039506B /* Icon@2x.png */; };
-		3B94FB2219E76BD80039506B /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B94FB1B19E76BD80039506B /* Default.png */; };
-		3B94FB2319E76BD80039506B /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B94FB1C19E76BD80039506B /* Default@2x.png */; };
-		3B94FB2419E76BD80039506B /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B94FB1D19E76BD80039506B /* Default-568h@2x.png */; };
 		F21551AC180705380020183B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F21551AB180705380020183B /* Foundation.framework */; };
 		F21551AE180705380020183B /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F21551AD180705380020183B /* CoreGraphics.framework */; };
 		F21551B0180705380020183B /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F21551AF180705380020183B /* UIKit.framework */; };
@@ -407,13 +400,6 @@
 		3B714DBB19E658AD00831C7C /* UMSocialYiXinHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMSocialYiXinHandler.h; sourceTree = "<group>"; };
 		3B714DD119E658B800831C7C /* libMobClickLibrary.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libMobClickLibrary.a; path = "友盟/libMobClickLibrary.a"; sourceTree = "<group>"; };
 		3B714DD219E658B800831C7C /* MobClick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MobClick.h; path = "友盟/MobClick.h"; sourceTree = "<group>"; };
-		3B94FB1719E76BD80039506B /* icon-40@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-40@2x.png"; sourceTree = "<group>"; };
-		3B94FB1819E76BD80039506B /* icon-60@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-60@2x.png"; sourceTree = "<group>"; };
-		3B94FB1919E76BD80039506B /* Icon-72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-72.png"; sourceTree = "<group>"; };
-		3B94FB1A19E76BD80039506B /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon@2x.png"; sourceTree = "<group>"; };
-		3B94FB1B19E76BD80039506B /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
-		3B94FB1C19E76BD80039506B /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
-		3B94FB1D19E76BD80039506B /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		4462A6D7EAC93E0753764841 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		A5381B941ED657E8646C5F79 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		F21551A8180705380020183B /* badEgg.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = badEgg.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -854,13 +840,6 @@
 		F22F35611833437E00FE96B5 /* resource */ = {
 			isa = PBXGroup;
 			children = (
-				3B94FB1719E76BD80039506B /* icon-40@2x.png */,
-				3B94FB1819E76BD80039506B /* icon-60@2x.png */,
-				3B94FB1919E76BD80039506B /* Icon-72.png */,
-				3B94FB1A19E76BD80039506B /* Icon@2x.png */,
-				3B94FB1B19E76BD80039506B /* Default.png */,
-				3B94FB1C19E76BD80039506B /* Default@2x.png */,
-				3B94FB1D19E76BD80039506B /* Default-568h@2x.png */,
 				3B714CE019E6586800831C7C /* 4grid@2x.png */,
 				3B714CE119E6586800831C7C /* avatar.png */,
 				3B714CE219E6586800831C7C /* background.png */,
@@ -1404,7 +1383,6 @@
 				3B714DC119E658AD00831C7C /* UMSCommentInputControlleriPad.xib in Resources */,
 				3B714D3D19E6586800831C7C /* data.geojson in Resources */,
 				3B714D4219E6586800831C7C /* dot2.png in Resources */,
-				3B94FB2419E76BD80039506B /* Default-568h@2x.png in Resources */,
 				3B714D4819E6586800831C7C /* grid.png in Resources */,
 				3B714D5A19E6586800831C7C /* loading.png in Resources */,
 				3B714D5819E6586800831C7C /* list@2x.png in Resources */,
@@ -1412,7 +1390,6 @@
 				3B714D4019E6586800831C7C /* Default@2x.png in Resources */,
 				3B714D6019E6586800831C7C /* navbar44.png in Resources */,
 				3B714D8019E6586800831C7C /* test.html in Resources */,
-				3B94FB1F19E76BD80039506B /* icon-60@2x.png in Resources */,
 				3B714D3519E6586800831C7C /* backwardfm@2x.png in Resources */,
 				3B714D6619E6586800831C7C /* nx@2x.png in Resources */,
 				3B714D4A19E6586800831C7C /* icon-60@2x.png in Resources */,
@@ -1429,7 +1406,6 @@
 				3B714D4E19E6586800831C7C /* Icon-Small@2x.png in Resources */,
 				3B714DC519E658AD00831C7C /* UMSnsAccountViewController.xib in Resources */,
 				3B714D7919E6586800831C7C /* register@2x.png in Resources */,
-				3B94FB2119E76BD80039506B /* Icon@2x.png in Resources */,
 				3B714D6919E6586800831C7C /* pausefm@2x.png in Resources */,
 				3B714D6E19E6586800831C7C /* Play1@2x.png in Resources */,
 				3B714D7519E6586800831C7C /* playView.png in Resources */,
@@ -1449,7 +1425,6 @@
 				3B714D4F19E6586800831C7C /* icon.png in Resources */,
 				3B714D4319E6586800831C7C /* download.png in Resources */,
 				3B714D4919E6586800831C7C /* icon-40@2x.png in Resources */,
-				3B94FB2319E76BD80039506B /* Default@2x.png in Resources */,
 				3B714D7619E6586800831C7C /* press.png in Resources */,
 				3B714D8819E6589300831C7C /* umFeedback.bundle in Resources */,
 				3B714D5F19E6586800831C7C /* navbar_background@2x.png in Resources */,
@@ -1457,7 +1432,6 @@
 				F21551FD18070BE10020183B /* Main.storyboard in Resources */,
 				3B714D3319E6586800831C7C /* avatar.png in Resources */,
 				3B714DC419E658AD00831C7C /* UMSLoginViewController.xib in Resources */,
-				3B94FB2019E76BD80039506B /* Icon-72.png in Resources */,
 				3B714D5619E6586800831C7C /* line.png in Resources */,
 				F281A49B18ED802300944656 /* BEMyAlbumCell.xib in Resources */,
 				3B714D7F19E6586800831C7C /* tab_select_indicator.png in Resources */,
@@ -1474,7 +1448,6 @@
 				3B714D7D19E6586800831C7C /* share.png in Resources */,
 				3B714D5B19E6586800831C7C /* login@2x.png in Resources */,
 				3B714D7A19E6586800831C7C /* select@2x.png in Resources */,
-				3B94FB2219E76BD80039506B /* Default.png in Resources */,
 				3B714D4419E6586800831C7C /* downloaded.png in Resources */,
 				3B714D5119E6586800831C7C /* intro_4-568h@2x.png in Resources */,
 				3B714D6319E6586800831C7C /* navbar64@2x.png in Resources */,
@@ -1488,7 +1461,6 @@
 				3B714D7C19E6586800831C7C /* setting.png in Resources */,
 				3B714D4719E6586800831C7C /* forwardfm@2x.png in Resources */,
 				3B714D8119E6586800831C7C /* user.png in Resources */,
-				3B94FB1E19E76BD80039506B /* icon-40@2x.png in Resources */,
 				3B714D7019E6586800831C7C /* player-progress@2x.png in Resources */,
 				3B714D5D19E6586800831C7C /* more@2x.png in Resources */,
 			);
@@ -1799,10 +1771,7 @@
 				OTHER_LDFLAGS = (
 					"-ObjC",
 					"-l\"Pods-Baidu-Maps-iOS-SDK\"",
-					"-l\"Pods-BaiduPushSDK\"",
 					"-l\"Pods-BlocksKit\"",
-					"-l\"Pods-CWPopup\"",
-					"-l\"Pods-DACircularProgress\"",
 					"-l\"Pods-DCKeyValueObjectMapping\"",
 					"-l\"Pods-FMDB\"",
 					"-l\"Pods-FXBlurView\"",
@@ -1811,25 +1780,15 @@
 					"-l\"Pods-GIKPopoverBackgroundView\"",
 					"-l\"Pods-HMSegmentedControl\"",
 					"-l\"Pods-JGProgressHUD\"",
-					"-l\"Pods-JazzHands\"",
-					"-l\"Pods-KGModal\"",
 					"-l\"Pods-MBProgressHUD\"",
-					"-l\"Pods-MWPhotoBrowser\"",
 					"-l\"Pods-MarqueeLabel\"",
 					"-l\"Pods-Masonry\"",
-					"-l\"Pods-PSTCollectionView\"",
-					"-l\"Pods-REFrostedViewController\"",
-					"-l\"Pods-RHAddressBook\"",
-					"-l\"Pods-RNFrostedSidebar\"",
-					"-l\"Pods-SDWebImage\"",
 					"-l\"Pods-SQLCipher\"",
 					"-l\"Pods-SVProgressHUD\"",
 					"-l\"Pods-SevenSwitch\"",
 					"-l\"Pods-TTTAttributedLabel\"",
 					"-l\"Pods-UI7Kit\"",
 					"-l\"Pods-UIKitResources\"",
-					"-l\"Pods-WEPopover\"",
-					"-l\"Pods-WebViewJavascriptBridge\"",
 					"-l\"Pods-cdebug\"",
 					"-l\"stdc++\"",
 					"-l\"z\"",
@@ -1909,10 +1868,7 @@
 				OTHER_LDFLAGS = (
 					"-ObjC",
 					"-l\"Pods-Baidu-Maps-iOS-SDK\"",
-					"-l\"Pods-BaiduPushSDK\"",
 					"-l\"Pods-BlocksKit\"",
-					"-l\"Pods-CWPopup\"",
-					"-l\"Pods-DACircularProgress\"",
 					"-l\"Pods-DCKeyValueObjectMapping\"",
 					"-l\"Pods-FMDB\"",
 					"-l\"Pods-FXBlurView\"",
@@ -1921,25 +1877,15 @@
 					"-l\"Pods-GIKPopoverBackgroundView\"",
 					"-l\"Pods-HMSegmentedControl\"",
 					"-l\"Pods-JGProgressHUD\"",
-					"-l\"Pods-JazzHands\"",
-					"-l\"Pods-KGModal\"",
 					"-l\"Pods-MBProgressHUD\"",
-					"-l\"Pods-MWPhotoBrowser\"",
 					"-l\"Pods-MarqueeLabel\"",
 					"-l\"Pods-Masonry\"",
-					"-l\"Pods-PSTCollectionView\"",
-					"-l\"Pods-REFrostedViewController\"",
-					"-l\"Pods-RHAddressBook\"",
-					"-l\"Pods-RNFrostedSidebar\"",
-					"-l\"Pods-SDWebImage\"",
 					"-l\"Pods-SQLCipher\"",
 					"-l\"Pods-SVProgressHUD\"",
 					"-l\"Pods-SevenSwitch\"",
 					"-l\"Pods-TTTAttributedLabel\"",
 					"-l\"Pods-UI7Kit\"",
 					"-l\"Pods-UIKitResources\"",
-					"-l\"Pods-WEPopover\"",
-					"-l\"Pods-WebViewJavascriptBridge\"",
 					"-l\"Pods-cdebug\"",
 					"-l\"stdc++\"",
 					"-l\"z\"",

@@ -53,11 +53,11 @@ static DBQueue *gSharedInstance = nil;
 {
     [self.dbQueue inTransaction:^(FMDatabase *db,BOOL *roolBack) {
         for (BEAlbumItem* items in album.albumItem) {
-            if ([items.proId intValue] == 60637 ) {//临时添加的补丁
+            if ([items.proId intValue] == 60637 || [items.proId intValue] == 70862) {//临时添加的补丁
                     items.proIntro = [items.proIntro stringByReplacingOccurrencesOfString:@"'" withString:@"''"];
                     items.proIntroDto = [items.proIntroDto stringByReplacingOccurrencesOfString:@"'" withString:@"''"];
             }
-            NSString* sql = [NSString stringWithFormat:@"INSERT INTO T_BADEGGALBUMS (proName,fileName,proTags,proIntro,proIntroDto,proIntroToSubString,audioPathHttp,audioPath,virtualAddress,virtualAddressOld,createTime,updateTime,publishTime,playTime,proAlbumId,proCreater,listenNum,proId) VALUES ('%@','%@','%@','%@','%@','%@','%@','%@','%@','%@','%@','%@','%@','%@','%@','%@','%@','%@')",items.proName,items.fileName,items.proTags,items.proIntro,items.proIntroDto,items.proIntroToSubString,items.audioPathHttp,items.audioPathHttp,items.virtualAddress,items.virtualAddressOld,items.createTime,items.updateTime,items.publishTime,items.playTime,items.proAlbumId,items.proCreater,items.listenNum,items.proId];
+            NSString* sql = [NSString stringWithFormat:@"INSERT OR REPLACE INTO T_BADEGGALBUMS (proName,fileName,proTags,proIntro,proIntroDto,proIntroToSubString,audioPathHttp,audioPath,virtualAddress,virtualAddressOld,createTime,updateTime,publishTime,playTime,proAlbumId,proCreater,listenNum,proId) VALUES ('%@','%@','%@','%@','%@','%@','%@','%@','%@','%@','%@','%@','%@','%@','%@','%@','%@','%@')",items.proName,items.fileName,items.proTags,items.proIntro,items.proIntroDto,items.proIntroToSubString,items.audioPathHttp,items.audioPathHttp,items.virtualAddress,items.virtualAddressOld,items.createTime,items.updateTime,items.publishTime,items.playTime,items.proAlbumId,items.proCreater,items.listenNum,items.proId];
             [db executeUpdate:sql];
             if ([db hadError])
             {
@@ -71,6 +71,7 @@ static DBQueue *gSharedInstance = nil;
         }
     }];
 }
+
 
 -(BOOL)updateDataTotableWithSQL:(NSString*)sql
 {
