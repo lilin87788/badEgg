@@ -121,13 +121,13 @@
 
 -(void)initData
 {
-    _umFeedback = [UMFeedback sharedInstance];
-    [_umFeedback setAppkey:UMENG_APPKEY delegate:self];
+//    _umFeedback = [UMFeedback sharedInstance];
+//    [_umFeedback setAppkey:UMENG_APPKEY delegate:self];
 }
 
 - (void)feedbackSend{
     //[UMFeedback showFeedback:self withAppkey:UMENG_APPKEY];
-    [UMFeedback showFeedback:self withAppkey:UMENG_APPKEY dictionary:[NSDictionary dictionaryWithObject:[NSArray arrayWithObjects:@"a", @"b", @"c", nil] forKey:@"hello"]];
+    //[UMFeedback showFeedback:self withAppkey:UMENG_APPKEY dictionary:[NSDictionary dictionaryWithObject:[NSArray arrayWithObjects:@"a", @"b", @"c", nil] forKey:@"hello"]];
 }
 
 - (void)getFinishedWithError: (NSError *)error
@@ -144,6 +144,6 @@
 }
 
 - (void)dealloc {
-    _umFeedback.delegate = nil;
+    //_umFeedback.delegate = nil;
 }
 @end

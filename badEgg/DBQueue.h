@@ -7,10 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "FMDatabase.h"
-#import "FMDatabasePool.h"
-#import "FMDatabaseQueue.h"
-#import "FMDatabaseAdditions.h"
+#import <FMDB/FMDB.h>
 @class BEAlbum;
 @interface DBQueue : NSObject
 {

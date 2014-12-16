@@ -2,7 +2,7 @@
 source 'https://github.com/CocoaPods/Specs.git'
 ##  上面的代码 cocoapods 后面 修改的 具体功能还不定 先按要求添加
 
-platform :ios, '6.0'
+platform :ios,'7.1'
 # 去掉cocoapods 的所有警告
 inhibit_all_warnings!
 link_with 'badEgg', 'badEgg Tests'

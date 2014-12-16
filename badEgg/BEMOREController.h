@@ -7,12 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "UMFeedback.h"
-#import "UMSocialControllerService.h"
-#import "UMSocialShakeService.h"
-@interface BEMOREController : UIViewController<UITextFieldDelegate,UITextViewDelegate,UMFeedbackDataDelegate,UMSocialUIDelegate,
-UMSocialShakeDelegate>
+//#import "UMFeedback.h"
+//#import "UMSocialControllerService.h"
+//#import "UMSocialShakeService.h"
+@interface BEMOREController : UIViewController<UITextFieldDelegate,UITextViewDelegate/*,UMFeedbackDataDelegate,UMSocialUIDelegate,
+UMSocialShakeDelegate*/>
 {
-    UMFeedback *_umFeedback;
+    //UMFeedback *_umFeedback;
 }
 @end
