@@ -6,6 +6,8 @@ platform :ios,'7.1'
 # 去掉cocoapods 的所有警告
 inhibit_all_warnings!
 link_with 'badEgg', 'badEgg Tests'
+pod 'AFNetworking', '~> 2.5.0'
+
 pod 'Baidu-Maps-iOS-SDK', '~> 2.3.0'
 #pod 'SDWebImage', '~> 3.7.1'
 #pod 'MWPhotoBrowser', '1.4.1'
@@ -13,7 +15,7 @@ pod 'FMDB/SQLCipher'
 pod 'JSONKit-NoWarning', '~> 1.2'
 
 pod 'BlocksKit', '~> 2.2.3'
-pod 'UI7Kit', '~> 0.9.20'
+#pod 'UI7Kit', '~> 0.9.20'
 pod 'MarqueeLabel', '~> 2.0'
 #pod 'FCFileManager'
 #pod 'CWPopup', :git =>'https://github.com/cezarywojcik/CWPopup.git'
@@ -28,3 +30,11 @@ pod 'JGProgressHUD', '~> 1.2.1'
 pod 'MBProgressHUD'
 pod 'TTTAttributedLabel', '~> 1.10.1'
 pod 'Masonry', '~> 0.5.3'
+
+post_install do |installer_representation|
+    installer_representation.project.targets.each do |target|
+        target.build_configurations.each do |config|
+            config.build_settings['ONLY_ACTIVE_ARCH'] = 'NO'
+        end
+    end
+end

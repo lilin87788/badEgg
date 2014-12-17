@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <FMDB/FMDB.h>
+
 @class BEAlbum;
 @interface DBQueue : NSObject
 {

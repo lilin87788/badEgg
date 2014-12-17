@@ -32,7 +32,12 @@
 - (UIImage *)drawTextToImage:(NSString*)str Rect:(CGRect)rect Font:(UIFont*)font
 {
     UIGraphicsBeginImageContext(self.size);
+#if (defined(__IPHONE_OS_VERSION_MAX_ALLOWED) && __IPHONE_OS_VERSION_MAX_ALLOWED >= 70000) || (defined(__MAC_OS_X_VERSION_MAX_ALLOWED) && __MAC_OS_X_VERSION_MAX_ALLOWED >= 1090)
+    [str drawInRect:rect withAttributes:@{NSFontAttributeName:font}];
+#else
     [str drawInRect:rect withFont:font];
+    
+#endif
     UIImage *resultingImage = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
     return resultingImage;

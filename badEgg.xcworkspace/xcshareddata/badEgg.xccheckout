@@ -5,13 +5,13 @@
 	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
 	<false/>
 	<key>IDESourceControlProjectIdentifier</key>
-	<string>8066FFE4-87C1-4925-8C68-4B5B1AA3A92B</string>
+	<string>CE082680-D514-495F-9CDB-F9203CF75541</string>
 	<key>IDESourceControlProjectName</key>
 	<string>badEgg</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
 		<key>E45BA66AEA033C53D7F86FBE18B405655D63B11B</key>
-		<string>https://github.com/lilin87788/badEgg.git</string>
+		<string>github.com:lilin87788/badEgg.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
 	<string>badEgg.xcworkspace</string>
@@ -21,7 +21,7 @@
 		<string>..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
-	<string>https://github.com/lilin87788/badEgg.git</string>
+	<string>github.com:lilin87788/badEgg.git</string>
 	<key>IDESourceControlProjectVersion</key>
 	<integer>111</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>

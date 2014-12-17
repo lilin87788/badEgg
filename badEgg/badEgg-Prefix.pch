@@ -18,6 +18,7 @@ typedef void (^BEBaseCompleteBlock)();
     #import <QuartzCore/QuartzCore.h>
     #import <SystemConfiguration/SystemConfiguration.h>
     #import <MobileCoreServices/MobileCoreServices.h>
+    #import <FMDB/FMDB.h>
     #import "UIImage+rescale.h"
     #import "utils.h"
     #import "AFNetworking.h"
@@ -28,7 +29,7 @@ typedef void (^BEBaseCompleteBlock)();
     #import "DBQueue.h"
     #import "UIColor+Colours.h"
     #import "EssentialImager.h"
-    #import "MobClick.h"
+ //   #import "MobClick.h"
 #endif
 
 

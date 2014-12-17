@@ -106,16 +106,8 @@ NSUInteger DeviceSystemMajorVersion() {
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-   
-    if (System_Version_Small_Than_(7)) {
-        if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"6.0")) {
-            _mainStoryboard = [UIStoryboard storyboardWithName:@"Main_ios6" bundle:nil];
-        }else {
-            _mainStoryboard = [UIStoryboard storyboardWithName:@"Main_ios5" bundle:nil];
-        }
-    }else{
-        _mainStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-    }
+
+    _mainStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     [Sqlite createAllTable];
     //[self umengTrack];
     [self customizeAppearance];

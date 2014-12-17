@@ -218,8 +218,13 @@
 	NSDateComponents *components2 = [CURRENT_CALENDAR components:DATE_COMPONENTS fromDate:aDate];
 	
 	// Must be same week. 12/31 and 1/1 will both be week "1" if they are in the same week
-	if ([components1 week] != [components2 week]) return NO;
-	
+#if (defined(__IPHONE_OS_VERSION_MAX_ALLOWED) && __IPHONE_OS_VERSION_MAX_ALLOWED >= 70000) || (defined(__MAC_OS_X_VERSION_MAX_ALLOWED) && __MAC_OS_X_VERSION_MAX_ALLOWED >= 1090)
+    if ([components1 weekOfYear] != [components2 weekOfYear])
+        return NO;
+#else
+    if ([components1 week] != [components2 week])
+        return NO;
+#endif
 	// Must have a time interval under 1 week. Thanks @aclark
 	return (abs([self timeIntervalSinceDate:aDate]) < D_WEEK);
 }
@@ -509,8 +514,15 @@
 
 - (NSInteger) week
 {
-	NSDateComponents *components = [CURRENT_CALENDAR components:DATE_COMPONENTS fromDate:self];
-	return [components week];
+#if (defined(__IPHONE_OS_VERSION_MAX_ALLOWED) && __IPHONE_OS_VERSION_MAX_ALLOWED >= 70000) || (defined(__MAC_OS_X_VERSION_MAX_ALLOWED) && __MAC_OS_X_VERSION_MAX_ALLOWED >= 1090)
+    NSDateComponents *components = [CURRENT_CALENDAR components:DATE_COMPONENTS fromDate:self];
+    return [components weekOfYear];
+#else
+    NSDateComponents *components = [CURRENT_CALENDAR components:DATE_COMPONENTS fromDate:self];
+    return [components week];
+    if ([components1 week] != [components2 week])
+        return NO;
+#endif
 }
 
 - (NSInteger) weekday

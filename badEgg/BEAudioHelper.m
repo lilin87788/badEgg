@@ -9,13 +9,13 @@
 #import "BEAudioHelper.h"
 
 @implementation BEAudioHelper
-+ (BOOL)hasMicphone {
-    AudioSessionInitialize(NULL, NULL, NULL, NULL);
-    UInt32 propertySize, micConnected;
-    AudioSessionGetProperty(kAudioSessionProperty_AudioInputAvailable, &propertySize, &micConnected);
-    return micConnected;
-    //return [[AVAudioSession sharedInstance] inputIsAvailable];
-}
+//+ (BOOL)hasMicphone {
+//    AudioSessionInitialize(NULL, NULL, NULL, NULL);
+//    UInt32 propertySize, micConnected;
+//    AudioSessionGetProperty(kAudioSessionProperty_AudioInputAvailable, &propertySize, &micConnected);
+//    return micConnected;
+//    //return [[AVAudioSession sharedInstance] inputIsAvailable];
+//}
 
 //是不是有耳机
 /* Known values of route:
@@ -56,6 +56,8 @@
 //获取 当前audiosession 的工作模式
 +(void)printCurrentCategory
 {
+    NSLog(@"%@",[[AVAudioSession sharedInstance] category]) ;
+    /*
     UInt32 audioCategory;
     UInt32 size = sizeof(audioCategory);
     AudioSessionGetProperty(kAudioSessionProperty_AudioCategory, &size, &audioCategory);
@@ -80,5 +82,6 @@
     } else {
         NSLog(@"current category is : unknow");
     }
+     */
 }
 @end

@@ -14,5 +14,5 @@
  *
  *  @return
  */
-+ (BOOL)hasMicphone;
+//+ (BOOL)hasMicphone;
 @end
