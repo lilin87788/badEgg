@@ -74,7 +74,7 @@
 		3B714D6E19E6586800831C7C /* Play1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B714D1C19E6586800831C7C /* Play1@2x.png */; };
 		3B714D6F19E6586800831C7C /* playbar@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B714D1D19E6586800831C7C /* playbar@2x.png */; };
 		3B714D7019E6586800831C7C /* player-progress@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B714D1E19E6586800831C7C /* player-progress@2x.png */; };
-		3B714D7119E6586800831C7C /* playfm.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B714D1F19E6586800831C7C /* playfm.png */; };
+		3B714D7119E6586800831C7C /* playImage.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B714D1F19E6586800831C7C /* playImage.png */; };
 		3B714D7219E6586800831C7C /* playfm@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B714D2019E6586800831C7C /* playfm@2x.png */; };
 		3B714D7319E6586800831C7C /* playing.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B714D2119E6586800831C7C /* playing.png */; };
 		3B714D7419E6586800831C7C /* playspot@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B714D2219E6586800831C7C /* playspot@2x.png */; };
@@ -146,7 +146,6 @@
 		F281A47C18ED65A000944656 /* libstdc++.6.0.9.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = F281A47B18ED65A000944656 /* libstdc++.6.0.9.dylib */; };
 		F281A49A18ED802300944656 /* BEMyAlbumCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F281A49818ED802300944656 /* BEMyAlbumCell.m */; };
 		F281A49B18ED802300944656 /* BEMyAlbumCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F281A49918ED802300944656 /* BEMyAlbumCell.xib */; };
-		F2877B401856AE9900F0A470 /* BEPlayerItem.m in Sources */ = {isa = PBXBuildFile; fileRef = F2877B3F1856AE9900F0A470 /* BEPlayerItem.m */; };
 		F2877B471856DF1000F0A470 /* BEPopover.m in Sources */ = {isa = PBXBuildFile; fileRef = F2877B461856DF1000F0A470 /* BEPopover.m */; };
 		F2877B4A1856E3B700F0A470 /* BESlider.m in Sources */ = {isa = PBXBuildFile; fileRef = F2877B491856E3B700F0A470 /* BESlider.m */; };
 		F2877B4E185705EE00F0A470 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F2877B4D185705EE00F0A470 /* AVFoundation.framework */; };
@@ -257,7 +256,7 @@
 		3B714D1C19E6586800831C7C /* Play1@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Play1@2x.png"; path = "resource/Play1@2x.png"; sourceTree = SOURCE_ROOT; };
 		3B714D1D19E6586800831C7C /* playbar@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "playbar@2x.png"; path = "resource/playbar@2x.png"; sourceTree = SOURCE_ROOT; };
 		3B714D1E19E6586800831C7C /* player-progress@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "player-progress@2x.png"; path = "resource/player-progress@2x.png"; sourceTree = SOURCE_ROOT; };
-		3B714D1F19E6586800831C7C /* playfm.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = playfm.png; path = resource/playfm.png; sourceTree = SOURCE_ROOT; };
+		3B714D1F19E6586800831C7C /* playImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = playImage.png; path = resource/playImage.png; sourceTree = SOURCE_ROOT; };
 		3B714D2019E6586800831C7C /* playfm@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "playfm@2x.png"; path = "resource/playfm@2x.png"; sourceTree = SOURCE_ROOT; };
 		3B714D2119E6586800831C7C /* playing.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = playing.png; path = resource/playing.png; sourceTree = SOURCE_ROOT; };
 		3B714D2219E6586800831C7C /* playspot@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "playspot@2x.png"; path = "resource/playspot@2x.png"; sourceTree = SOURCE_ROOT; };
@@ -371,8 +370,6 @@
 		F281A49718ED802300944656 /* BEMyAlbumCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BEMyAlbumCell.h; sourceTree = "<group>"; };
 		F281A49818ED802300944656 /* BEMyAlbumCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BEMyAlbumCell.m; sourceTree = "<group>"; };
 		F281A49918ED802300944656 /* BEMyAlbumCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BEMyAlbumCell.xib; sourceTree = "<group>"; };
-		F2877B3E1856AE9900F0A470 /* BEPlayerItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BEPlayerItem.h; sourceTree = "<group>"; };
-		F2877B3F1856AE9900F0A470 /* BEPlayerItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BEPlayerItem.m; sourceTree = "<group>"; };
 		F2877B451856DF1000F0A470 /* BEPopover.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BEPopover.h; sourceTree = "<group>"; };
 		F2877B461856DF1000F0A470 /* BEPopover.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BEPopover.m; sourceTree = "<group>"; };
 		F2877B481856E3B700F0A470 /* BESlider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BESlider.h; sourceTree = "<group>"; };
@@ -653,7 +650,7 @@
 				3B714D1C19E6586800831C7C /* Play1@2x.png */,
 				3B714D1D19E6586800831C7C /* playbar@2x.png */,
 				3B714D1E19E6586800831C7C /* player-progress@2x.png */,
-				3B714D1F19E6586800831C7C /* playfm.png */,
+				3B714D1F19E6586800831C7C /* playImage.png */,
 				3B714D2019E6586800831C7C /* playfm@2x.png */,
 				3B714D2119E6586800831C7C /* playing.png */,
 				3B714D2219E6586800831C7C /* playspot@2x.png */,
@@ -740,8 +737,6 @@
 		F2612498184738BE0000F075 /* player */ = {
 			isa = PBXGroup;
 			children = (
-				F2877B3E1856AE9900F0A470 /* BEPlayerItem.h */,
-				F2877B3F1856AE9900F0A470 /* BEPlayerItem.m */,
 				F246DBC91846DF1700CC64D7 /* AudioButton.h */,
 				F246DBCA1846DF1700CC64D7 /* AudioButton.m */,
 				F26124AC184739890000F075 /* BEPlayerController.h */,
@@ -1074,7 +1069,7 @@
 				F25C549F180841890014AFE1 /* Images.xcassets in Resources */,
 				3B714D5E19E6586800831C7C /* my@2x.png in Resources */,
 				3B714D6D19E6586800831C7C /* Play1.png in Resources */,
-				3B714D7119E6586800831C7C /* playfm.png in Resources */,
+				3B714D7119E6586800831C7C /* playImage.png in Resources */,
 				3B714D4619E6586800831C7C /* forward.png in Resources */,
 				3B714CAA19E6576D00831C7C /* MJRefresh.bundle in Resources */,
 				3B714D8219E6586800831C7C /* vip@2x.png in Resources */,
@@ -1215,7 +1210,6 @@
 				F22F358B18337C8900FE96B5 /* BELoginController.m in Sources */,
 				F22F35871833774900FE96B5 /* BESetUpViewController.m in Sources */,
 				F299A5F01839EFAB00ACFDC6 /* TFHpple.m in Sources */,
-				F2877B401856AE9900F0A470 /* BEPlayerItem.m in Sources */,
 				F295E42D181023B200E154A4 /* UIImage+rescale.m in Sources */,
 				F21551BC180705380020183B /* BEAppDelegate.m in Sources */,
 				F22F35551833339400FE96B5 /* BEListCell.m in Sources */,

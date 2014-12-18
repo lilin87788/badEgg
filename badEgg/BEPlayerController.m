@@ -51,80 +51,81 @@
 
 - (void)viewDidLoad
 {
+    [super viewDidLoad];
     [_BEPlaySlider setThumbImage:Image(@"playspot") forState:UIControlStateNormal];
     [_BEPlaySlider setMinimumTrackImage:Image(@"nx") forState:UIControlStateNormal];
     [_BEPlaySlider setMaximumTrackImage:Image(@"wx") forState:UIControlStateNormal];
     
-    HysteriaPlayer* player = [HysteriaPlayer sharedInstance];
-    BEAlbumItem* curentitem = [player getCurrentItem];
-    if (curentitem && [curentitem isKindOfClass:[BEAlbumItem class]]) {
-        _titleLabel.text = curentitem.proName;
-        _protrolTextView.text = curentitem.proIntro;
-        if (self.isClickPlaingBtn) {
-            NSLog(@"触发正在播放");
-        }else{
-            [player fetchAndPlayPlayerItem:_currentIndex];
-            [player play];
-        }
-    }else{
-        _titleLabel.text = self.currentItems.proName;
-        _protroLabel.text = self.currentItems.proIntro;
-        _protrolTextView.text = self.currentItems.proIntro;
-        [player fetchAndPlayPlayerItem:_currentIndex];
-    }
-    
-    [player registerHandlerCurrentItemPreLoaded:^(CMTime time){
-        NSLog(@"HysteriaPlayerReadyToPlayPlayer");
-    }];
-    
-    [player registerHandlerProgress:^(NSString* currenttime,NSString* duration,float progress){
-        _totalTimeLabel.text = duration;
-        _curTimeLabel.text = currenttime;
-        _BEPlaySlider.value = progress;
-    }];
-    
-    [player registerHandlerReadyToPlay:^(HysteriaPlayerReadyToPlay identifier){
-        if (identifier == HysteriaPlayerReadyToPlayCurrentItem) {
-            NSLog(@"HysteriaPlayerReadyToPlayCurrentItem");
-        }else{
-            NSLog(@"HysteriaPlayerReadyToPlayPlayer");
-        }
-    }];
-    
-    [player registerHandlerCurrentItemPreLoaded:^(CMTime time){
+//    HysteriaPlayer* player = [HysteriaPlayer sharedInstance];
+//    BEAlbumItem* curentitem = [player getCurrentItem];
+//    if (curentitem && [curentitem isKindOfClass:[BEAlbumItem class]]) {
+//        _titleLabel.text = curentitem.proName;
+//        _protrolTextView.text = curentitem.proIntro;
+//        if (self.isClickPlaingBtn) {
+//            NSLog(@"触发正在播放");
+//        }else{
+//            [player fetchAndPlayPlayerItem:_currentIndex];
+//            [player play];
+//        }
+//    }else{
+//        _titleLabel.text = self.currentItems.proName;
+//        _protroLabel.text = self.currentItems.proIntro;
+//        _protrolTextView.text = self.currentItems.proIntro;
+//        [player fetchAndPlayPlayerItem:_currentIndex];
+//    }
+//    
+//    [player registerHandlerCurrentItemPreLoaded:^(CMTime time){
+//        NSLog(@"HysteriaPlayerReadyToPlayPlayer");
+//    }];
+//    
+//    [player registerHandlerProgress:^(NSString* currenttime,NSString* duration,float progress){
+//        _totalTimeLabel.text = duration;
+//        _curTimeLabel.text = currenttime;
+//        _BEPlaySlider.value = progress;
+//    }];
+//    
+//    [player registerHandlerReadyToPlay:^(HysteriaPlayerReadyToPlay identifier){
+//        if (identifier == HysteriaPlayerReadyToPlayCurrentItem) {
+//            NSLog(@"HysteriaPlayerReadyToPlayCurrentItem");
+//        }else{
+//            NSLog(@"HysteriaPlayerReadyToPlayPlayer");
+//        }
+//    }];
+//    
+//    [player registerHandlerCurrentItemPreLoaded:^(CMTime time){
+////        BEAlbumItem* item = [player getCurrentItem];
+////        NSLog(@"registerHandlerCurrentItemPreLoaded %@",item.proName);
+//    }];
+//    
+//    [player registerHandlerFailed:^(HysteriaPlayerFailed identifier, NSError *error){
+//        NSLog(@"%@",error);
+//    }];
+//    
+//    [player registerHandlerPlayerRateChanged:^{
+//        if ([player isPlaying]) {
+//            [_PlayButton setImage:Image(@"pausefm") forState:UIControlStateNormal];
+//        }else{
+//            [_PlayButton setImage:Image(@"playfm") forState:UIControlStateNormal];
+//        }
+//    } CurrentItemChanged:^(BEAlbumItem* item){
+//        NSLog(@"CurrentItemChanged %@",item.proName);
+//        [self configNowPlayingInfoCenter:item];
+//        _titleLabel.text = item.proName;
+//        _protroLabel.text = item.proIntro;
+//        _protrolTextView.text = item.proIntro;
+//    } PlayerDidReachEnd:^{
 //        BEAlbumItem* item = [player getCurrentItem];
-//        NSLog(@"registerHandlerCurrentItemPreLoaded %@",item.proName);
-    }];
-    
-    [player registerHandlerFailed:^(HysteriaPlayerFailed identifier, NSError *error){
-        NSLog(@"%@",error);
-    }];
-    
-    [player registerHandlerPlayerRateChanged:^{
-        if ([player isPlaying]) {
-            [_PlayButton setImage:Image(@"pausefm") forState:UIControlStateNormal];
-        }else{
-            [_PlayButton setImage:Image(@"playfm") forState:UIControlStateNormal];
-        }
-    } CurrentItemChanged:^(BEAlbumItem* item){
-        NSLog(@"CurrentItemChanged %@",item.proName);
-        [self configNowPlayingInfoCenter:item];
-        _titleLabel.text = item.proName;
-        _protroLabel.text = item.proIntro;
-        _protrolTextView.text = item.proIntro;
-    } PlayerDidReachEnd:^{
-        BEAlbumItem* item = [player getCurrentItem];
-        NSLog(@"PlayerDidReachEnd %@",item.proName);
-    }];
-    
-    if ([player isPlaying]) {
-        [_PlayButton setImage:Image(@"pausefm") forState:UIControlStateNormal];
-    }else{
-        [_PlayButton setImage:Image(@"playfm") forState:UIControlStateNormal];
-    }
-    //[_PlayButton startSpin];
-    
-   [_PlayButton setProgress:.75];
+//        NSLog(@"PlayerDidReachEnd %@",item.proName);
+//    }];
+//    
+//    if ([player isPlaying]) {
+//        [_PlayButton setImage:Image(@"pausefm") forState:UIControlStateNormal];
+//    }else{
+//        [_PlayButton setImage:Image(@"playfm") forState:UIControlStateNormal];
+//    }
+//    //[_PlayButton startSpin];
+//    
+//   [_PlayButton setProgress:.75];
 }
 
 
@@ -178,10 +179,5 @@
             [bePlayer fetchAndPlayPlayerItem:_currentIndex];
         }
     }
-}
-
--(IBAction)back:(id)sender
-{
-    [self.navigationController popViewControllerAnimated:YES];
 }
 @end

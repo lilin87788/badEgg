@@ -114,6 +114,7 @@ static HysteriaPlayer *sharedInstance = nil;
         _readyToPlay = nil;
         _sourceAsyncGetter = nil;
         _sourceSyncGetter = nil;
+        
         _playerRateChanged = nil;
         _playerDidReachEnd = nil;
         _currentItemChanged = nil;
@@ -203,10 +204,9 @@ static HysteriaPlayer *sharedInstance = nil;
     //play .1 sec empty sound
     NSString *filepath = [[NSBundle mainBundle]pathForResource:@"point1sec" ofType:@"mp3"];
     if ([[NSFileManager defaultManager]fileExistsAtPath:filepath]) {
+        isInEmptySound = YES;
         AVPlayerItem *playerItem = [AVPlayerItem playerItemWithURL:[NSURL fileURLWithPath:filepath]];
        // playerItem = [AVPlayerItem playerItemWithURL:[NSURL URLWithString:@"http://y1.eoews.com/assets/ringtones/2012/6/29/36195/mx8an3zgp2k4s5aywkr7wkqtqj0dh1vxcvii287a.mp3"]];
-        isInEmptySound = YES;
-
         audioPlayer = [AVQueuePlayer queuePlayerWithItems:@[playerItem]];
         __weak HysteriaPlayer* this = self;
         [audioPlayer addPeriodicTimeObserverForInterval:CMTimeMakeWithSeconds(1, 1)
@@ -322,19 +322,23 @@ static HysteriaPlayer *sharedInstance = nil;
     [audioPlayer pause];
     [audioPlayer removeAllItems];
     
-    // if in shuffle mode, record played songs.
-    if (_playedItems)
-        [self recordPlayedItems:startAt];
-    
     findInPlayerItems = [self findSourceInPlayerItems:startAt];
+
+    // if in shuffle mode, record played songs.
+//    if (_playedItems)
+//        [self recordPlayedItems:startAt];
+    
     
     if (!findInPlayerItems) {
         NSAssert((_albumItemGetter != nil) || (_albumItemGetter != nil),
                  @"please using setupSourceGetter:ItemsCount: to setup your datasource");
-        if (_albumItemGetter != nil)
+        if (_albumItemGetter != nil){
             [self getAndInsertMediaSource:startAt];
-        else if (_sourceAsyncGetter != nil)
+        }else if (_sourceAsyncGetter != nil){
             _sourceAsyncGetter(startAt);
+        }
+    }else if (audioPlayer.currentItem.status == AVPlayerStatusReadyToPlay) {//新添加的
+        [audioPlayer play];
     }
 }
 
@@ -348,10 +352,12 @@ static HysteriaPlayer *sharedInstance = nil;
 
 - (void)setupBEPlayerItem:(BEAlbumItem *)item Order:(NSUInteger)index
 {
+    if (!item)  return;
     dispatch_async(dispatch_get_main_queue(), ^{
         [self setHysteriaOrder:item Key:[NSNumber numberWithInteger:index]];
-        [item addObserver:self forKeyPath:@"loadedTimeRanges" options:NSKeyValueObservingOptionNew context:nil];
-        [item addObserver:self forKeyPath:@"status" options:NSKeyValueObservingOptionNew context:nil];
+        //主线版本 去掉
+//        [item addObserver:self forKeyPath:@"loadedTimeRanges" options:NSKeyValueObservingOptionNew context:nil];
+//        [item addObserver:self forKeyPath:@"status" options:NSKeyValueObservingOptionNew context:nil];
         [playerItems addObject:item];
         [self insertPlayerItem:item];
     });
@@ -365,8 +371,8 @@ static HysteriaPlayer *sharedInstance = nil;
     
     dispatch_async(dispatch_get_main_queue(), ^{
         [self setHysteriaOrder:item Key:[NSNumber numberWithInteger:index]];
-        [item addObserver:self forKeyPath:@"loadedTimeRanges" options:NSKeyValueObservingOptionNew context:nil];
-        [item addObserver:self forKeyPath:@"status" options:NSKeyValueObservingOptionNew context:nil];
+//        [item addObserver:self forKeyPath:@"loadedTimeRanges" options:NSKeyValueObservingOptionNew context:nil];
+//        [item addObserver:self forKeyPath:@"status" options:NSKeyValueObservingOptionNew context:nil];
         [playerItems addObject:item];
         [self insertPlayerItem:item];
     });
@@ -420,8 +426,8 @@ static HysteriaPlayer *sharedInstance = nil;
                 if (!findInPlayerItems) {
                     if (_albumItemGetter != nil)
                         [self getAndInsertMediaSource:0];
-                    else if (_albumItemGetter != nil)
-                        _albumItemGetter(0);
+                    else if (_sourceAsyncGetter != nil)
+                        _sourceAsyncGetter(0);
                 }
             }
         }
@@ -444,8 +450,12 @@ static HysteriaPlayer *sharedInstance = nil;
 {
     for (BEAlbumItem *obj in playerItems) {
         [obj seekToTime:kCMTimeZero];
-        [obj removeObserver:self forKeyPath:@"loadedTimeRanges" context:nil];
-        [obj removeObserver:self forKeyPath:@"status" context:nil];
+        @try{
+            [obj removeObserver:self forKeyPath:@"loadedTimeRanges" context:nil];
+            [obj removeObserver:self forKeyPath:@"status" context:nil];
+        }@catch(id anException){
+            //do nothing, obviously it wasn't attached because an exception was thrown
+        }
     }
     
     [playerItems removeAllObjects];
@@ -470,7 +480,7 @@ static HysteriaPlayer *sharedInstance = nil;
                 [audioPlayer removeItem:item];
             }
         }else if (CHECK_order > order){
-            [self setHysteriaOrder:item Key:[NSNumber numberWithInteger:CHECK_order -1]];
+            [self setHysteriaOrder:item Key:@(CHECK_order -1)];
         }
     }
     
@@ -482,8 +492,7 @@ static HysteriaPlayer *sharedInstance = nil;
     for (BEAlbumItem *item in playerItems) {
         NSUInteger CHECK_index = [[self getHysteriaOrder:item] integerValue];
         if (CHECK_index == from || CHECK_index == to) {
-            NSNumber *replaceOrder = CHECK_index == from ? [NSNumber numberWithInteger:to] : [NSNumber numberWithInteger:from];
-            [self setHysteriaOrder:item Key:replaceOrder];
+            [self setHysteriaOrder:item Key:( CHECK_index == from ) ? @(to) : @(from)];
         }
     }
 }
@@ -517,17 +526,6 @@ static HysteriaPlayer *sharedInstance = nil;
     [audioPlayer pause];
 }
 
-- (NSUInteger)getRandomSong
-{
-    NSUInteger index;
-    do {
-        index = arc4random() % _items_count
-        ;
-    } while ([_playedItems containsObject:[NSNumber numberWithInteger:index]]);
-    
-    return index;
-}
-
 - (NSUInteger)randomIndex
 {
     NSUInteger index;
@@ -545,12 +543,26 @@ static HysteriaPlayer *sharedInstance = nil;
     } else {
         NSInteger nowIndex = [[self getHysteriaOrder:(BEAlbumItem*)audioPlayer.currentItem] integerValue];
         if (nowIndex + 1 < _items_count) {
-            [self fetchAndPlayPlayerItem:(nowIndex + 1)];
+            NSInteger nextIndex = [self randomIndex];
+            if (nextIndex != NSNotFound) {
+                [self fetchAndPlayPlayerItem:[self randomIndex]];
+            } else {
+                [self pausePlayerForcibly:YES];
+                
+                if (_playerDidReachEnd != nil){
+                    _playerDidReachEnd();
+                }
+                
+                for (id<HysteriaPlayerDelegate>delegate in delegates) {
+                    if ([delegate respondsToSelector:@selector(hysteriaPlayerDidReachEnd)]) {
+                        [delegate hysteriaPlayerDidReachEnd];
+                    }
+                }
+            }
         }else{
             if (_repeatMode == RepeatMode_off) {
                 [self pausePlayerForcibly:YES];
-                if (_playerDidReachEnd != nil)
-                {
+                if (_playerDidReachEnd != nil){
                     _playerDidReachEnd();
                 }
                 
@@ -602,33 +614,12 @@ static HysteriaPlayer *sharedInstance = nil;
 
 - (void)setPlayerRepeatMode:(PlayerRepeatMode)mode
 {
-    switch (mode) {
-        case RepeatMode_off:
-            _repeatMode = RepeatMode_off;
-            break;
-        case RepeatMode_on:
-            _repeatMode = RepeatMode_on;
-            break;
-        case RepeatMode_one:
-            _repeatMode = RepeatMode_one;
-            break;
-        default:
-            break;
-    }
+   _repeatMode = mode;
 }
 
 - (PlayerRepeatMode)getPlayerRepeatMode
 {
-    switch (_repeatMode) {
-        case RepeatMode_one:
-            return RepeatMode_one;
-        case RepeatMode_on:
-            return RepeatMode_on;
-        case RepeatMode_off:
-            return RepeatMode_off;
-        default:
-            return RepeatMode_off;
-    }
+    return _repeatMode;
 }
 
 - (void)setPlayerShuffleMode:(PlayerShuffleMode)mode
@@ -642,7 +633,10 @@ static HysteriaPlayer *sharedInstance = nil;
         case ShuffleMode_on:
             _shuffleMode = ShuffleMode_on;
             _playedItems = [NSMutableSet set];
-            [self recordPlayedItems:[[self getHysteriaOrder:(BEAlbumItem*)audioPlayer.currentItem] integerValue]];
+            //[self recordPlayedItems:[[self getHysteriaOrder:(BEAlbumItem*)audioPlayer.currentItem] integerValue]];
+            if (audioPlayer.currentItem) {
+                [self.playedItems addObject:[self getHysteriaOrder:(BEAlbumItem*)audioPlayer.currentItem]];
+            }
             break;
         default:
             break;
@@ -651,14 +645,7 @@ static HysteriaPlayer *sharedInstance = nil;
 
 - (PlayerShuffleMode)getPlayerShuffleMode
 {
-    switch (_shuffleMode) {
-        case ShuffleMode_on:
-            return ShuffleMode_on;
-        case ShuffleMode_off:
-            return ShuffleMode_off;
-        default:
-            return ShuffleMode_off;
-    }
+    return _shuffleMode;
 }
 
 - (void)pausePlayerForcibly:(BOOL)forcibly
@@ -674,12 +661,9 @@ static HysteriaPlayer *sharedInstance = nil;
 
 - (BOOL)isPlaying
 {
-    if (!isInEmptySound)
-    {
+    if (!isInEmptySound){
         return [audioPlayer rate] != 0.f;
-    }
-    else
-    {
+    }else{
         return NO;
     }
 }
@@ -700,6 +684,7 @@ static HysteriaPlayer *sharedInstance = nil;
 {
     return audioPlayer.rate;
 }
+
 
 - (NSDictionary *)getPlayerTime
 {
@@ -740,6 +725,15 @@ static HysteriaPlayer *sharedInstance = nil;
         return duration;
 }
 
+- (id)addPeriodicTimeObserverForInterval:(CMTime)interval
+                                   queue:(dispatch_queue_t)queue
+                              usingBlock:(void (^)(CMTime time))block;
+{
+    id mTimeObserver = [audioPlayer addPeriodicTimeObserverForInterval:interval queue:queue usingBlock:block];
+    NSLog(@"audioPlayer is %@", audioPlayer);
+    NSLog(@"inside HysterialPlayer: mTimeObserver is : %@", mTimeObserver);
+    return mTimeObserver;
+}
 #pragma mark -
 #pragma mark ===========  Interruption, Route changed  =========
 #pragma mark -
@@ -783,7 +777,7 @@ static HysteriaPlayer *sharedInstance = nil;
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object
                         change:(NSDictionary *)change context:(void *)context {
-    if (object == audioPlayer && [keyPath isEqualToString:@"status"]) {
+    if(object == audioPlayer && [keyPath isEqualToString:@"status"]) {
         if (audioPlayer.status == AVPlayerStatusReadyToPlay) {
             if (_readyToPlay != nil) {
                 _readyToPlay(HysteriaPlayerReadyToPlayPlayer);
@@ -792,11 +786,7 @@ static HysteriaPlayer *sharedInstance = nil;
                 [audioPlayer play];
             }
         } else if (audioPlayer.status == AVPlayerStatusFailed) {
-            if (audioPlayer.currentItem) {
-                
-            }
-            if (self.showErrorMessages)
-            {
+            if (self.showErrorMessages){
                 [HysteriaPlayer showAlertWithError:audioPlayer.error];
             }
             if (_failed != nil) {
@@ -805,10 +795,8 @@ static HysteriaPlayer *sharedInstance = nil;
         }
     }
     
-    //重点要改
-    if(object == audioPlayer && [keyPath isEqualToString:@"rate"]){
-        if (!isInEmptySound && _playerRateChanged)
-        {
+    if(object == audioPlayer && [keyPath isEqualToString:@"rate"]){//如果播放速度发生改变
+        if (!isInEmptySound && _playerRateChanged){
             if (_playerRateChanged) {
                 _playerRateChanged();
             }
@@ -817,31 +805,55 @@ static HysteriaPlayer *sharedInstance = nil;
                     [delegate hysteriaPlayerRateChanged:[self isPlaying]];
                 }
             }
-        }
-        else if (isInEmptySound && [audioPlayer rate] == 0.f && [[audioPlayer currentItem] class] == [BEAlbumItem class])
-        {
-            isInEmptySound = NO;
-        }
-        else if(isInEmptySound && [audioPlayer rate] != 0.f && [[audioPlayer currentItem] class] == [BEAlbumItem class]){
-            isInEmptySound = NO;
-            if (_playerRateChanged) {
-                _playerRateChanged();
-            }
-            for (id<HysteriaPlayerDelegate>delegate in delegates) {
-                if ([delegate respondsToSelector:@selector(hysteriaPlayerRateChanged:)]) {
-                    [delegate hysteriaPlayerRateChanged:[self isPlaying]];
+        }else{
+            if ([audioPlayer rate] != 0.f) {//这个地方还需要测试
+                isInEmptySound = NO;
+                if (_playerRateChanged) {
+                    _playerRateChanged();
+                }
+                for (id<HysteriaPlayerDelegate>delegate in delegates) {
+                    if ([delegate respondsToSelector:@selector(hysteriaPlayerRateChanged:)]) {
+                        [delegate hysteriaPlayerRateChanged:[self isPlaying]];
+                    }
                 }
             }
         }
     }
     
     if(object == audioPlayer && [keyPath isEqualToString:@"currentItem"]){
-        id obj = [change objectForKey:NSKeyValueChangeNewKey];
-        if (obj != (id)[NSNull null] && [obj isKindOfClass:[BEAlbumItem class]]) {
-            BEAlbumItem* newPlayerItem = obj;
-            if (_currentItemChanged) {
-                _currentItemChanged(newPlayerItem);
+//        id obj = [change objectForKey:NSKeyValueChangeNewKey];
+//        if (obj != (id)[NSNull null] && [obj isKindOfClass:[BEAlbumItem class]]) {
+//            BEAlbumItem* newPlayerItem = obj;
+//            if (_currentItemChanged) {
+//                _currentItemChanged(newPlayerItem);
+//            }
+//            for (id<HysteriaPlayerDelegate>delegate in delegates) {
+//                if ([delegate respondsToSelector:@selector(hysteriaPlayerCurrentItemChanged:)]) {
+//                    [delegate hysteriaPlayerCurrentItemChanged:newPlayerItem];
+//                }
+//            }
+//        }
+        BEAlbumItem *newPlayerItem = [change objectForKey:NSKeyValueChangeNewKey];
+        BEAlbumItem *lastPlayerItem = [change objectForKey:NSKeyValueChangeOldKey];
+        if (lastPlayerItem != (id)[NSNull null]) {
+            isInEmptySound = NO;
+            @try {
+                [lastPlayerItem removeObserver:self forKeyPath:@"loadedTimeRanges" context:nil];
+                [lastPlayerItem removeObserver:self forKeyPath:@"status" context:nil];
+            } @catch(id anException) {
+                //do nothing, obviously it wasn't attached because an exception was thrown
             }
+        }
+        
+        if (newPlayerItem != (id)[NSNull null]) {
+            if (_currentItemChanged) {
+                if ([newPlayerItem isKindOfClass:[BEAlbumItem class]]) {
+                    [newPlayerItem addObserver:self forKeyPath:@"loadedTimeRanges" options:NSKeyValueObservingOptionNew context:nil];
+                    [newPlayerItem addObserver:self forKeyPath:@"status" options:NSKeyValueObservingOptionNew context:nil];
+                    _currentItemChanged(newPlayerItem);
+                }
+            }
+            
             for (id<HysteriaPlayerDelegate>delegate in delegates) {
                 if ([delegate respondsToSelector:@selector(hysteriaPlayerCurrentItemChanged:)]) {
                     [delegate hysteriaPlayerCurrentItemChanged:newPlayerItem];
@@ -853,10 +865,12 @@ static HysteriaPlayer *sharedInstance = nil;
     if (object == audioPlayer.currentItem && [keyPath isEqualToString:@"status"]) {
         isPreBuffered = NO;
         if (audioPlayer.currentItem.status == AVPlayerItemStatusFailed) {
-            if (self.showErrorMessages)
+            if (self.showErrorMessages){
                 [HysteriaPlayer showAlertWithError:audioPlayer.currentItem.error];
-            if (_failed)
+            }
+            if (_failed){
                 _failed(HysteriaPlayerFailedCurrentItem, audioPlayer.currentItem.error);
+            }
         }else if (audioPlayer.currentItem.status == AVPlayerItemStatusReadyToPlay) {
             if (_readyToPlay != nil) {
                 _readyToPlay(HysteriaPlayerReadyToPlayCurrentItem);
@@ -867,8 +881,11 @@ static HysteriaPlayer *sharedInstance = nil;
         }
     }
     
-    if (audioPlayer.items.count > 1 && object == [audioPlayer.items objectAtIndex:1] && [keyPath isEqualToString:@"loadedTimeRanges"])
+    if (audioPlayer.items.count > 1
+        && object == [audioPlayer.items objectAtIndex:1]
+        && [keyPath isEqualToString:@"loadedTimeRanges"]){
         isPreBuffered = YES;
+    }
     
     if(object == audioPlayer.currentItem && [keyPath isEqualToString:@"loadedTimeRanges"]){
         if (audioPlayer.currentItem.hash != CHECK_AvoidPreparingSameItem) {
@@ -919,7 +936,20 @@ static HysteriaPlayer *sharedInstance = nil;
             NSInteger currentIndex = [CHECK_Order integerValue];
             [self fetchAndPlayPlayerItem:currentIndex];
         } else if (_shuffleMode == ShuffleMode_on){
-            [self fetchAndPlayPlayerItem:[self randomIndex]];
+            NSInteger nextIndex = [self randomIndex];
+            if (nextIndex != NSNotFound) {
+                [self fetchAndPlayPlayerItem:[self randomIndex]];
+            } else {
+                [self pausePlayerForcibly:YES];
+                for (id<HysteriaPlayerDelegate>delegate in delegates) {
+                    if (_playerDidReachEnd != nil){
+                        _playerDidReachEnd();
+                    }
+                    if ([delegate respondsToSelector:@selector(hysteriaPlayerDidReachEnd)]) {
+                        [delegate hysteriaPlayerDidReachEnd];
+                    }
+                }
+            }
         } else {
             if (audioPlayer.items.count == 1 || !isPreBuffered) {
                 NSInteger nowIndex = [CHECK_Order integerValue];
