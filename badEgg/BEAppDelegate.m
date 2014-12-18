@@ -10,6 +10,7 @@
 #import "Sqlite.h"
 #import "AFNetworkActivityIndicatorManager.h"
 #import "BEViewController.h"
+#import "BETabBarController.h"
 //#import "MobClick.h"
 
 //#import "UMSocialFacebookHandler.h"
@@ -42,10 +43,12 @@ NSUInteger DeviceSystemMajorVersion() {
 //                              resizableImageWithCapInsets:UIEdgeInsetsMake(0, 0, 0, 0)];
 //    [[UITabBar appearance] setBackgroundImage:tabBackground];
 
-//    UIImage *buttonBack30 = [[UIImage imageNamed:@"back"]
-//                             resizableImageWithCapInsets:UIEdgeInsetsMake(0, 13, 0, 13)];
-//    [[UIBarButtonItem appearance] setBackButtonBackgroundImage:buttonBack30
-//                                                      forState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
+    
+    
+    UIImage *backImage = [UIImage imageNamed:@"beBack"];
+    backImage = [backImage resizableImageWithCapInsets:UIEdgeInsetsMake(0,backImage.size.width - 1,0, 0)];
+    [[UIBarButtonItem appearance] setBackButtonBackgroundImage:backImage
+                                                      forState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
 }
 
 -(void)creeateDatabase
@@ -58,9 +61,7 @@ NSUInteger DeviceSystemMajorVersion() {
         [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"DBVERSION"];
         [[NSUserDefaults standardUserDefaults] synchronize];
         [Sqlite  createAllTable];
-    }
-    else                                                                    //如果安装过则执行补丁代码
-    {
+    } else  {
         if(![[NSUserDefaults standardUserDefaults] boolForKey:@"DBVERSION"])//这里保证补丁代码只执行一次
         {
             [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"DBVERSION"];
@@ -158,7 +159,7 @@ NSUInteger DeviceSystemMajorVersion() {
     if (buttonIndex == 1) {
         NSLog(@"查看feedback");
         //[self.viewController webFeedback:nil];
-        BEViewController* controller =  (BEViewController*)self.window.rootViewController;
+        BETabBarController* controller =  (BETabBarController*)self.window.rootViewController;
         [controller feedbackSend];
     } else {
         

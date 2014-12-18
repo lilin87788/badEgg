@@ -316,6 +316,9 @@ static HysteriaPlayer *sharedInstance = nil;
         [self preAction];
     
     BOOL findInPlayerItems = NO;
+    
+    [self.playedItems addObject:@(startAt)];
+    
     [audioPlayer pause];
     [audioPlayer removeAllItems];
     

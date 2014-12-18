@@ -114,6 +114,7 @@ typedef void (^ CurrentItemPreLoaded)(CMTime time);
  @method asyncSetupSourceGetter:ItemsCount
  */
 - (void)asyncSetupSourceGetter:(SourceAsyncGetter)asyncBlock ItemsCount:(NSUInteger)count;
+
 - (void)setItemsCount:(NSUInteger)count;
 
 /*!

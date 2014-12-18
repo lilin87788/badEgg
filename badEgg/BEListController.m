@@ -61,13 +61,8 @@
 
 -(void)initNavBar
 {
-    UIImage* navbgImage;
-    if (System_Version_Small_Than_(7)) {
-        navbgImage = [UIImage imageNamed:@"navbar44"];
-    }else{
-        navbgImage = [UIImage imageNamed:@"navbar64"] ;
-        self.navigationController.navigationBar.tintColor = [UIColor blackColor];
-    }
+    UIImage* navbgImage = [UIImage imageNamed:@"navbar64"] ;
+    self.navigationController.navigationBar.tintColor = [UIColor blackColor];
     [self.navigationController.navigationBar setBackgroundImage:navbgImage  forBarMetrics:UIBarMetricsDefault];
 }
 

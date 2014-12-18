@@ -29,6 +29,8 @@ typedef void (^BEBaseCompleteBlock)();
     #import "DBQueue.h"
     #import "UIColor+Colours.h"
     #import "EssentialImager.h"
+    #import "BEViewController.h"
+    #import "BETableViewController.h"
  //   #import "MobClick.h"
 #endif
 

@@ -7,8 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		3B714CA019E6576100831C7C /* HysteriaPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B714C9E19E6576100831C7C /* HysteriaPlayer.m */; };
-		3B714CA119E6576100831C7C /* point1sec.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 3B714C9F19E6576100831C7C /* point1sec.mp3 */; };
 		3B714CAA19E6576D00831C7C /* MJRefresh.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 3B714CA219E6576D00831C7C /* MJRefresh.bundle */; };
 		3B714CAB19E6576D00831C7C /* MJRefreshBaseView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B714CA519E6576D00831C7C /* MJRefreshBaseView.m */; };
 		3B714CAC19E6576D00831C7C /* MJRefreshFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B714CA719E6576D00831C7C /* MJRefreshFooterView.m */; };
@@ -95,6 +93,10 @@
 		3B714D8119E6586800831C7C /* user.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B714D2F19E6586800831C7C /* user.png */; };
 		3B714D8219E6586800831C7C /* vip@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B714D3019E6586800831C7C /* vip@2x.png */; };
 		3B714D8319E6586800831C7C /* wx@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B714D3119E6586800831C7C /* wx@2x.png */; };
+		3BD99E641A417BA4002F3650 /* BETabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BD99E631A417BA4002F3650 /* BETabBarController.m */; };
+		3BD99E671A417DFB002F3650 /* BETableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BD99E661A417DFB002F3650 /* BETableViewController.m */; };
+		3BF7A93C1A42B530006D5755 /* HysteriaPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BF7A93A1A42B530006D5755 /* HysteriaPlayer.m */; };
+		3BF7A93D1A42B530006D5755 /* point1sec.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 3BF7A93B1A42B530006D5755 /* point1sec.mp3 */; };
 		F21551AC180705380020183B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F21551AB180705380020183B /* Foundation.framework */; };
 		F21551AE180705380020183B /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F21551AD180705380020183B /* CoreGraphics.framework */; };
 		F21551B0180705380020183B /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F21551AF180705380020183B /* UIKit.framework */; };
@@ -165,7 +167,6 @@
 		F2B841231851A24A001DA858 /* BEAlbumItem.m in Sources */ = {isa = PBXBuildFile; fileRef = F2B841221851A24A001DA858 /* BEAlbumItem.m */; };
 		F2B97F6A18E151360081E110 /* BEShopRecommendController.m in Sources */ = {isa = PBXBuildFile; fileRef = F2B97F6918E151360081E110 /* BEShopRecommendController.m */; };
 		F2B97F6D18E1514D0081E110 /* BEBlogController.m in Sources */ = {isa = PBXBuildFile; fileRef = F2B97F6C18E1514D0081E110 /* BEBlogController.m */; };
-		F2C3E89B1887BC5E00E76041 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F2C3E89A1887BC5E00E76041 /* StoreKit.framework */; };
 		F2C54AA0184DB9F3003791D3 /* UIColor+FlatUI.m in Sources */ = {isa = PBXBuildFile; fileRef = F2C54A9F184DB9F3003791D3 /* UIColor+FlatUI.m */; };
 		F2E5D8791844E574001FD033 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F2E5D8781844E574001FD033 /* MediaPlayer.framework */; };
 		F2E5D87B1844E584001FD033 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F2E5D87A1844E584001FD033 /* CFNetwork.framework */; };
@@ -185,9 +186,6 @@
 
 /* Begin PBXFileReference section */
 		06FD01F0C7CBF0D84C12E2F9 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
-		3B714C9D19E6576100831C7C /* HysteriaPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HysteriaPlayer.h; path = openresource/HysteriaPlayer/HysteriaPlayer.h; sourceTree = SOURCE_ROOT; };
-		3B714C9E19E6576100831C7C /* HysteriaPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HysteriaPlayer.m; path = openresource/HysteriaPlayer/HysteriaPlayer.m; sourceTree = SOURCE_ROOT; };
-		3B714C9F19E6576100831C7C /* point1sec.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = point1sec.mp3; path = openresource/HysteriaPlayer/point1sec.mp3; sourceTree = SOURCE_ROOT; };
 		3B714CA219E6576D00831C7C /* MJRefresh.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = MJRefresh.bundle; path = openresource/MJRefresh/MJRefresh.bundle; sourceTree = SOURCE_ROOT; };
 		3B714CA319E6576D00831C7C /* MJRefresh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MJRefresh.h; path = openresource/MJRefresh/MJRefresh.h; sourceTree = SOURCE_ROOT; };
 		3B714CA419E6576D00831C7C /* MJRefreshBaseView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MJRefreshBaseView.h; path = openresource/MJRefresh/MJRefreshBaseView.h; sourceTree = SOURCE_ROOT; };
@@ -278,6 +276,17 @@
 		3B714D2F19E6586800831C7C /* user.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = user.png; path = resource/user.png; sourceTree = SOURCE_ROOT; };
 		3B714D3019E6586800831C7C /* vip@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "vip@2x.png"; path = "resource/vip@2x.png"; sourceTree = SOURCE_ROOT; };
 		3B714D3119E6586800831C7C /* wx@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "wx@2x.png"; path = "resource/wx@2x.png"; sourceTree = SOURCE_ROOT; };
+		3BD99E5F1A417A1D002F3650 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = "zh-Hans"; path = "zh-Hans.lproj/Main.storyboard"; sourceTree = "<group>"; };
+		3BD99E601A417A1E002F3650 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		3BD99E611A417A1E002F3650 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		3BD99E621A417BA4002F3650 /* BETabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BETabBarController.h; sourceTree = "<group>"; };
+		3BD99E631A417BA4002F3650 /* BETabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BETabBarController.m; sourceTree = "<group>"; };
+		3BD99E651A417DFB002F3650 /* BETableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BETableViewController.h; sourceTree = "<group>"; };
+		3BD99E661A417DFB002F3650 /* BETableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BETableViewController.m; sourceTree = "<group>"; };
+		3BF7A9381A4288C8006D5755 /* playerReadme.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = playerReadme.h; path = badEgg/playerReadme.h; sourceTree = SOURCE_ROOT; };
+		3BF7A9391A42B530006D5755 /* HysteriaPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HysteriaPlayer.h; path = openresource/HysteriaPlayer/HysteriaPlayer.h; sourceTree = SOURCE_ROOT; };
+		3BF7A93A1A42B530006D5755 /* HysteriaPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HysteriaPlayer.m; path = openresource/HysteriaPlayer/HysteriaPlayer.m; sourceTree = SOURCE_ROOT; };
+		3BF7A93B1A42B530006D5755 /* point1sec.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = point1sec.mp3; path = openresource/HysteriaPlayer/point1sec.mp3; sourceTree = SOURCE_ROOT; };
 		4462A6D7EAC93E0753764841 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		A5381B941ED657E8646C5F79 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		F21551A8180705380020183B /* badEgg.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = badEgg.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -399,7 +408,6 @@
 		F2B97F6918E151360081E110 /* BEShopRecommendController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BEShopRecommendController.m; sourceTree = "<group>"; };
 		F2B97F6B18E1514D0081E110 /* BEBlogController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BEBlogController.h; sourceTree = "<group>"; };
 		F2B97F6C18E1514D0081E110 /* BEBlogController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BEBlogController.m; sourceTree = "<group>"; };
-		F2C3E89A1887BC5E00E76041 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		F2C54A9E184DB9F3003791D3 /* UIColor+FlatUI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+FlatUI.h"; sourceTree = "<group>"; };
 		F2C54A9F184DB9F3003791D3 /* UIColor+FlatUI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+FlatUI.m"; sourceTree = "<group>"; };
 		F2E5D8771844E550001FD033 /* readme+audiostream.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "readme+audiostream.h"; sourceTree = "<group>"; };
@@ -422,7 +430,6 @@
 				F2877B50185705F500F0A470 /* CoreMedia.framework in Frameworks */,
 				F2877B4E185705EE00F0A470 /* AVFoundation.framework in Frameworks */,
 				F2B8411C185189AD001DA858 /* libsqlite3.0.dylib in Frameworks */,
-				F2C3E89B1887BC5E00E76041 /* StoreKit.framework in Frameworks */,
 				F2E5D87B1844E584001FD033 /* CFNetwork.framework in Frameworks */,
 				F2E5D8791844E574001FD033 /* MediaPlayer.framework in Frameworks */,
 				F28CDEC91844DCF9004C35AE /* Security.framework in Frameworks */,
@@ -480,7 +487,6 @@
 				F281A47918ED658A00944656 /* CoreTelephony.framework */,
 				F281A47718ED656400944656 /* libiconv.2.4.0.dylib */,
 				F281A43118ED3E6500944656 /* libz.1.2.5.dylib */,
-				F2C3E89A1887BC5E00E76041 /* StoreKit.framework */,
 				F2B8411B185189AD001DA858 /* libsqlite3.0.dylib */,
 				F299A5E91839EF6600ACFDC6 /* libxml2.2.dylib */,
 				F2877B4F185705F500F0A470 /* CoreMedia.framework */,
@@ -508,8 +514,12 @@
 				F2B322041808F26C0008FDBB /* UI */,
 				F21551BA180705380020183B /* BEAppDelegate.h */,
 				F21551BB180705380020183B /* BEAppDelegate.m */,
+				3BD99E621A417BA4002F3650 /* BETabBarController.h */,
+				3BD99E631A417BA4002F3650 /* BETabBarController.m */,
 				F21551C0180705380020183B /* BEViewController.h */,
 				F21551C1180705380020183B /* BEViewController.m */,
+				3BD99E651A417DFB002F3650 /* BETableViewController.h */,
+				3BD99E661A417DFB002F3650 /* BETableViewController.m */,
 				F21551B2180705380020183B /* Supporting Files */,
 			);
 			path = badEgg;
@@ -789,9 +799,10 @@
 		F2877B511857060F00F0A470 /* HysteriaPlayer */ = {
 			isa = PBXGroup;
 			children = (
-				3B714C9D19E6576100831C7C /* HysteriaPlayer.h */,
-				3B714C9E19E6576100831C7C /* HysteriaPlayer.m */,
-				3B714C9F19E6576100831C7C /* point1sec.mp3 */,
+				3BF7A9381A4288C8006D5755 /* playerReadme.h */,
+				3BF7A9391A42B530006D5755 /* HysteriaPlayer.h */,
+				3BF7A93A1A42B530006D5755 /* HysteriaPlayer.m */,
+				3BF7A93B1A42B530006D5755 /* point1sec.mp3 */,
 			);
 			path = HysteriaPlayer;
 			sourceTree = "<group>";
@@ -974,7 +985,7 @@
 								enabled = 0;
 							};
 							com.apple.InAppPurchase = {
-								enabled = 1;
+								enabled = 0;
 							};
 							com.apple.InterAppAudio = {
 								enabled = 0;
@@ -1018,6 +1029,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3B714D7319E6586800831C7C /* playing.png in Resources */,
+				3BF7A93D1A42B530006D5755 /* point1sec.mp3 in Resources */,
 				3B714D3819E6586800831C7C /* board.png in Resources */,
 				3B714D7219E6586800831C7C /* playfm@2x.png in Resources */,
 				3B714D6C19E6586800831C7C /* play.png in Resources */,
@@ -1097,7 +1109,6 @@
 				3B714D6419E6586800831C7C /* navi5.png in Resources */,
 				F21551B6180705380020183B /* InfoPlist.strings in Resources */,
 				3B714D6B19E6586800831C7C /* photo@2x.png in Resources */,
-				3B714CA119E6576100831C7C /* point1sec.mp3 in Resources */,
 				3B714D5519E6586800831C7C /* LightBackground.png in Resources */,
 				3B714D6219E6586800831C7C /* navbar64.png in Resources */,
 				3B714D7C19E6586800831C7C /* setting.png in Resources */,
@@ -1178,11 +1189,13 @@
 				F22F35911833803600FE96B5 /* BEFPWController.m in Sources */,
 				F22F35511833327C00FE96B5 /* BEListController.m in Sources */,
 				F26124AE184739890000F075 /* BEPlayerController.m in Sources */,
+				3BD99E641A417BA4002F3650 /* BETabBarController.m in Sources */,
+				3BD99E671A417DFB002F3650 /* BETableViewController.m in Sources */,
 				F281A43718ED42BD00944656 /* UIDevice-Hardware.m in Sources */,
-				3B714CA019E6576100831C7C /* HysteriaPlayer.m in Sources */,
 				F2B97F6D18E1514D0081E110 /* BEBlogController.m in Sources */,
 				F281A42618ED2A3600944656 /* EIOperationManager.m in Sources */,
 				F22F35381833204700FE96B5 /* BENewsDetailController.m in Sources */,
+				3BF7A93C1A42B530006D5755 /* HysteriaPlayer.m in Sources */,
 				F281A49A18ED802300944656 /* BEMyAlbumCell.m in Sources */,
 				F281A42C18ED336D00944656 /* SKPlaceholderTextView.m in Sources */,
 				F2B841201851A1C7001DA858 /* BEAlbum.m in Sources */,
@@ -1233,6 +1246,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				F21551B5180705380020183B /* en */,
+				3BD99E601A417A1E002F3650 /* zh-Hans */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
@@ -1241,6 +1255,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				F21551D4180705380020183B /* en */,
+				3BD99E611A417A1E002F3650 /* zh-Hans */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
@@ -1249,6 +1264,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				F21551FB18070BE10020183B /* en */,
+				3BD99E5F1A417A1D002F3650 /* zh-Hans */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";

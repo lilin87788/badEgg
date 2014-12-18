@@ -8,7 +8,7 @@
         <!--坏蛋调频-->
         <scene sceneID="SnC-m0-Wtt">
             <objects>
-                <tabBarController storyboardIdentifier="BETabBarController" definesPresentationContext="YES" hidesBottomBarWhenPushed="YES" useStoryboardIdentifierAsRestorationIdentifier="YES" id="C3j-ex-aas" customClass="BETabBarController" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="BEViewController" definesPresentationContext="YES" hidesBottomBarWhenPushed="YES" useStoryboardIdentifierAsRestorationIdentifier="YES" id="C3j-ex-aas" customClass="BEViewController" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" title="坏蛋调频" id="Z4M-Ac-kVu"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="0NS-KT-Eg4">

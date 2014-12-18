@@ -7,12 +7,27 @@ platform :ios,'7.1'
 inhibit_all_warnings!
 link_with 'badEgg', 'badEgg Tests'
 pod 'AFNetworking', '~> 2.5.0'
+#pod 'HysteriaPlayer', '~> 2.0.1'
+
 
 pod 'Baidu-Maps-iOS-SDK', '~> 2.3.0'
 #pod 'SDWebImage', '~> 3.7.1'
 #pod 'MWPhotoBrowser', '1.4.1'
 pod 'FMDB/SQLCipher'
 pod 'JSONKit-NoWarning', '~> 1.2'
+
+#友盟
+pod 'UMeng', '~> 2.2.1'
+pod 'UMengFeedback', '~> 2.0.2'
+
+#UMengSocial
+#警告如下：
+#ld: warning: instance method 'deleteAPIRequestBySeq:' in category from /Users/mac/Desktop/Projects/yoyouios/MobileGameMaster/MobileGameMaster/UMSocial_Sdk_4.2.1/UMSocial_Sdk_Extra_Frameworks/TencentOpenAPI/TencentOpenAPI.framework/TencentOpenAPI(CGIParamsWrap.o) overrides method from class in /Users/mac/Desktop/Projects/yoyouios/MobileGameMaster/MobileGameMaster/UMSocial_Sdk_4.2.1/UMSocial_Sdk_Extra_Frameworks/TencentOpenAPI/TencentOpenAPI.framework/TencentOpenAPI(TencentOAuth.o)
+
+#这警告不是项目配置的问题，也不是友盟的问题，上次友盟说了是腾讯库的问题，但既然是问题终归要解决吧
+#pod 'UMengSocial', '~> 4.2.1'
+#友盟
+
 
 pod 'BlocksKit', '~> 2.2.3'
 #pod 'UI7Kit', '~> 0.9.20'

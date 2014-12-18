@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "BEAlbumItem.h"
 #import "AudioButton.h"
-@interface BEPlayerController : UIViewController
+@interface BEPlayerController : BEViewController
 {
     
 }
