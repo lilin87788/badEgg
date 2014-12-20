@@ -61,6 +61,7 @@ static dispatch_once_t onceToken;
 @property (nonatomic) PlayerRepeatMode repeatMode;
 @property (nonatomic) PlayerShuffleMode shuffleMode;
 @property (nonatomic) HysteriaPlayerStatus hysteriaPlayerStatus;
+
 @property (nonatomic, strong) NSMutableSet *playedItems;
 
 - (void)longTimeBufferBackground;
@@ -312,13 +313,12 @@ static HysteriaPlayer *sharedInstance = nil;
 
 - (void) fetchAndPlayPlayerItem: (NSUInteger )startAt
 {
-    if (!self.tookAudioFocus)
+    if (!self.tookAudioFocus){
         [self preAction];
-    
+    }
     BOOL findInPlayerItems = NO;
     
     [self.playedItems addObject:@(startAt)];
-    
     [audioPlayer pause];
     [audioPlayer removeAllItems];
     
@@ -330,8 +330,7 @@ static HysteriaPlayer *sharedInstance = nil;
     
     
     if (!findInPlayerItems) {
-        NSAssert((_albumItemGetter != nil) || (_albumItemGetter != nil),
-                 @"please using setupSourceGetter:ItemsCount: to setup your datasource");
+        NSAssert((_albumItemGetter != nil) || (_albumItemGetter != nil), @"please using setupSourceGetter:ItemsCount: to setup your datasource");
         if (_albumItemGetter != nil){
             [self getAndInsertMediaSource:startAt];
         }else if (_sourceAsyncGetter != nil){
@@ -845,13 +844,11 @@ static HysteriaPlayer *sharedInstance = nil;
             }
         }
         
-        if (newPlayerItem != (id)[NSNull null]) {
+        if (newPlayerItem != (id)[NSNull null] && [newPlayerItem isKindOfClass:[BEAlbumItem class]]) {
+            [newPlayerItem addObserver:self forKeyPath:@"loadedTimeRanges" options:NSKeyValueObservingOptionNew context:nil];
+            [newPlayerItem addObserver:self forKeyPath:@"status" options:NSKeyValueObservingOptionNew context:nil];
             if (_currentItemChanged) {
-                if ([newPlayerItem isKindOfClass:[BEAlbumItem class]]) {
-                    [newPlayerItem addObserver:self forKeyPath:@"loadedTimeRanges" options:NSKeyValueObservingOptionNew context:nil];
-                    [newPlayerItem addObserver:self forKeyPath:@"status" options:NSKeyValueObservingOptionNew context:nil];
-                    _currentItemChanged(newPlayerItem);
-                }
+                _currentItemChanged(newPlayerItem);
             }
             
             for (id<HysteriaPlayerDelegate>delegate in delegates) {

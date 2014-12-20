@@ -9,7 +9,8 @@
 #import <UIKit/UIKit.h>
 #import "BEAlbumItem.h"
 #import "AudioButton.h"
-@interface BEPlayerController : BEViewController
+#import "HysteriaPlayer.h"
+@interface BEPlayerController : BEViewController<HysteriaPlayerDelegate>
 {
     
 }

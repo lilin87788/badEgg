@@ -93,6 +93,8 @@
 		3B714D8119E6586800831C7C /* user.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B714D2F19E6586800831C7C /* user.png */; };
 		3B714D8219E6586800831C7C /* vip@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B714D3019E6586800831C7C /* vip@2x.png */; };
 		3B714D8319E6586800831C7C /* wx@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B714D3119E6586800831C7C /* wx@2x.png */; };
+		3B8D7E2F1A455896005E2937 /* BENavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B8D7E2E1A455896005E2937 /* BENavigationController.m */; };
+		3BC72E551A45224600E24FD9 /* BEPlayerController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3BC72E541A45224600E24FD9 /* BEPlayerController.xib */; };
 		3BD99E641A417BA4002F3650 /* BETabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BD99E631A417BA4002F3650 /* BETabBarController.m */; };
 		3BD99E671A417DFB002F3650 /* BETableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BD99E661A417DFB002F3650 /* BETableViewController.m */; };
 		3BF7A93C1A42B530006D5755 /* HysteriaPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BF7A93A1A42B530006D5755 /* HysteriaPlayer.m */; };
@@ -275,6 +277,9 @@
 		3B714D2F19E6586800831C7C /* user.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = user.png; path = resource/user.png; sourceTree = SOURCE_ROOT; };
 		3B714D3019E6586800831C7C /* vip@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "vip@2x.png"; path = "resource/vip@2x.png"; sourceTree = SOURCE_ROOT; };
 		3B714D3119E6586800831C7C /* wx@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "wx@2x.png"; path = "resource/wx@2x.png"; sourceTree = SOURCE_ROOT; };
+		3B8D7E2D1A455896005E2937 /* BENavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BENavigationController.h; sourceTree = "<group>"; };
+		3B8D7E2E1A455896005E2937 /* BENavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BENavigationController.m; sourceTree = "<group>"; };
+		3BC72E541A45224600E24FD9 /* BEPlayerController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BEPlayerController.xib; sourceTree = "<group>"; };
 		3BD99E5F1A417A1D002F3650 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = "zh-Hans"; path = "zh-Hans.lproj/Main.storyboard"; sourceTree = "<group>"; };
 		3BD99E601A417A1E002F3650 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		3BD99E611A417A1E002F3650 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
@@ -455,6 +460,30 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3B8D7E2C1A455861005E2937 /* delegate_nav_tab_root */ = {
+			isa = PBXGroup;
+			children = (
+				F21551BA180705380020183B /* BEAppDelegate.h */,
+				F21551BB180705380020183B /* BEAppDelegate.m */,
+				3BD99E621A417BA4002F3650 /* BETabBarController.h */,
+				3BD99E631A417BA4002F3650 /* BETabBarController.m */,
+				F21551C0180705380020183B /* BEViewController.h */,
+				F21551C1180705380020183B /* BEViewController.m */,
+				3BD99E651A417DFB002F3650 /* BETableViewController.h */,
+				3BD99E661A417DFB002F3650 /* BETableViewController.m */,
+				3B8D7E2D1A455896005E2937 /* BENavigationController.h */,
+				3B8D7E2E1A455896005E2937 /* BENavigationController.m */,
+			);
+			name = delegate_nav_tab_root;
+			sourceTree = "<group>";
+		};
+		3B8D7E301A457613005E2937 /* agent */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = agent;
+			sourceTree = "<group>";
+		};
 		F215519F180705380020183B = {
 			isa = PBXGroup;
 			children = (
@@ -507,16 +536,10 @@
 		F21551B1180705380020183B /* badEgg */ = {
 			isa = PBXGroup;
 			children = (
+				3B8D7E301A457613005E2937 /* agent */,
+				3B8D7E2C1A455861005E2937 /* delegate_nav_tab_root */,
 				F2F773DE180B98520070EF24 /* utils */,
 				F2B322041808F26C0008FDBB /* UI */,
-				F21551BA180705380020183B /* BEAppDelegate.h */,
-				F21551BB180705380020183B /* BEAppDelegate.m */,
-				3BD99E621A417BA4002F3650 /* BETabBarController.h */,
-				3BD99E631A417BA4002F3650 /* BETabBarController.m */,
-				F21551C0180705380020183B /* BEViewController.h */,
-				F21551C1180705380020183B /* BEViewController.m */,
-				3BD99E651A417DFB002F3650 /* BETableViewController.h */,
-				3BD99E661A417DFB002F3650 /* BETableViewController.m */,
 				F21551B2180705380020183B /* Supporting Files */,
 			);
 			path = badEgg;
@@ -741,6 +764,7 @@
 				F246DBCA1846DF1700CC64D7 /* AudioButton.m */,
 				F26124AC184739890000F075 /* BEPlayerController.h */,
 				F26124AD184739890000F075 /* BEPlayerController.m */,
+				3BC72E541A45224600E24FD9 /* BEPlayerController.xib */,
 			);
 			name = player;
 			sourceTree = "<group>";
@@ -1024,6 +1048,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3B714D7319E6586800831C7C /* playing.png in Resources */,
+				3BC72E551A45224600E24FD9 /* BEPlayerController.xib in Resources */,
 				3BF7A93D1A42B530006D5755 /* point1sec.mp3 in Resources */,
 				3B714D3819E6586800831C7C /* board.png in Resources */,
 				3B714D7219E6586800831C7C /* playfm@2x.png in Resources */,
@@ -1168,6 +1193,7 @@
 				F22F356018333FB100FE96B5 /* BEVIPController.m in Sources */,
 				3B714CAC19E6576D00831C7C /* MJRefreshFooterView.m in Sources */,
 				F299A5F41839EFBA00ACFDC6 /* XPathQuery.m in Sources */,
+				3B8D7E2F1A455896005E2937 /* BENavigationController.m in Sources */,
 				F22F358E1833801300FE96B5 /* BERegisterController.m in Sources */,
 				F246DBCB1846DF1700CC64D7 /* AudioButton.m in Sources */,
 				F2877B9A185804C300F0A470 /* BEQueuePlayer.m in Sources */,

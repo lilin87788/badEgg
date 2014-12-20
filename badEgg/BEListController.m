@@ -59,13 +59,6 @@
     }
 }
 
--(void)initNavBar
-{
-    UIImage* navbgImage = [UIImage imageNamed:@"navbar64"] ;
-    self.navigationController.navigationBar.tintColor = [UIColor blackColor];
-    [self.navigationController.navigationBar setBackgroundImage:navbgImage  forBarMetrics:UIBarMetricsDefault];
-}
-
 -(void)BERefreshFMDataFromServer:(BEBaseCompleteBlock)block
 {
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
@@ -178,7 +171,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self initNavBar];
+    self.tableView.backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"background"] ];
     contentList = [NSMutableArray array];
     maxPublishTime = [self maxPublishTime];
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
@@ -253,7 +246,6 @@
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    [segue.destinationViewController setHidesBottomBarWhenPushed:YES];
     if ([segue.identifier isEqualToString:@"player"])
 	{
         HysteriaPlayer* beplayer = [HysteriaPlayer sharedInstance];
@@ -298,24 +290,14 @@
 {
     if (indexPath.row == 0) {
         static NSString *CellIdentifier = @"introduce";
-        UITableViewCell *cell;
-        if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"6.0")) {
-            cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
-        }else {
-            cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-        }
+        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
         return cell;
     }else{
-        static NSString *CellIdentifier = @"Cell";
-        BEListCell *cell;
-        if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"6.0")) {
-            cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
-        }else {
-            cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-        }
         BEAlbumItem* item = contentList[indexPath.row-1];
+
+        static NSString *CellIdentifier = @"Cell";
+        BEListCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
         cell.useDarkBackground = (indexPath.row % 2 == 0);
-        cell.tableView = tableView;
         [cell setRadioItems:item];
         return cell;
     }
@@ -323,7 +305,7 @@
 
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.row) {
+    if (indexPath.row > 0) {
         cell.backgroundColor = ((BEListCell *)cell).useDarkBackground ? [UIColor DARK_BACKGROUND] : [UIColor LIGHT_BACKGROUND];
     }
 }
@@ -334,5 +316,23 @@
         return 120.;
     }
     return 75.;
+}
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    HysteriaPlayer* beplayer = [HysteriaPlayer sharedInstance];
+    [beplayer removeAllItems];
+
+    [beplayer setupSourceGetter:^BEAlbumItem *(NSUInteger index){
+        return contentList[index];
+    } ItemsCount:contentList.count];
+    
+    [self setHidesBottomBarWhenPushed:YES];
+    BEPlayerController* playerController = [[BEPlayerController alloc] initWithNibName:@"BEPlayerController" bundle:nil];
+    playerController.currentItems = contentList[indexPath.row-1];
+    playerController.currentIndex = indexPath.row-1;
+    playerController.isClickPlaingBtn = NO;
+    [self.navigationController pushViewController:playerController animated:YES];
+    [self setHidesBottomBarWhenPushed:NO];
 }
 @end

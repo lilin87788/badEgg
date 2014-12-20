@@ -109,6 +109,7 @@ typedef void (^ CurrentItemPreLoaded)(CMTime time);
  @method setupSourceGetter:ItemsCount:
  */
 - (void)setupSourceGetter:(BEAlbumItemGetter)itemBlock ItemsCount:(NSUInteger) count;
+
 /*!
  If you are using Async block handle your item, make sure you call setupPlayerItem: at last
  @method asyncSetupSourceGetter:ItemsCount
