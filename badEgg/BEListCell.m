@@ -27,22 +27,23 @@
     return useDarkBackground;
 }
 
-//- (IBAction)downLoadFMAlbum:(UIButton *)sender {
-//    if (![albumItem.dowStatus intValue]) {
-//        NSString* msg = [NSString stringWithFormat:@"<%@>\n到下载列表中",albumItem.proName];
-//        UIAlertView* av = [[UIAlertView alloc] initWithTitle:@"添加" message:msg delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
-//        [av show];
-//    }
-//}
+- (IBAction)downLoadFMAlbum:(UIButton *)sender {
+    if (![albumItem.dowStatus intValue]) {
+        NSString* msg = [NSString stringWithFormat:@"<%@>\n到下载列表中",albumItem.proName];
+        UIAlertView* av = [[UIAlertView alloc] initWithTitle:@"添加" message:msg delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
+        [av show];
+    }
+}
 
 //UPDATE Person SET Address = 'Zhongshan 23', City = 'Nanjing' WHERE LastName = 'Wilson' AND ID = '1'
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     {
+        [self.taskProgressView setHidden:NO];
         NSString* url = [NSString stringWithString:albumItem.virtualAddress];
         NSString* filename = [NSString stringWithString:albumItem.fileName];
         //NSString *fullPath = [[FileUtils documentPath] stringByAppendingPathComponent:filename];
-        AFURLSessionManager* manager = [BEAppDelegate sharedURLSessionManager];
+        AFURLSessionManager* manager = [BEHttpRequest sharedClient];
         NSURL *URL = [NSURL URLWithString:[url stringByAppendingString:@"?dow=true"]];
         BEURLRequest *request = [BEURLRequest requestWithURL:URL];
         request.album = albumItem;
@@ -54,8 +55,9 @@
                 [_downloadBtn setEnabled:YES];
             }
         }];
-        albumItem.downloadTask = downloadTask;
         [downloadTask resume];
+        albumItem.downloadTask = downloadTask;
+        [self.taskProgressView setProgressWithDownloadProgressOfTask:downloadTask animated:YES];
         [_downloadBtn setEnabled:NO];
     }
     return;
@@ -130,12 +132,15 @@
     [[self.contentView viewWithTag:103] setTag:self.tag];
     _titleLabel.text = albumItem.proName;
     _timeLabel.text = albumItem.updateTime;
-    [self.taskProgressView setProgressWithDownloadProgressOfTask:albumItem.downloadTask animated:YES];
+    if (albumItem.downloadTask) {
+        [self.taskProgressView setProgressWithDownloadProgressOfTask:albumItem.downloadTask animated:YES];
+        [self.taskProgressView setHidden:NO];
+    }
 }
 
 -(void)prepareForReuse
 {
     [self.taskProgressView setProgressWithDownloadProgressOfTask:nil animated:NO];
-    [self.taskProgressView setProgress:0. animated:NO];
+    [self.taskProgressView setHidden:YES];
 }
 @end

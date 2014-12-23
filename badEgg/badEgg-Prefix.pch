@@ -64,7 +64,7 @@ typedef void (^BEBaseCompleteBlock)();
 #define ZZZobt @"http://tam.hngytobacco.com/ZZZobtb/aaa-agents/avs"
 
 typedef void (^basicBlock)(void);
-typedef void (^BECompleteBlock)(NSError* error);
+
 
 
 //判断 手机的版本是不是大于某个值

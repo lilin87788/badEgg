@@ -494,7 +494,7 @@
                                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                             </state>
                                             <connections>
-                                                <action selector="downLoadFMAlbum:" destination="ELa-Zk-Rzy" eventType="touchUpInside" id="8OY-Mh-w2t"/>
+                                                <action selector="downLoadFMAlbum:" destination="ELa-Zk-Rzy" eventType="touchUpInside" id="549-nR-Sn8"/>
                                             </connections>
                                         </button>
                                         <progressView hidden="YES" opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="RCb-hv-XzN">

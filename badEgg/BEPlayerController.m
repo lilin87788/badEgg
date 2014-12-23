@@ -192,7 +192,7 @@
 - (void)hysteriaPlayerCurrentItemPreloaded:(CMTime)time
 {
     NSLog(@"current item pre-loaded time: %f", CMTimeGetSeconds(time));
-    NSLog(@"当前下面有预加载时间: %f", CMTimeGetSeconds(time));
+    NSLog(@"当前项目已经预加载: %f", CMTimeGetSeconds(time));
 }
 
 - (void)hysteriaPlayerDidReachEnd
