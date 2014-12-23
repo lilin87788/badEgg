@@ -16,6 +16,7 @@
 @property(nonatomic,strong)NSString* totalPage;
 @property(nonatomic,strong)NSMutableArray*  albumItem;
 
+-(void)addAlbumItem:(BEAlbum *)album;
 -(id)initWithDictionary:(NSDictionary*)dictionary;
 -(void)show;
 @end

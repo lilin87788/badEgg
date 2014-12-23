@@ -17,8 +17,8 @@
         self.totalPage = dictionary[@"totalPages"];
         self.albumItem = [NSMutableArray arrayWithCapacity:15];
         for (NSDictionary*dict in dictionary[@"prolist"]) {
-            BEAlbumItem* item = [[BEAlbumItem alloc] initWithURL:[NSURL URLWithString:dict[@"audioPathHttp"]]];
-            //BEAlbumItem* item = [[BEAlbumItem alloc] initWithURL:[NSURL URLWithString:@"http://y1.eoews.com/assets/ringtones/2012/6/29/36195/mx8an3zgp2k4s5aywkr7wkqtqj0dh1vxcvii287a.mp3"]];
+            //BEAlbumItem* item = [[BEAlbumItem alloc] initWithURL:[NSURL URLWithString:dict[@"audioPathHttp"]]];
+            BEAlbumItem* item = [[BEAlbumItem alloc] initWithURL:[NSURL URLWithString:@"http://y1.eoews.com/assets/ringtones/2012/6/29/36195/mx8an3zgp2k4s5aywkr7wkqtqj0dh1vxcvii287a.mp3"]];
             item.proName = dict[@"proName"];
             item.fileName = dict[@"fileName"];
             item.proTags = dict[@"proTags"];
@@ -40,11 +40,16 @@
             item.proCreater = dict[@"proCreater"];
             item.listenNum = dict[@"listenNum"];
             item.proId = dict[@"proId"];
-            
+            item.downloadTask = nil;
             [self.albumItem addObject:item];
         }
     }
     return self;
+}
+
+-(void)addAlbumItem:(BEAlbum *)album
+{
+
 }
 
 -(void)show

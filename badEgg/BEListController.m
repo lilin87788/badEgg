@@ -162,81 +162,108 @@
         curPage = 1;
         totalPages = 1;
         contentList = [NSMutableArray array];
-        maxPublishTime = [self maxPublishTime];
-
     }
     return self;
+}
+
+-(void)dealloc
+{
+    contentList = nil;
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.tableView.backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"background"] ];
-    contentList = [NSMutableArray array];
     maxPublishTime = [self maxPublishTime];
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
-        [self BEFMDataFromDataBase:^{
-            [self.tableView reloadData];
-            HysteriaPlayer* beplayer = [HysteriaPlayer sharedInstance];
-            [beplayer setupSourceGetter:^BEAlbumItem *(NSUInteger index){
-                return contentList[index];
-            } ItemsCount:contentList.count];
-            
-            
-            if([[NSUserDefaults standardUserDefaults] boolForKey:@"firstRefreshData"] == NO){
-                [self BEFirstFMDataFromServer:^{
-                    [self BEFMDataFromDataBase:^{
-                        [[NSNotificationCenter defaultCenter] postNotificationName:@"refreshCompleted" object:0];
-                        maxPublishTime = [self maxPublishTime];
-                        HysteriaPlayer* beplayer = [HysteriaPlayer sharedInstance];
-                        [beplayer setupSourceGetter:^BEAlbumItem *(NSUInteger index){
-                            return contentList[index];
-                        } ItemsCount:contentList.count];
-                        [self.tableView reloadData];
-                    }];
-                }];
-            }else{
-                [self BERefreshFMDataFromServer:^{
-                    maxPublishTime = [self maxPublishTime];
-                    [contentList removeAllObjects];
-                    [self BEFMDataFromDataBase:^{
-                        [[NSNotificationCenter defaultCenter] postNotificationName:@"refreshCompleted" object:0];
-                        HysteriaPlayer* beplayer = [HysteriaPlayer sharedInstance];
-                        [beplayer setupSourceGetter:^BEAlbumItem *(NSUInteger index){
-                            return contentList[index];
-                        } ItemsCount:contentList.count];
-                        [self.tableView reloadData];
-                    }];
-                }];
-            }
-        }];
-    });
-    
-    UIRefreshControl* refreshcontrol = [[UIRefreshControl alloc]init];
-    refreshcontrol.tintColor = COLOR(17, 168, 171);
-    refreshcontrol.attributedTitle = [[NSAttributedString alloc]initWithString:@"下拉刷新"];
-    [refreshcontrol addTarget:self action:@selector(RefreshViewControlEventValueChanged)
-             forControlEvents:UIControlEventValueChanged];
-    self.refreshControl = refreshcontrol;
-    
-    HysteriaPlayer *bePlayer = [HysteriaPlayer sharedInstance];
-    [bePlayer registerHandlerFailed:^(HysteriaPlayerFailed identifier, NSError *error){
-        NSLog(@"%@",error);
+
+//    self.tableView.backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"background"] ];
+    self.tableView.tableHeaderView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"introduce.png"]];
+    [[BEHttpRequest sharedClient] requestFMDataWithPageNo:curPage responseBlock:^(BOOL isOK, BEAlbum *album, NSError *error) {
+        [contentList addObjectsFromArray:album.albumItem];
+        curPage++;
+        [self.tableView reloadData];
     }];
     
-    __weak BEListController* vc = self;
+    __unsafe_unretained BEListController* vc1 = self;
     _footer = [MJRefreshFooterView footer];
     _footer.scrollView = self.tableView;
     _footer.beginRefreshingBlock = ^(MJRefreshBaseView *refreshView) {
-        [vc BEFMDataFromDataBase:^{
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [vc.tableView reloadData];
-                if ([vc.footer isRefreshing]) {
-                    [vc.footer endRefreshing];
-                }
-            });
+        [[BEHttpRequest sharedClient] requestFMDataWithPageNo:vc1->curPage responseBlock:^(BOOL isOK, BEAlbum *album, NSError *error) {
+            [vc1 ->contentList addObjectsFromArray:album.albumItem];
+            vc1 -> curPage++;
+            if ([vc1 ->_footer isRefreshing]) {
+                [vc1 ->_footer endRefreshing];
+            }
+            [vc1.tableView reloadData];
         }];
     };
+    return;
+    {
+        maxPublishTime = [self maxPublishTime];
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
+            [self BEFMDataFromDataBase:^{
+                [self.tableView reloadData];
+                HysteriaPlayer* beplayer = [HysteriaPlayer sharedInstance];
+                [beplayer setupSourceGetter:^BEAlbumItem *(NSUInteger index){
+                    return contentList[index];
+                } ItemsCount:contentList.count];
+                
+                
+                if([[NSUserDefaults standardUserDefaults] boolForKey:@"firstRefreshData"] == NO){
+                    [self BEFirstFMDataFromServer:^{
+                        [self BEFMDataFromDataBase:^{
+                            [[NSNotificationCenter defaultCenter] postNotificationName:@"refreshCompleted" object:0];
+                            maxPublishTime = [self maxPublishTime];
+                            HysteriaPlayer* beplayer = [HysteriaPlayer sharedInstance];
+                            [beplayer setupSourceGetter:^BEAlbumItem *(NSUInteger index){
+                                return contentList[index];
+                            } ItemsCount:contentList.count];
+                            [self.tableView reloadData];
+                        }];
+                    }];
+                }else{
+                    [self BERefreshFMDataFromServer:^{
+                        maxPublishTime = [self maxPublishTime];
+                        [contentList removeAllObjects];
+                        [self BEFMDataFromDataBase:^{
+                            [[NSNotificationCenter defaultCenter] postNotificationName:@"refreshCompleted" object:0];
+                            HysteriaPlayer* beplayer = [HysteriaPlayer sharedInstance];
+                            [beplayer setupSourceGetter:^BEAlbumItem *(NSUInteger index){
+                                return contentList[index];
+                            } ItemsCount:contentList.count];
+                            [self.tableView reloadData];
+                        }];
+                    }];
+                }
+            }];
+        });
+        
+        UIRefreshControl* refreshcontrol = [[UIRefreshControl alloc]init];
+        refreshcontrol.tintColor = COLOR(17, 168, 171);
+        refreshcontrol.attributedTitle = [[NSAttributedString alloc]initWithString:@"下拉刷新"];
+        [refreshcontrol addTarget:self action:@selector(RefreshViewControlEventValueChanged)
+                 forControlEvents:UIControlEventValueChanged];
+        self.refreshControl = refreshcontrol;
+        
+        HysteriaPlayer *bePlayer = [HysteriaPlayer sharedInstance];
+        [bePlayer registerHandlerFailed:^(HysteriaPlayerFailed identifier, NSError *error){
+            NSLog(@"%@",error);
+        }];
+        
+        __unsafe_unretained BEListController* vc = self;
+        _footer = [MJRefreshFooterView footer];
+        _footer.scrollView = self.tableView;
+        _footer.beginRefreshingBlock = ^(MJRefreshBaseView *refreshView) {
+            [vc BEFMDataFromDataBase:^{
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [vc.tableView reloadData];
+                    if ([vc.footer isRefreshing]) {
+                        [vc.footer endRefreshing];
+                    }
+                });
+            }];
+        };
+    }
 }
 
 - (void)reloadDeals
@@ -283,39 +310,23 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return contentList.count + 1;
+    return contentList.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.row == 0) {
-        static NSString *CellIdentifier = @"introduce";
-        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
-        return cell;
-    }else{
-        BEAlbumItem* item = contentList[indexPath.row-1];
-
-        static NSString *CellIdentifier = @"Cell";
-        BEListCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
-        cell.useDarkBackground = (indexPath.row % 2 == 0);
-        [cell setRadioItems:item];
-        return cell;
-    }
+    
+    BEAlbumItem* item = contentList[indexPath.row];
+    static NSString *CellIdentifier = @"Cell";
+    BEListCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+    cell.useDarkBackground = (indexPath.row % 2 == 0);
+    [cell setRadioItems:item];
+    return cell;
 }
 
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.row > 0) {
-        cell.backgroundColor = ((BEListCell *)cell).useDarkBackground ? [UIColor DARK_BACKGROUND] : [UIColor LIGHT_BACKGROUND];
-    }
-}
-
--(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (indexPath.row == 0) {
-        return 120.;
-    }
-    return 75.;
+    cell.backgroundColor = ((BEListCell *)cell).useDarkBackground ? [UIColor DARK_BACKGROUND] : [UIColor LIGHT_BACKGROUND];
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -329,8 +340,8 @@
     
     [self setHidesBottomBarWhenPushed:YES];
     BEPlayerController* playerController = [[BEPlayerController alloc] initWithNibName:@"BEPlayerController" bundle:nil];
-    playerController.currentItems = contentList[indexPath.row-1];
-    playerController.currentIndex = indexPath.row-1;
+    playerController.currentItems = contentList[indexPath.row];
+    playerController.currentIndex = indexPath.row;
     playerController.isClickPlaingBtn = NO;
     [self.navigationController pushViewController:playerController animated:YES];
     [self setHidesBottomBarWhenPushed:NO];

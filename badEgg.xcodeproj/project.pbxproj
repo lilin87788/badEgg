@@ -94,6 +94,8 @@
 		3B714D8219E6586800831C7C /* vip@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B714D3019E6586800831C7C /* vip@2x.png */; };
 		3B714D8319E6586800831C7C /* wx@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B714D3119E6586800831C7C /* wx@2x.png */; };
 		3B8D7E2F1A455896005E2937 /* BENavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B8D7E2E1A455896005E2937 /* BENavigationController.m */; };
+		3B8D7E331A4576FB005E2937 /* BEHttpRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B8D7E321A4576FB005E2937 /* BEHttpRequest.m */; };
+		3B904F141A492DEA0069992C /* Main1.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3B904F161A492DEA0069992C /* Main1.storyboard */; };
 		3BC72E551A45224600E24FD9 /* BEPlayerController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3BC72E541A45224600E24FD9 /* BEPlayerController.xib */; };
 		3BD99E641A417BA4002F3650 /* BETabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BD99E631A417BA4002F3650 /* BETabBarController.m */; };
 		3BD99E671A417DFB002F3650 /* BETableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BD99E661A417DFB002F3650 /* BETableViewController.m */; };
@@ -111,7 +113,6 @@
 		F21551CD180705380020183B /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F21551AF180705380020183B /* UIKit.framework */; };
 		F21551D5180705380020183B /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = F21551D3180705380020183B /* InfoPlist.strings */; };
 		F21551D7180705380020183B /* badEggTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F21551D6180705380020183B /* badEggTests.m */; };
-		F21551FD18070BE10020183B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F21551FA18070BE10020183B /* Main.storyboard */; };
 		F22F35381833204700FE96B5 /* BENewsDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = F22F35371833204700FE96B5 /* BENewsDetailController.m */; };
 		F22F353F1833273700FE96B5 /* DateUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = F22F353E1833273700FE96B5 /* DateUtils.m */; };
 		F22F35421833273E00FE96B5 /* APPUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = F22F35411833273E00FE96B5 /* APPUtils.m */; };
@@ -279,8 +280,11 @@
 		3B714D3119E6586800831C7C /* wx@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "wx@2x.png"; path = "resource/wx@2x.png"; sourceTree = SOURCE_ROOT; };
 		3B8D7E2D1A455896005E2937 /* BENavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BENavigationController.h; sourceTree = "<group>"; };
 		3B8D7E2E1A455896005E2937 /* BENavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BENavigationController.m; sourceTree = "<group>"; };
+		3B8D7E311A4576FB005E2937 /* BEHttpRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BEHttpRequest.h; sourceTree = "<group>"; };
+		3B8D7E321A4576FB005E2937 /* BEHttpRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BEHttpRequest.m; sourceTree = "<group>"; };
+		3B904F151A492DEA0069992C /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/Main1.storyboard; sourceTree = "<group>"; };
+		3B904F1A1A492E490069992C /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = "zh-Hans"; path = "zh-Hans.lproj/Main1.storyboard"; sourceTree = "<group>"; };
 		3BC72E541A45224600E24FD9 /* BEPlayerController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BEPlayerController.xib; sourceTree = "<group>"; };
-		3BD99E5F1A417A1D002F3650 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = "zh-Hans"; path = "zh-Hans.lproj/Main.storyboard"; sourceTree = "<group>"; };
 		3BD99E601A417A1E002F3650 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		3BD99E611A417A1E002F3650 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		3BD99E621A417BA4002F3650 /* BETabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BETabBarController.h; sourceTree = "<group>"; };
@@ -310,7 +314,6 @@
 		F21551D2180705380020183B /* badEggTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "badEggTests-Info.plist"; sourceTree = "<group>"; };
 		F21551D4180705380020183B /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		F21551D6180705380020183B /* badEggTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = badEggTests.m; sourceTree = "<group>"; };
-		F21551FB18070BE10020183B /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/Main.storyboard; sourceTree = "<group>"; };
 		F22F35361833204700FE96B5 /* BENewsDetailController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BENewsDetailController.h; sourceTree = "<group>"; };
 		F22F35371833204700FE96B5 /* BENewsDetailController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BENewsDetailController.m; sourceTree = "<group>"; };
 		F22F353D1833273700FE96B5 /* DateUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DateUtils.h; sourceTree = "<group>"; };
@@ -480,6 +483,8 @@
 		3B8D7E301A457613005E2937 /* agent */ = {
 			isa = PBXGroup;
 			children = (
+				3B8D7E311A4576FB005E2937 /* BEHttpRequest.h */,
+				3B8D7E321A4576FB005E2937 /* BEHttpRequest.m */,
 			);
 			name = agent;
 			sourceTree = "<group>";
@@ -549,8 +554,8 @@
 			isa = PBXGroup;
 			children = (
 				F22F35611833437E00FE96B5 /* resource */,
-				F21551FA18070BE10020183B /* Main.storyboard */,
 				F21551B3180705380020183B /* badEgg-Info.plist */,
+				3B904F161A492DEA0069992C /* Main1.storyboard */,
 				F25C549E180841890014AFE1 /* Images.xcassets */,
 				F21551B9180705380020183B /* badEgg-Prefix.pch */,
 				F21551B4180705380020183B /* InfoPlist.strings */,
@@ -1108,10 +1113,10 @@
 				3B714D7619E6586800831C7C /* press.png in Resources */,
 				3B714D5F19E6586800831C7C /* navbar_background@2x.png in Resources */,
 				3B714D6519E6586800831C7C /* new@2x.png in Resources */,
-				F21551FD18070BE10020183B /* Main.storyboard in Resources */,
 				3B714D3319E6586800831C7C /* avatar.png in Resources */,
 				3B714D5619E6586800831C7C /* line.png in Resources */,
 				F281A49B18ED802300944656 /* BEMyAlbumCell.xib in Resources */,
+				3B904F141A492DEA0069992C /* Main1.storyboard in Resources */,
 				3B714D7F19E6586800831C7C /* tab_select_indicator.png in Resources */,
 				3B714D5419E6586800831C7C /* introduce@2x.png in Resources */,
 				3B714D3E19E6586800831C7C /* Default-568h@2x.png in Resources */,
@@ -1231,6 +1236,7 @@
 				F23DA9DB188BC8C20043169A /* DBQueue.m in Sources */,
 				F21551B8180705380020183B /* main.m in Sources */,
 				F22F353F1833273700FE96B5 /* DateUtils.m in Sources */,
+				3B8D7E331A4576FB005E2937 /* BEHttpRequest.m in Sources */,
 				F23DA9D8188B9FC20043169A /* Sqlite.m in Sources */,
 				F2877B4A1856E3B700F0A470 /* BESlider.m in Sources */,
 				F22F358B18337C8900FE96B5 /* BELoginController.m in Sources */,
@@ -1262,6 +1268,16 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		3B904F161A492DEA0069992C /* Main1.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				3B904F151A492DEA0069992C /* en */,
+				3B904F1A1A492E490069992C /* zh-Hans */,
+			);
+			name = Main1.storyboard;
+			path = ..;
+			sourceTree = "<group>";
+		};
 		F21551B4180705380020183B /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -1278,15 +1294,6 @@
 				3BD99E611A417A1E002F3650 /* zh-Hans */,
 			);
 			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-		F21551FA18070BE10020183B /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				F21551FB18070BE10020183B /* en */,
-				3BD99E5F1A417A1D002F3650 /* zh-Hans */,
-			);
-			name = Main.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

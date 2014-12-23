@@ -18,8 +18,7 @@
 
 +(UIStoryboard*)AppStoryBoard
 {
-    BEAppDelegate* delegate = [[UIApplication sharedApplication] delegate];
-    return delegate.mainStoryboard;
+    return [UIStoryboard storyboardWithName:@"Main" bundle:nil];
 }
 
 +(UIViewController*)visibleViewController

@@ -11,6 +11,9 @@
 #import "AFNetworkActivityIndicatorManager.h"
 #import "BEViewController.h"
 #import "BETabBarController.h"
+
+#import "BEHttpRequest.h"
+
 //#import "MobClick.h"
 
 //#import "UMSocialFacebookHandler.h"
@@ -39,12 +42,6 @@ NSUInteger DeviceSystemMajorVersion() {
 
 - (void)customizeAppearance
 {
-//    UIImage *tabBackground = [[UIImage imageNamed:@"tabbar.png"]
-//                              resizableImageWithCapInsets:UIEdgeInsetsMake(0, 0, 0, 0)];
-//    [[UITabBar appearance] setBackgroundImage:tabBackground];
-
-    
-    
     UIImage *backImage = [UIImage imageNamed:@"beBack"];
     backImage = [backImage resizableImageWithCapInsets:UIEdgeInsetsMake(0,backImage.size.width - 1,0, 0)];
     [[UIBarButtonItem appearance] setBackButtonBackgroundImage:backImage
@@ -107,16 +104,19 @@ NSUInteger DeviceSystemMajorVersion() {
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    NSLog(@"%@",NSHomeDirectory());
+    NSURLCache *URLCache = [[NSURLCache alloc] initWithMemoryCapacity:4 * 1024 * 1024 diskCapacity:40 * 1024 * 1024 diskPath:nil];
+    [NSURLCache setSharedURLCache:URLCache];
 
-    _mainStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    [[AFNetworkReachabilityManager sharedManager] setReachabilityStatusChangeBlock:^(AFNetworkReachabilityStatus status) {
+        NSLog(@"Reachability: %@", AFStringFromNetworkReachabilityStatus(status));
+    }];
+    
     [Sqlite createAllTable];
-    //[self umengTrack];
     [self customizeAppearance];
+    //[self umengTrack];
     [AFNetworkActivityIndicatorManager sharedManager].enabled = YES;
-    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    self.window.rootViewController = [_mainStoryboard instantiateInitialViewController];
-    [self.window makeKeyAndVisible];
-    return YES;
+    return YES;    
 }
 
 ///**

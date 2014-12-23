@@ -40,4 +40,5 @@ typedef enum : NSUInteger {
 @property(nonatomic,strong)NSString* listenNum;
 @property(nonatomic,strong)NSString* proId;
 @property(nonatomic,strong)NSString* dowStatus;
+@property(nonatomic,strong)NSURLSessionDownloadTask* downloadTask;
 @end

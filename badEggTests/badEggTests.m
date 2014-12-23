@@ -7,7 +7,7 @@
 //
 
 #import <XCTest/XCTest.h>
-
+#import "BEHttpRequest.h"
 @interface badEggTests : XCTestCase
 
 @end
@@ -28,7 +28,9 @@
 
 - (void)testExample
 {
-    XCTFail(@"No implementation for \"%s\"", __PRETTY_FUNCTION__);
+    [[BEHttpRequest sharedClient] requestFMDataWithPageNo:0 responseBlock:^(BOOL isOK, id data, NSError *error) {
+        
+    }];
 }
 
 @end

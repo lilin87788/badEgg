@@ -13,12 +13,10 @@
 #import "AFHTTPRequestOperation.h"
 #import "BEURLRequest.h"
 #import "BEVIPController.h"
+#import <AFNetworking/UIProgressView+AFNetworking.h>
 @implementation BEListCell
 {
-    __weak IBOutlet UILabel *titleLabel;
-    __weak IBOutlet UILabel *timeLabel;
-    __weak IBOutlet UILabel *sizeLabel;
-    __weak IBOutlet UIButton *downloadBtn;
+
     BEAlbumItem* albumItem;
 }
 
@@ -29,17 +27,39 @@
     return useDarkBackground;
 }
 
-- (IBAction)downLoadFMAlbum:(UIButton *)sender {
-    if (![albumItem.dowStatus intValue]) {
-        NSString* msg = [NSString stringWithFormat:@"<%@>\n到下载列表中",albumItem.proName];
-        UIAlertView* av = [[UIAlertView alloc] initWithTitle:@"添加" message:msg delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
-        [av show];
-    }
-}
+//- (IBAction)downLoadFMAlbum:(UIButton *)sender {
+//    if (![albumItem.dowStatus intValue]) {
+//        NSString* msg = [NSString stringWithFormat:@"<%@>\n到下载列表中",albumItem.proName];
+//        UIAlertView* av = [[UIAlertView alloc] initWithTitle:@"添加" message:msg delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
+//        [av show];
+//    }
+//}
 
 //UPDATE Person SET Address = 'Zhongshan 23', City = 'Nanjing' WHERE LastName = 'Wilson' AND ID = '1'
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
+    {
+        NSString* url = [NSString stringWithString:albumItem.virtualAddress];
+        NSString* filename = [NSString stringWithString:albumItem.fileName];
+        //NSString *fullPath = [[FileUtils documentPath] stringByAppendingPathComponent:filename];
+        AFURLSessionManager* manager = [BEAppDelegate sharedURLSessionManager];
+        NSURL *URL = [NSURL URLWithString:[url stringByAppendingString:@"?dow=true"]];
+        BEURLRequest *request = [BEURLRequest requestWithURL:URL];
+        request.album = albumItem;
+        NSURLSessionDownloadTask *downloadTask = [manager downloadTaskWithRequest:request progress:nil destination:^NSURL *(NSURL *targetPath, NSURLResponse *response) {
+            NSURL *documentsDirectoryPath = [NSURL fileURLWithPath:[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject]];
+            return [documentsDirectoryPath URLByAppendingPathComponent:filename];
+        } completionHandler:^(NSURLResponse *response, NSURL *filePath, NSError *error) {
+            if (error) {
+                [_downloadBtn setEnabled:YES];
+            }
+        }];
+        albumItem.downloadTask = downloadTask;
+        [downloadTask resume];
+        [_downloadBtn setEnabled:NO];
+    }
+    return;
+        
     if (buttonIndex != alertView.cancelButtonIndex) {
         NSString* url = [NSString stringWithString:albumItem.virtualAddress];
         NSString* filename = [NSString stringWithString:albumItem.fileName];
@@ -49,16 +69,16 @@
             NSURL *URL = [NSURL URLWithString:[url stringByAppendingString:@"?dow=true"]];
             BEURLRequest *request = [BEURLRequest requestWithURL:URL];
             request.album = albumItem;
-            NSURLSessionDownloadTask *downloadTask = [manager downloadTaskWithRequest:request progress:nil destination:^NSURL *(NSURL *targetPath, NSURLResponse *response) {
+             NSURLSessionDownloadTask *downloadTask = [manager downloadTaskWithRequest:request progress:nil destination:^NSURL *(NSURL *targetPath, NSURLResponse *response) {
                 NSURL *documentsDirectoryPath = [NSURL fileURLWithPath:[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject]];
                 return [documentsDirectoryPath URLByAppendingPathComponent:filename];
             } completionHandler:^(NSURLResponse *response, NSURL *filePath, NSError *error) {
                 if (error) {
-                    [downloadBtn setEnabled:YES];
+                    [_downloadBtn setEnabled:YES];
                 }
             }];
             [downloadTask resume];
-            [downloadBtn setEnabled:NO];
+            [_downloadBtn setEnabled:NO];
             NSMutableArray* contentList = [BEVIPController sharedVIPContentList];
             [contentList addObject:albumItem];
             [[NSNotificationCenter defaultCenter] postNotificationName:@"addDownloadTask" object:0 userInfo:0];
@@ -77,7 +97,7 @@
                                                              NSNumber *fileSizeNumber = [fileAttributes objectForKey:NSFileSize];
                                                              long long fileSize = [fileSizeNumber longLongValue];
                                                              
-                                                             [titleLabel setText:[NSString stringWithFormat:@"%lld", fileSize]];
+                                                             [_titleLabel setText:[NSString stringWithFormat:@"%lld", fileSize]];
                                                          }
                                                          
                                                      } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
@@ -89,7 +109,7 @@
                 float progress = (float)((float)totalBytesRead/totalBytesExpectedToRead);
                 NSLog(@"%f",progress);
             }];
-            [downloadBtn setEnabled:NO];
+            [_downloadBtn setEnabled:NO];
         }
     }
 }
@@ -108,7 +128,14 @@
 {
     albumItem = radio;
     [[self.contentView viewWithTag:103] setTag:self.tag];
-    titleLabel.text = albumItem.proName;
-    timeLabel.text = albumItem.updateTime;
+    _titleLabel.text = albumItem.proName;
+    _timeLabel.text = albumItem.updateTime;
+    [self.taskProgressView setProgressWithDownloadProgressOfTask:albumItem.downloadTask animated:YES];
+}
+
+-(void)prepareForReuse
+{
+    [self.taskProgressView setProgressWithDownloadProgressOfTask:nil animated:NO];
+    [self.taskProgressView setProgress:0. animated:NO];
 }
 @end

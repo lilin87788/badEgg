@@ -19,6 +19,8 @@ typedef void (^BEBaseCompleteBlock)();
     #import <SystemConfiguration/SystemConfiguration.h>
     #import <MobileCoreServices/MobileCoreServices.h>
     #import <FMDB/FMDB.h>
+    #import <SVProgressHUD/SVProgressHUD.h>
+    #import<AFNetworking/AFNetworking.h>
     #import "UIImage+rescale.h"
     #import "utils.h"
     #import "AFNetworking.h"
@@ -31,6 +33,7 @@ typedef void (^BEBaseCompleteBlock)();
     #import "EssentialImager.h"
     #import "BEViewController.h"
     #import "BETableViewController.h"
+    #import "BEHttpRequest.h"
  //   #import "MobClick.h"
 #endif
 
@@ -61,6 +64,8 @@ typedef void (^BEBaseCompleteBlock)();
 #define ZZZobt @"http://tam.hngytobacco.com/ZZZobtb/aaa-agents/avs"
 
 typedef void (^basicBlock)(void);
+typedef void (^BECompleteBlock)(NSError* error);
+
 
 //判断 手机的版本是不是大于某个值
 #define SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(v) ([[[UIDevice currentDevice] systemVersion] compare:(v) options:NSNumericSearch] != NSOrderedAscending)
