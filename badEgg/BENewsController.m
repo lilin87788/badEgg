@@ -17,18 +17,6 @@
 @end
 
 @implementation BENewsController
--(void)initNavBar
-{
-    self.navigationItem.backBarButtonItem.title = @"返回";
-    UIImage* navbgImage;
-    if (System_Version_Small_Than_(7)) {
-        navbgImage = [UIImage imageNamed:@"navbar44"];
-
-    }else{
-        navbgImage = [UIImage imageNamed:@"navbar64"] ;
-    }
-    [self.navigationController.navigationBar setBackgroundImage:navbgImage  forBarMetrics:UIBarMetricsDefault];
-}
 
 -(void)initPageController
 {
@@ -64,7 +52,6 @@
 {
     [super viewDidLoad];
     [self initData];
-    [self initNavBar];
     [self initPageController];
     
     [_bgScrollView setContentSize:CGSizeMake(320* 3,_bgScrollView.frame.size.height)];

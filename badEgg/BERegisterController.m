@@ -39,19 +39,6 @@
     //注册
 }
 
--(void)initNavBar
-{
-    self.navigationItem.backBarButtonItem.title = @"返回";
-    UIImage* navbgImage;
-    if (System_Version_Small_Than_(7)) {
-        navbgImage = [UIImage imageNamed:@"navi"];
-    }else{
-        navbgImage = [UIImage imageNamed:@"navi5"] ;
-    }
-    [self.navigationController.navigationBar setBackgroundImage:navbgImage  forBarMetrics:UIBarMetricsDefault];
-}
-
-
 - (void)getPhotos
 {
     UIActionSheet *photoSheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"从相册选择",@"从拍摄选择", nil];
@@ -63,8 +50,6 @@
     [super viewDidLoad];
     _tableview.layer.cornerRadius=6;
     _tableview.layer.masksToBounds=YES;
-    [self initNavBar];
-    
     
     if ([[NSUserDefaults standardUserDefaults] objectForKey:@"savedImage"]) { // test cached image
         NSString *urlString = [[NSUserDefaults standardUserDefaults] objectForKey:@"savedImage"];

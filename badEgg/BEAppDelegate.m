@@ -46,6 +46,9 @@ NSUInteger DeviceSystemMajorVersion() {
     backImage = [backImage resizableImageWithCapInsets:UIEdgeInsetsMake(0,backImage.size.width - 1,0, 0)];
     [[UIBarButtonItem appearance] setBackButtonBackgroundImage:backImage
                                                       forState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
+    
+    
+    [[UINavigationBar appearance] setBackgroundImage:[UIImage imageNamed:@"navbar64"] forBarMetrics:UIBarMetricsDefault];
 }
 
 -(void)creeateDatabase

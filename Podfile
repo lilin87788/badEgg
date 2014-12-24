@@ -10,7 +10,7 @@ pod 'AFNetworking', '~> 2.5.0'
 #pod 'HysteriaPlayer', '~> 2.0.1'
 
 
-#pod 'Baidu-Maps-iOS-SDK', '~> 2.3.0'
+#pod 'Baidu-Maps-iOS-SDK', '~> 2.0'
 #pod 'SDWebImage', '~> 3.7.1'
 #pod 'MWPhotoBrowser', '1.4.1'
 pod 'FMDB/SQLCipher'
@@ -46,10 +46,12 @@ pod 'SVProgressHUD', '~> 1.0'
 pod 'TTTAttributedLabel', '~> 1.10.1'
 pod 'Masonry', '~> 0.5.3'
 
+
+
 #post_install do |installer_representation|
 #    installer_representation.project.targets.each do |target|
 #        target.build_configurations.each do |config|
 #            config.build_settings['ONLY_ACTIVE_ARCH'] = 'NO'
 #        end
-#    end
+#end
 #end

@@ -27,18 +27,6 @@
     return array;
 }
 
--(void)initNavBar
-{
-    self.navigationItem.backBarButtonItem.title = @"返回";
-    UIImage* navbgImage;
-    if (System_Version_Small_Than_(7)) {
-        navbgImage = [UIImage imageNamed:@"navbar44"];
-    }else{
-        navbgImage = [UIImage imageNamed:@"navbar64"] ;
-    }
-    [self.navigationController.navigationBar setBackgroundImage:navbgImage  forBarMetrics:UIBarMetricsDefault];
-}
-
 -(void)BEFMDataFromDataBase:(BEBaseCompleteBlock)block
 {
     NSMutableArray* contentList = [BEVIPController sharedVIPContentList];
@@ -80,7 +68,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self initNavBar];
     cellNib = [UINib nibWithNibName:@"BEMyAlbumCell" bundle:nil];
     [self.tableView setBackgroundColor:COLOR(230, 230, 230)];
     [self BEFMDataFromDataBase:^{
