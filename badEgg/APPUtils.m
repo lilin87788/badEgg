@@ -18,7 +18,7 @@
 
 +(UIStoryboard*)AppStoryBoard
 {
-    return [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    return [UIStoryboard storyboardWithName:@"Main1" bundle:nil];
 }
 
 +(UIViewController*)visibleViewController

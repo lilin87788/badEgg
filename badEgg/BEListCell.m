@@ -75,9 +75,7 @@
                 NSURL *documentsDirectoryPath = [NSURL fileURLWithPath:[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject]];
                 return [documentsDirectoryPath URLByAppendingPathComponent:filename];
             } completionHandler:^(NSURLResponse *response, NSURL *filePath, NSError *error) {
-                if (error) {
-                    [_downloadBtn setEnabled:YES];
-                }
+                [_downloadBtn setEnabled:YES];
             }];
             [downloadTask resume];
             [_downloadBtn setEnabled:NO];
@@ -135,6 +133,9 @@
     if (albumItem.downloadTask) {
         [self.taskProgressView setProgressWithDownloadProgressOfTask:albumItem.downloadTask animated:YES];
         [self.taskProgressView setHidden:NO];
+    }else{
+        [self.taskProgressView setProgressWithDownloadProgressOfTask:nil animated:YES];
+        [self.taskProgressView setHidden:YES];
     }
 }
 

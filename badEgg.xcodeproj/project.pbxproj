@@ -95,7 +95,7 @@
 		3B714D8319E6586800831C7C /* wx@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B714D3119E6586800831C7C /* wx@2x.png */; };
 		3B8D7E2F1A455896005E2937 /* BENavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B8D7E2E1A455896005E2937 /* BENavigationController.m */; };
 		3B8D7E331A4576FB005E2937 /* BEHttpRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B8D7E321A4576FB005E2937 /* BEHttpRequest.m */; };
-		3B904F141A492DEA0069992C /* Main1.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3B904F161A492DEA0069992C /* Main1.storyboard */; };
+		3BBE5B241A4A57020064957D /* Main1.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3BBE5B221A4A57020064957D /* Main1.storyboard */; };
 		3BC72E551A45224600E24FD9 /* BEPlayerController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3BC72E541A45224600E24FD9 /* BEPlayerController.xib */; };
 		3BD99E641A417BA4002F3650 /* BETabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BD99E631A417BA4002F3650 /* BETabBarController.m */; };
 		3BD99E671A417DFB002F3650 /* BETableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BD99E661A417DFB002F3650 /* BETableViewController.m */; };
@@ -282,10 +282,8 @@
 		3B8D7E2E1A455896005E2937 /* BENavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BENavigationController.m; sourceTree = "<group>"; };
 		3B8D7E311A4576FB005E2937 /* BEHttpRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BEHttpRequest.h; sourceTree = "<group>"; };
 		3B8D7E321A4576FB005E2937 /* BEHttpRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BEHttpRequest.m; sourceTree = "<group>"; };
-		3B904F151A492DEA0069992C /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/Main1.storyboard; sourceTree = "<group>"; };
-		3B904F1A1A492E490069992C /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = "zh-Hans"; path = "zh-Hans.lproj/Main1.storyboard"; sourceTree = "<group>"; };
+		3BBE5B231A4A57020064957D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main1.storyboard; sourceTree = "<group>"; };
 		3BC72E541A45224600E24FD9 /* BEPlayerController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BEPlayerController.xib; sourceTree = "<group>"; };
-		3BD99E601A417A1E002F3650 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		3BD99E611A417A1E002F3650 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		3BD99E621A417BA4002F3650 /* BETabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BETabBarController.h; sourceTree = "<group>"; };
 		3BD99E631A417BA4002F3650 /* BETabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BETabBarController.m; sourceTree = "<group>"; };
@@ -555,8 +553,8 @@
 			children = (
 				F22F35611833437E00FE96B5 /* resource */,
 				F21551B3180705380020183B /* badEgg-Info.plist */,
-				3B904F161A492DEA0069992C /* Main1.storyboard */,
 				F25C549E180841890014AFE1 /* Images.xcassets */,
+				3BBE5B221A4A57020064957D /* Main1.storyboard */,
 				F21551B9180705380020183B /* badEgg-Prefix.pch */,
 				F21551B4180705380020183B /* InfoPlist.strings */,
 				F21551B7180705380020183B /* main.m */,
@@ -1000,7 +998,7 @@
 				ORGANIZATIONNAME = surekam;
 				TargetAttributes = {
 					F21551A7180705380020183B = {
-						DevelopmentTeam = W6B3D78E3C;
+						DevelopmentTeam = TCA7U79WT9;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
 								enabled = 1;
@@ -1105,6 +1103,7 @@
 				3B714D8219E6586800831C7C /* vip@2x.png in Resources */,
 				3B714D4B19E6586800831C7C /* Icon-72.png in Resources */,
 				3B714D6819E6586800831C7C /* Pause@2x.png in Resources */,
+				3BBE5B241A4A57020064957D /* Main1.storyboard in Resources */,
 				3B714D6719E6586800831C7C /* Pause.png in Resources */,
 				3B714D5219E6586800831C7C /* intro_4@2x.png in Resources */,
 				3B714D4F19E6586800831C7C /* icon.png in Resources */,
@@ -1116,7 +1115,6 @@
 				3B714D3319E6586800831C7C /* avatar.png in Resources */,
 				3B714D5619E6586800831C7C /* line.png in Resources */,
 				F281A49B18ED802300944656 /* BEMyAlbumCell.xib in Resources */,
-				3B904F141A492DEA0069992C /* Main1.storyboard in Resources */,
 				3B714D7F19E6586800831C7C /* tab_select_indicator.png in Resources */,
 				3B714D5419E6586800831C7C /* introduce@2x.png in Resources */,
 				3B714D3E19E6586800831C7C /* Default-568h@2x.png in Resources */,
@@ -1268,21 +1266,18 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		3B904F161A492DEA0069992C /* Main1.storyboard */ = {
+		3BBE5B221A4A57020064957D /* Main1.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				3B904F151A492DEA0069992C /* en */,
-				3B904F1A1A492E490069992C /* zh-Hans */,
+				3BBE5B231A4A57020064957D /* Base */,
 			);
 			name = Main1.storyboard;
-			path = ..;
 			sourceTree = "<group>";
 		};
 		F21551B4180705380020183B /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
 				F21551B5180705380020183B /* en */,
-				3BD99E601A417A1E002F3650 /* zh-Hans */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
@@ -1316,8 +1311,8 @@
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: China Tobacco Hunan Industrial Co., Ltd.";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: China Tobacco Hunan Industrial Co., Ltd.";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: sinocare Inc";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: sinocare Inc";
 				COPY_PHASE_STRIP = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -1335,7 +1330,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				ONLY_ACTIVE_ARCH = YES;
-				PROVISIONING_PROFILE = "16C1A75C-DD3C-4B21-8B3D-D3FCF6541E69";
+				PROVISIONING_PROFILE = "904ccc17-423e-4352-a7a4-a3818dffda2e";
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -1357,8 +1352,8 @@
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: China Tobacco Hunan Industrial Co., Ltd.";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: China Tobacco Hunan Industrial Co., Ltd.";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: sinocare Inc";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: sinocare Inc";
 				COPY_PHASE_STRIP = YES;
 				ENABLE_NS_ASSERTIONS = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -1370,7 +1365,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				ONLY_ACTIVE_ARCH = NO;
-				PROVISIONING_PROFILE = "16C1A75C-DD3C-4B21-8B3D-D3FCF6541E69";
+				PROVISIONING_PROFILE = "904ccc17-423e-4352-a7a4-a3818dffda2e";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -1383,8 +1378,8 @@
 				ARCHS = "$(ARCHS_STANDARD)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: sinocare Inc";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: sinocare Inc";
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "badEgg/badEgg-Prefix.pch";
@@ -1395,9 +1390,11 @@
 				INFOPLIST_FILE = "badEgg/badEgg-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "904ccc17-423e-4352-a7a4-a3818dffda2e";
+				VALID_ARCHS = "$(inherited)";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -1409,8 +1406,8 @@
 				ARCHS = "$(ARCHS_STANDARD)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: sinocare Inc";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: sinocare Inc";
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "badEgg/badEgg-Prefix.pch";
@@ -1421,9 +1418,11 @@
 				INFOPLIST_FILE = "badEgg/badEgg-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "904ccc17-423e-4352-a7a4-a3818dffda2e";
+				VALID_ARCHS = "$(inherited)";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
@@ -1447,7 +1446,7 @@
 				);
 				INFOPLIST_FILE = "badEggTests/badEggTests-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "16C1A75C-DD3C-4B21-8B3D-D3FCF6541E69";
+				PROVISIONING_PROFILE = "904ccc17-423e-4352-a7a4-a3818dffda2e";
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = xctest;
 			};
@@ -1468,7 +1467,7 @@
 				GCC_PREFIX_HEADER = "badEgg/badEgg-Prefix.pch";
 				INFOPLIST_FILE = "badEggTests/badEggTests-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "16C1A75C-DD3C-4B21-8B3D-D3FCF6541E69";
+				PROVISIONING_PROFILE = "904ccc17-423e-4352-a7a4-a3818dffda2e";
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = xctest;
 			};
