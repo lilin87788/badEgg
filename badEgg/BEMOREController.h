@@ -10,7 +10,7 @@
 //#import "UMFeedback.h"
 //#import "UMSocialControllerService.h"
 //#import "UMSocialShakeService.h"
-@interface BEMOREController : UIViewController<UITextFieldDelegate,UITextViewDelegate/*,UMFeedbackDataDelegate,UMSocialUIDelegate,
+@interface BEMOREController : BETableViewController<UITextFieldDelegate,UITextViewDelegate/*,UMFeedbackDataDelegate,UMSocialUIDelegate,
 UMSocialShakeDelegate*/>
 {
     //UMFeedback *_umFeedback;

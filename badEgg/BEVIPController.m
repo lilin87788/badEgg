@@ -83,6 +83,17 @@
     }];
 }
 
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    [MobClick endLogPageView:@"BEVIPController.h"];
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [MobClick beginLogPageView:@"BEVIPController.h"];
+}
+
 #pragma mark - Table view data source
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {

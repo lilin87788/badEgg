@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "BEMyAlbumCell.h"
-@interface BEVIPController : UITableViewController
+@interface BEVIPController : BETableViewController
 {
     UINib *cellNib;
 }

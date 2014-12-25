@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6254" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="BEIntroController">
+            <connections>
+                <outlet property="introImageView" destination="CKW-9y-ipa" id="F9B-oS-mQH"/>
+                <outlet property="view" destination="d2S-fY-hVI" id="0Fp-gF-f4y"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="d2S-fY-hVI">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="background.png" translatesAutoresizingMaskIntoConstraints="NO" id="54e-Z9-z4M">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                </imageView>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="CKW-9y-ipa">
+                    <rect key="frame" x="0.0" y="64" width="320" height="416"/>
+                </imageView>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="54e-Z9-z4M" firstAttribute="top" secondItem="d2S-fY-hVI" secondAttribute="top" id="Hen-nL-JUq"/>
+                <constraint firstItem="CKW-9y-ipa" firstAttribute="top" secondItem="d2S-fY-hVI" secondAttribute="top" constant="64" id="VDG-Xv-hxX"/>
+                <constraint firstItem="54e-Z9-z4M" firstAttribute="leading" secondItem="d2S-fY-hVI" secondAttribute="leading" id="XBd-he-9Xd"/>
+                <constraint firstAttribute="bottom" secondItem="CKW-9y-ipa" secondAttribute="bottom" id="cbs-eH-D8t"/>
+                <constraint firstAttribute="trailing" secondItem="CKW-9y-ipa" secondAttribute="trailing" id="iSj-3X-K5X"/>
+                <constraint firstItem="CKW-9y-ipa" firstAttribute="leading" secondItem="d2S-fY-hVI" secondAttribute="leading" id="jhF-mh-qq7"/>
+                <constraint firstItem="CKW-9y-ipa" firstAttribute="bottom" secondItem="54e-Z9-z4M" secondAttribute="bottom" id="ob3-WV-Ppn"/>
+                <constraint firstAttribute="trailing" secondItem="54e-Z9-z4M" secondAttribute="trailing" id="xxj-14-PaK"/>
+            </constraints>
+            <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="-14826" y="3071"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="background.png" width="640" height="1136"/>
+    </resources>
+</document>

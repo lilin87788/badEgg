@@ -63,6 +63,17 @@
     [self.tabBarItem setSelectedImage:Image(@"select.png")];
 }
 
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    [MobClick endLogPageView:@"BENewsController"];
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [MobClick beginLogPageView:@"BENewsController"];
+}
+
 - (void)loadScrollViewWithPage:(NSUInteger)page
 {
     if (page >= 3){

@@ -59,8 +59,6 @@
     [self performSegueWithIdentifier:@"register" sender:self];
 }
 
-
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];

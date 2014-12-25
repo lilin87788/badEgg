@@ -16,17 +16,17 @@ typedef void (^BEBaseCompleteBlock)();
     #import <UIKit/UIKit.h>
     #import <Foundation/Foundation.h>
     #import <QuartzCore/QuartzCore.h>
-    #import <SystemConfiguration/SystemConfiguration.h>
-    #import <MobileCoreServices/MobileCoreServices.h>
     #import <FMDB/FMDB.h>
     #import <SVProgressHUD/SVProgressHUD.h>
-    #import<AFNetworking/AFNetworking.h>
+    #import <AFNetworking/AFNetworking.h>
+    #import <UMengAnalytics/MobClick.h>
+    #import <UMengFeedback/UMFeedback.h>
     #import "UIImage+rescale.h"
     #import "utils.h"
     #import "AFNetworking.h"
     #import "UIKit+AFNetworking.h"
     #import "TFHpple.h"
-    #import "DateUtils.h"
+    #import "NSDate+Utilities.h"
     #import "FileUtils.h"
     #import "DBQueue.h"
     #import "UIColor+Colours.h"
@@ -34,7 +34,6 @@ typedef void (^BEBaseCompleteBlock)();
     #import "BEViewController.h"
     #import "BETableViewController.h"
     #import "BEHttpRequest.h"
- //   #import "MobClick.h"
 #endif
 
 
@@ -42,6 +41,8 @@ typedef void (^BEBaseCompleteBlock)();
 #define IS_IPHONE_5 ( fabs( ( double )[ [ UIScreen mainScreen ] bounds ].size.height - ( double )568 ) < DBL_EPSILON )
 
 #define IS_IOS7 [[[UIDevice currentDevice] systemVersion] floatValue] >= 7
+#define IOS_7_OR_LATER    ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7.0)
+#define IOS_8_OR_LATER    ([[[UIDevice currentDevice] systemVersion] floatValue] >= 8.0)
 //判断登陆是否有效
 
 #define SCREEN_WIDTH ([UIScreen mainScreen].bounds.size.width)

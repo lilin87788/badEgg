@@ -1,0 +1,96 @@
+
+/* Class = "IBUILabel"; text = "今天我们来聊聊旅行中艳遇那点事情，来到演播室的是常年在外旅行，流浪的资深驴友---三儿。我们一起来分享一下他在旅途中的那些事儿"; ObjectID = "2Fy-M2-bIr"; */
+"2Fy-M2-bIr.text" = "今天我们来聊聊旅行中艳遇那点事情，来到演播室的是常年在外旅行，流浪的资深驴友---三儿。我们一起来分享一下他在旅途中的那些事儿";
+
+/* Class = "IBUITabBarItem"; title = "MORE"; ObjectID = "3Vu-JX-bxb"; */
+"3Vu-JX-bxb.title" = "MORE";
+
+/* Class = "IBUILabel"; text = "确认密码:"; ObjectID = "A2Y-vH-DS6"; */
+"A2Y-vH-DS6.text" = "确认密码:";
+
+/* Class = "IBUILabel"; text = "01:12:24"; ObjectID = "AeW-ht-AKu"; */
+"AeW-ht-AKu.text" = "01:12:24";
+
+/* Class = "IBUITextField"; placeholder = "主题:"; ObjectID = "Afb-VQ-xwX"; */
+"Afb-VQ-xwX.placeholder" = "主题:";
+
+/* Class = "IBUILabel"; text = "意见反馈"; ObjectID = "Hxu-Ok-F85"; */
+"Hxu-Ok-F85.text" = "意见反馈";
+
+/* Class = "IBUILabel"; text = "给软件评分"; ObjectID = "Ibq-FA-P6j"; */
+"Ibq-FA-P6j.text" = "给软件评分";
+
+/* Class = "IBUINavigationItem"; title = "坏蛋调频"; ObjectID = "K0W-8g-y4d"; */
+"K0W-8g-y4d.title" = "坏蛋调频";
+
+/* Class = "IBUILabel"; text = "VOL. 121"; ObjectID = "NJf-Og-I0I"; */
+"NJf-Og-I0I.text" = "VOL. 121";
+
+/* Class = "IBUILabel"; text = "头像"; ObjectID = "O6d-sQ-xbJ"; */
+"O6d-sQ-xbJ.text" = "头像";
+
+/* Class = "IBUILabel"; text = "五一通州坏体验"; ObjectID = "QGE-ZU-33A"; */
+"QGE-ZU-33A.text" = "五一通州坏体验";
+
+/* Class = "IBUILabel"; text = "密码设置"; ObjectID = "RaC-bM-dWm"; */
+"RaC-bM-dWm.text" = "密码设置";
+
+/* Class = "IBUILabel"; text = "昵称"; ObjectID = "TdP-QC-cNF"; */
+"TdP-QC-cNF.text" = "昵称";
+
+/* Class = "IBUILabel"; text = "密      码:"; ObjectID = "UDe-7m-K6V"; */
+"UDe-7m-K6V.text" = "密      码:";
+
+/* Class = "IBUILabel"; text = "Apr 2013"; ObjectID = "UKT-PL-ZBt"; */
+"UKT-PL-ZBt.text" = "Apr 2013";
+
+/* Class = "IBUILabel"; text = "林哥"; ObjectID = "Xee-l2-QGE"; */
+"Xee-l2-QGE.text" = "林哥";
+
+/* Class = "IBUILabel"; text = "使用2G/3G网络播放"; ObjectID = "Y27-UX-bjB"; */
+"Y27-UX-bjB.text" = "使用2G/3G网络播放";
+
+/* Class = "IBUILabel"; text = "手机号码:"; ObjectID = "azV-79-DFi"; */
+"azV-79-DFi.text" = "手机号码:";
+
+/* Class = "IBUILabel"; text = "昵      称:"; ObjectID = "bAG-ec-iHg"; */
+"bAG-ec-iHg.text" = "昵      称:";
+
+/* Class = "IBUILabel"; text = "旅途中的艳遇"; ObjectID = "bFS-Zc-fc4"; */
+"bFS-Zc-fc4.text" = "旅途中的艳遇";
+
+/* Class = "IBUIButton"; normalTitle = "Button"; ObjectID = "bkp-2A-NAy"; */
+"bkp-2A-NAy.normalTitle" = "Button";
+
+/* Class = "IBUILabel"; text = "使用2G/3G网络下载"; ObjectID = "dDe-cN-a5h"; */
+"dDe-cN-a5h.text" = "使用2G/3G网络下载";
+
+/* Class = "IBUINavigationItem"; title = "注册"; ObjectID = "eg8-gG-6pp"; */
+"eg8-gG-6pp.title" = "注册";
+
+/* Class = "IBUILabel"; text = "手机号码"; ObjectID = "gYu-2Q-FPs"; */
+"gYu-2Q-FPs.text" = "手机号码";
+
+/* Class = "IBUILabel"; text = "缓存清理"; ObjectID = "jKT-vl-V2J"; */
+"jKT-vl-V2J.text" = "缓存清理";
+
+/* Class = "IBUILabel"; text = "正在加载..."; ObjectID = "mLB-Aq-U0q"; */
+"mLB-Aq-U0q.text" = "正在加载...";
+
+/* Class = "IBUILabel"; text = "15973145642"; ObjectID = "mMZ-2P-IoT"; */
+"mMZ-2P-IoT.text" = "15973145642";
+
+/* Class = "IBUILabel"; text = "正在加载..."; ObjectID = "mTX-8X-7aI"; */
+"mTX-8X-7aI.text" = "正在加载...";
+
+/* Class = "IBUILabel"; text = "相关说明"; ObjectID = "rmI-Rp-d6s"; */
+"rmI-Rp-d6s.text" = "相关说明";
+
+/* Class = "IBUILabel"; text = "12"; ObjectID = "tFJ-xx-3UJ"; */
+"tFJ-xx-3UJ.text" = "12";
+
+/* Class = "IBUILabel"; text = "感谢你对坏蛋调频的支持和喜爱，谢谢"; ObjectID = "u0u-a8-EAt"; */
+"u0u-a8-EAt.text" = "感谢你对坏蛋调频的支持和喜爱，谢谢";
+
+/* Class = "IBUILabel"; text = "用户反馈:"; ObjectID = "x08-VW-hwt"; */
+"x08-VW-hwt.text" = "用户反馈:";

@@ -21,6 +21,17 @@
     [_webview loadRequest:request];
 }
 
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    [MobClick endLogPageView:@"BEBlogController"];
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [MobClick beginLogPageView:@"BEBlogController"];
+}
+
 -(void)webViewDidFinishLoad:(UIWebView *)webView
 {
     [_activity stopAnimating];

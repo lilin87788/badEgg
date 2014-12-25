@@ -39,10 +39,17 @@
     }
 }
 
--(void)viewWillAppear:(BOOL)animated
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    [MobClick endLogPageView:@"BEIntroController.h"];
+}
+
+- (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    [MobClick beginLogPageView:@"BEIntroController.h"];
 }
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];

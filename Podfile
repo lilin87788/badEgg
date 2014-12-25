@@ -17,7 +17,8 @@ pod 'FMDB/SQLCipher'
 pod 'JSONKit-NoWarning', '~> 1.2'
 
 #友盟
-pod 'UMeng', '~> 2.2.1'
+pod 'UMengMessage'
+pod 'UMengAnalytics'
 pod 'UMengFeedback', '~> 2.0.2'
 
 #UMengSocial

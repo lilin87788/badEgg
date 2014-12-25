@@ -21,6 +21,17 @@
     [_webview loadRequest:request];
 }
 
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    [MobClick endLogPageView:@"BEShopRecommendController"];
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [MobClick beginLogPageView:@"BEShopRecommendController"];
+}
+
 -(void)webViewDidFinishLoad:(UIWebView *)webView
 {
     [_activity stopAnimating];

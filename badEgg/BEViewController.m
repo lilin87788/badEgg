@@ -13,15 +13,15 @@
 @end
 
 @implementation BEViewController
--(void)initData{
-    UIBarButtonItem* barItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
+-(void)initNaviItem{
+    UIBarButtonItem* barItem = [[UIBarButtonItem alloc] initWithTitle:@" " style:UIBarButtonItemStylePlain target:nil action:nil];
     
     self.navigationItem.backBarButtonItem = barItem;
 }
 
 - (void)viewDidLoad{
     [super viewDidLoad];
-    [self initData];
+    [self initNaviItem];
 }
 
 - (void)dealloc {

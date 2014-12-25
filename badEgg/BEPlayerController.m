@@ -129,6 +129,17 @@
    //[_PlayButton setProgress:.75];
 }
 
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    [MobClick endLogPageView:@"BEPlayerController"];
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [MobClick beginLogPageView:@"BEPlayerController"];
+}
+
 
 - (IBAction)sliderValueChanged:(UISlider*)slider
 {

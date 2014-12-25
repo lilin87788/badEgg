@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface BEIntroController : UIViewController
+@interface BEIntroController : BEViewController
 
 @end

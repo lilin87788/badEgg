@@ -54,7 +54,7 @@
 
     NSDate *date = [NSDate date];
     _dayLabel.text = [NSString stringWithFormat:@"%ld",(long)[date day]];
-    _monthLabel.text = [NSString stringWithFormat:@"%@ %ld",[date monthString],(long)[date year]];
+    _monthLabel.text = [NSString stringWithFormat:@"%ld %ld",(long)[date month],(long)[date year]];
 }
 
 - (void)didReceiveMemoryWarning
