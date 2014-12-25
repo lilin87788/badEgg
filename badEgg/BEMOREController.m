@@ -10,6 +10,7 @@
 #import "SKPlaceholderTextView.h"
 #import "BEIntroController.h"
 #import "BEFeedBackController.h"
+#import "BEIntroController.h"
 #import "UIColor+FlatUI.h"
 #import "SKPathButton.h"
 @interface BEMOREController ()
@@ -91,6 +92,13 @@
    // [UMSocialSnsService presentSnsIconSheetView:self appKey:UMENG_APPKEY shareText:shareText shareImage:shareImage shareToSnsNames:nil delegate:self];
 }
 
+- (IBAction)introduceBadEgg:(id)sender {
+    [self setHidesBottomBarWhenPushed:YES];
+    BEIntroController*  feedBackController = [[BEIntroController alloc] initWithNibName:@"BEIntroController" bundle:nil];
+    [self.navigationController pushViewController:feedBackController
+                                         animated:YES];
+    [self setHidesBottomBarWhenPushed:NO];
+}
 #pragma -mark tableViewDelegate
 -(void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
 {

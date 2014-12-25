@@ -172,11 +172,11 @@
                         <viewControllerLayoutGuide type="bottom" id="ya3-Bv-ivI"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="1YY-uP-E59">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FqT-LP-jyt">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <connections>
                                     <outlet property="delegate" destination="P4r-qf-yHy" id="n89-VQ-3g7"/>
@@ -209,7 +209,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ydx-6D-fAp" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-14929" y="3670"/>
+            <point key="canvasLocation" x="-15113" y="3433"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="qGW-eK-gOj">
@@ -269,6 +269,9 @@
                                                     <state key="normal">
                                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
+                                                    <connections>
+                                                        <action selector="introduceBadEgg:" destination="AjI-i2-waZ" eventType="touchUpInside" id="H77-fv-s0G"/>
+                                                    </connections>
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kNo-yX-Kcb">
                                                     <rect key="frame" x="0.0" y="48" width="160" height="48"/>
@@ -276,6 +279,9 @@
                                                     <state key="normal">
                                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
+                                                    <connections>
+                                                        <segue destination="KOU-Uq-n85" kind="push" id="Zpl-po-jkK"/>
+                                                    </connections>
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QSO-9E-Mc0">
                                                     <rect key="frame" x="160" y="48" width="160" height="48"/>
@@ -290,6 +296,9 @@
                                                     <state key="normal">
                                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
+                                                    <connections>
+                                                        <segue destination="P4r-qf-yHy" kind="push" id="FKc-KA-URb"/>
+                                                    </connections>
                                                 </button>
                                             </subviews>
                                             <constraints>
@@ -688,11 +697,11 @@
                         <viewControllerLayoutGuide type="bottom" id="Now-sW-GJx"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="DP9-Mi-WBb">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wCz-gM-i7q">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <connections>
                                     <outlet property="delegate" destination="KOU-Uq-n85" id="UFk-kz-VMR"/>
@@ -725,7 +734,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Z1n-qr-7F7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-14929" y="4230"/>
+            <point key="canvasLocation" x="-15118" y="2822"/>
         </scene>
         <!--Login Controller-->
         <scene sceneID="o4A-j8-eTW">

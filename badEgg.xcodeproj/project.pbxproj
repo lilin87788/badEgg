@@ -107,7 +107,7 @@
 		3B9538A01A4BF4E500157DF5 /* chat_bottom_smile_press@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B95389F1A4BF4E500157DF5 /* chat_bottom_smile_press@2x.png */; };
 		3B9538A21A4BF4EC00157DF5 /* chat_bottom_smile_nor@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B9538A11A4BF4EC00157DF5 /* chat_bottom_smile_nor@2x.png */; };
 		3B9538A41A4BF4F100157DF5 /* chat_bottom_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B9538A31A4BF4F100157DF5 /* chat_bottom_bg@2x.png */; };
-		3B9538AC1A4BF76A00157DF5 /* NSDate+Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B9538AA1A4BF76A00157DF5 /* NSDate+Utilities.m */; };
+		3B9538AC1A4BF76A00157DF5 /* NSDate+Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B9538AA1A4BF76A00157DF5 /* NSDate+Utilities.m */; settings = {COMPILER_FLAGS = " -w "; }; };
 		3B9538AD1A4BF76A00157DF5 /* NSDateTimeAgo.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 3B9538AB1A4BF76A00157DF5 /* NSDateTimeAgo.bundle */; };
 		3B9538B21A4C09F900157DF5 /* BEFeedBackController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3B9538B11A4C09F900157DF5 /* BEFeedBackController.xib */; };
 		3BBE5B241A4A57020064957D /* Main1.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3BBE5B221A4A57020064957D /* Main1.storyboard */; };
