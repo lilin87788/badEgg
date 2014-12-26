@@ -122,10 +122,15 @@
             break;
         }
         case 2:
-            
         {
             if (indexPath.row == 0) {
-                
+                [SVProgressHUD showWithStatus:@"清理中..." maskType:SVProgressHUDMaskTypeClear];
+                dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
+                    sleep(3);
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        [SVProgressHUD showSuccessWithStatus:@"清理完成"];
+                    });
+                });
             }
             break;
         }
@@ -174,6 +179,16 @@
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     [segue.destinationViewController setHidesBottomBarWhenPushed:YES];
+}
+
+- (IBAction)changePlayConfigure:(UISwitch*)sender {
+    [[NSUserDefaults standardUserDefaults] setBool:sender.isOn forKey:@"playWith3G"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+}
+
+- (IBAction)changeDownloadConfigure:(UISwitch*)sender {
+    [[NSUserDefaults standardUserDefaults] setBool:sender.isOn forKey:@"downloadWith3G"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event

@@ -31,11 +31,8 @@
     if (NSClassFromString(@"MPNowPlayingInfoCenter"))
     {
         NSMutableDictionary * dict = [[NSMutableDictionary alloc] init];
-        
         [dict setObject:currentItem.proName forKey:MPMediaItemPropertyTitle];
-        
         [dict setObject:@"播客" forKey:MPMediaItemPropertyArtist];
-        
         [dict setObject:@"坏蛋调频" forKey:MPMediaItemPropertyAlbumTitle];
         
         MPMediaItemArtwork * mArt = [[MPMediaItemArtwork alloc] initWithImage:[UIImage imageNamed:@"badegg.jpg"]];

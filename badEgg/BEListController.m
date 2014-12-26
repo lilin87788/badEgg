@@ -118,6 +118,13 @@
     }
 }
 
+- (IBAction)playingAlbumItem:(UIButton *)sender {
+    BEPlayerController* playerController = [[BEPlayerController alloc] initWithNibName:@"BEPlayerController" bundle:nil];
+    playerController.isClickPlaingBtn = YES;
+    [self.navigationController pushViewController:playerController animated:YES];
+    [self setHidesBottomBarWhenPushed:NO];
+}
+
 -(id)initWithCoder:(NSCoder *)aDecoder
 {
     self = [super initWithCoder:aDecoder];
@@ -274,11 +281,6 @@
 {
     [super viewWillAppear:animated];
     [MobClick beginLogPageView:@"BEListController"];
-}
-
-- (void)reloadDeals
-{
-    [_footer endRefreshing];
 }
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
