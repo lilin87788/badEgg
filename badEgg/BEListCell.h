@@ -16,7 +16,7 @@
 @property(nonatomic,weak)  IBOutlet UILabel *sizeLabel;
 @property(nonatomic,weak)  IBOutlet UIButton *downloadBtn;
 
-@property BOOL useDarkBackground;
+//@property BOOL useDarkBackground;
 
 
 

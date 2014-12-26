@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3B4EC25C1A4D81D500EEC252 /* HNFileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B4EC25B1A4D81D500EEC252 /* HNFileManager.m */; };
 		3B714CAA19E6576D00831C7C /* MJRefresh.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 3B714CA219E6576D00831C7C /* MJRefresh.bundle */; };
 		3B714CAB19E6576D00831C7C /* MJRefreshBaseView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B714CA519E6576D00831C7C /* MJRefreshBaseView.m */; };
 		3B714CAC19E6576D00831C7C /* MJRefreshFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B714CA719E6576D00831C7C /* MJRefreshFooterView.m */; };
@@ -93,9 +94,7 @@
 		3B9538801A4BE0E500157DF5 /* BEFeedBackController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B95387F1A4BE0E500157DF5 /* BEFeedBackController.m */; };
 		3B9538841A4BEE7800157DF5 /* BEMessageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B9538831A4BEE7800157DF5 /* BEMessageCell.m */; };
 		3B9538871A4BEEF200157DF5 /* BEFeedMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B9538861A4BEEF200157DF5 /* BEFeedMessage.m */; };
-		3B95388A1A4BF47D00157DF5 /* other.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B9538891A4BF47D00157DF5 /* other.png */; };
 		3B95388C1A4BF48300157DF5 /* chat_send_press_pic@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B95388B1A4BF48300157DF5 /* chat_send_press_pic@2x.png */; };
-		3B95388E1A4BF48D00157DF5 /* me.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B95388D1A4BF48D00157DF5 /* me.png */; };
 		3B9538901A4BF49700157DF5 /* chat_send_nor@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B95388F1A4BF49700157DF5 /* chat_send_nor@2x.png */; };
 		3B9538921A4BF4A000157DF5 /* chat_recive_press_pic@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B9538911A4BF4A000157DF5 /* chat_recive_press_pic@2x.png */; };
 		3B9538941A4BF4B400157DF5 /* chat_recive_nor@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B9538931A4BF4B400157DF5 /* chat_recive_nor@2x.png */; };
@@ -229,6 +228,8 @@
 
 /* Begin PBXFileReference section */
 		06FD01F0C7CBF0D84C12E2F9 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		3B4EC25A1A4D81D500EEC252 /* HNFileManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNFileManager.h; sourceTree = "<group>"; };
+		3B4EC25B1A4D81D500EEC252 /* HNFileManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNFileManager.m; sourceTree = "<group>"; };
 		3B714CA219E6576D00831C7C /* MJRefresh.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = MJRefresh.bundle; path = openresource/MJRefresh/MJRefresh.bundle; sourceTree = SOURCE_ROOT; };
 		3B714CA319E6576D00831C7C /* MJRefresh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MJRefresh.h; path = openresource/MJRefresh/MJRefresh.h; sourceTree = SOURCE_ROOT; };
 		3B714CA419E6576D00831C7C /* MJRefreshBaseView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MJRefreshBaseView.h; path = openresource/MJRefresh/MJRefreshBaseView.h; sourceTree = SOURCE_ROOT; };
@@ -324,9 +325,7 @@
 		3B9538831A4BEE7800157DF5 /* BEMessageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BEMessageCell.m; sourceTree = "<group>"; };
 		3B9538851A4BEEF200157DF5 /* BEFeedMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BEFeedMessage.h; sourceTree = "<group>"; };
 		3B9538861A4BEEF200157DF5 /* BEFeedMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BEFeedMessage.m; sourceTree = "<group>"; };
-		3B9538891A4BF47D00157DF5 /* other.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = other.png; sourceTree = "<group>"; };
 		3B95388B1A4BF48300157DF5 /* chat_send_press_pic@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "chat_send_press_pic@2x.png"; sourceTree = "<group>"; };
-		3B95388D1A4BF48D00157DF5 /* me.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = me.png; sourceTree = "<group>"; };
 		3B95388F1A4BF49700157DF5 /* chat_send_nor@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "chat_send_nor@2x.png"; sourceTree = "<group>"; };
 		3B9538911A4BF4A000157DF5 /* chat_recive_press_pic@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "chat_recive_press_pic@2x.png"; sourceTree = "<group>"; };
 		3B9538931A4BF4B400157DF5 /* chat_recive_nor@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "chat_recive_nor@2x.png"; sourceTree = "<group>"; };
@@ -605,8 +604,6 @@
 				3B9538911A4BF4A000157DF5 /* chat_recive_press_pic@2x.png */,
 				3B95388B1A4BF48300157DF5 /* chat_send_press_pic@2x.png */,
 				3B95388F1A4BF49700157DF5 /* chat_send_nor@2x.png */,
-				3B95388D1A4BF48D00157DF5 /* me.png */,
-				3B9538891A4BF47D00157DF5 /* other.png */,
 			);
 			name = chat;
 			sourceTree = "<group>";
@@ -1099,6 +1096,8 @@
 				F22F35411833273E00FE96B5 /* APPUtils.m */,
 				F23DA9D0188A72EC0043169A /* FileUtils.h */,
 				F23DA9D1188A72EC0043169A /* FileUtils.m */,
+				3B4EC25A1A4D81D500EEC252 /* HNFileManager.h */,
+				3B4EC25B1A4D81D500EEC252 /* HNFileManager.m */,
 				F295E42B181023B200E154A4 /* UIImage+rescale.h */,
 				F295E42C181023B200E154A4 /* UIImage+rescale.m */,
 				F2F773DF180B98690070EF24 /* utils.h */,
@@ -1247,7 +1246,6 @@
 				3B714D3219E6586800831C7C /* 4grid@2x.png in Resources */,
 				3B714D3C19E6586800831C7C /* DarkBackground.png in Resources */,
 				3BBE5B261A4A901F0064957D /* new@2x.png in Resources */,
-				3B95388E1A4BF48D00157DF5 /* me.png in Resources */,
 				3B714D4119E6586800831C7C /* dot.png in Resources */,
 				3BE513BA1A4BB3E1004A798F /* cm_u_block@2x.png in Resources */,
 				3B714D3D19E6586800831C7C /* data.geojson in Resources */,
@@ -1278,7 +1276,6 @@
 				3BBE5B301A4A9E280064957D /* tryg.mp3 in Resources */,
 				3B714D7919E6586800831C7C /* register@2x.png in Resources */,
 				3B714D6919E6586800831C7C /* pausefm@2x.png in Resources */,
-				3B95388A1A4BF47D00157DF5 /* other.png in Resources */,
 				3B714D6E19E6586800831C7C /* Play1@2x.png in Resources */,
 				3BE513B71A4BB3E1004A798F /* cm_u_block_ver.png in Resources */,
 				3B714D7519E6586800831C7C /* playView.png in Resources */,
@@ -1433,6 +1430,7 @@
 				F281A42C18ED336D00944656 /* SKPlaceholderTextView.m in Sources */,
 				F2B841201851A1C7001DA858 /* BEAlbum.m in Sources */,
 				F281A42718ED2A3600944656 /* NSData+Storage.m in Sources */,
+				3B4EC25C1A4D81D500EEC252 /* HNFileManager.m in Sources */,
 				F29FDF45185043B60082618F /* registerCell.m in Sources */,
 				F281A41A18ED283300944656 /* StandardPaths.m in Sources */,
 				F2877B471856DF1000F0A470 /* BEPopover.m in Sources */,
@@ -1523,7 +1521,7 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: sinocare Inc";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: lu fenglin (C4N355GCKH)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: sinocare Inc";
 				COPY_PHASE_STRIP = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -1541,7 +1539,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				ONLY_ACTIVE_ARCH = YES;
-				PROVISIONING_PROFILE = "6de7aa9b-1194-4367-9d9c-6fa8b3112e7c";
+				PROVISIONING_PROFILE = "904ccc17-423e-4352-a7a4-a3818dffda2e";
 				SDKROOT = iphoneos;
 				VALID_ARCHS = "$(inherited)";
 			};
@@ -1565,7 +1563,7 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: sinocare Inc";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: lu fenglin (C4N355GCKH)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: sinocare Inc";
 				COPY_PHASE_STRIP = YES;
 				ENABLE_NS_ASSERTIONS = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -1577,7 +1575,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				ONLY_ACTIVE_ARCH = NO;
-				PROVISIONING_PROFILE = "6de7aa9b-1194-4367-9d9c-6fa8b3112e7c";
+				PROVISIONING_PROFILE = "904ccc17-423e-4352-a7a4-a3818dffda2e";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 				VALID_ARCHS = "$(inherited)";
@@ -1591,8 +1589,8 @@
 				ARCHS = "$(ARCHS_STANDARD)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer: lu fenglin (C4N355GCKH)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: lu fenglin (C4N355GCKH)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: sinocare Inc";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: sinocare Inc";
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "badEgg/badEgg-Prefix.pch";
@@ -1606,7 +1604,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "6de7aa9b-1194-4367-9d9c-6fa8b3112e7c";
+				PROVISIONING_PROFILE = "904ccc17-423e-4352-a7a4-a3818dffda2e";
 				VALID_ARCHS = "$(inherited)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -1619,8 +1617,8 @@
 				ARCHS = "$(ARCHS_STANDARD)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer: lu fenglin (C4N355GCKH)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: lu fenglin (C4N355GCKH)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: sinocare Inc";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: sinocare Inc";
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "badEgg/badEgg-Prefix.pch";
@@ -1634,7 +1632,7 @@
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "6de7aa9b-1194-4367-9d9c-6fa8b3112e7c";
+				PROVISIONING_PROFILE = "904ccc17-423e-4352-a7a4-a3818dffda2e";
 				VALID_ARCHS = "$(inherited)";
 				WRAPPER_EXTENSION = app;
 			};

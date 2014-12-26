@@ -15,72 +15,36 @@
 #import "BEPlayerController.h"
 @interface BEVIPController ()
 {
+    NSMutableArray* contentList;
 }
 @end
 
 @implementation BEVIPController
-+(NSMutableArray*)sharedVIPContentList{
-    static NSMutableArray* array = nil;
-    static dispatch_once_t onceToken; dispatch_once(&onceToken, ^{
-        array = [[NSMutableArray alloc] init];
-    });
-    return array;
-}
 
--(void)BEFMDataFromDataBase:(BEBaseCompleteBlock)block
+-(void)BEFMDataFromDataBase
 {
-    NSMutableArray* contentList = [BEVIPController sharedVIPContentList];
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
-        NSString* sql = [NSString stringWithFormat:@"select * from T_BADEGGALBUMS where dowStatus = 2 order by publishTime desc"];
+        NSString* sql = @"SELECT a.*,(CASE WHEN b.proId NOT NULL THEN 1 ELSE 0 END) AS downloaded\
+        FROM T_BADEGGALBUMS a\
+        JOIN T_BADEGGDOWNLOAD b\
+        ON a.proId = b.proId order by publishTime desc";
         NSArray* array = [[DBQueue sharedbQueue] recordFromTableBySQL:sql];
         for (NSDictionary*dict in array) {
-            BEAlbumItem* item = [[BEAlbumItem alloc] initWithURL:[NSURL URLWithString:dict[@"audioPathHttp"]]];
-            item.proName = dict[@"proName"];
-            item.fileName = dict[@"fileName"];
-            item.proTags = dict[@"proTags"];
-            item.proIntro = dict[@"proIntro"];
-            item.proIntroDto = dict[@"proIntroDto"];
-            item.proIntroToSubString = dict[@"proIntroToSubString"];
-            
-            item.audioPathHttp = dict[@"audioPathHttp"];
-            item.audioPath = dict[@"audioPath"];
-            item.virtualAddress = dict[@"virtualAddress"];
-            item.virtualAddressOld = dict[@"virtualAddressOld"];
-            
-            item.createTime = dict[@"createTime"];
-            item.updateTime = dict[@"updateTime"];
-            item.publishTime = dict[@"publishTime"];
-            item.playTime = dict[@"playTime"];
-            
-            item.proAlbumId = dict[@"proAlbumId"];
-            item.proCreater = dict[@"proCreater"];
-            item.listenNum = dict[@"listenNum"];
-            item.proId = dict[@"proId"];
-            item.dowStatus = dict[@"dowStatus"];
+            BEAlbumItem* item = [[BEAlbumItem alloc] initWithAlbumItem:dict];
             [contentList addObject:item];
         }
-        if (block) {
-            block();
-        }
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self.tableView reloadData];
+        });
     });
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    cellNib = [UINib nibWithNibName:@"BEMyAlbumCell" bundle:nil];
+    contentList = [NSMutableArray array];
     [self.tableView setBackgroundColor:COLOR(230, 230, 230)];
-    [self BEFMDataFromDataBase:^{
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [self.tableView reloadData];
-        });
-    }];
-    
-    [[NSNotificationCenter defaultCenter] addObserverForName:@"addDownloadTask" object:0 queue:0 usingBlock:^(NSNotification* note){
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [self.tableView reloadData];
-        });
-    }];
+    [self BEFMDataFromDataBase];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -95,57 +59,42 @@
 }
 
 #pragma mark - Table view data source
--(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    [segue.destinationViewController setHidesBottomBarWhenPushed:YES];
-    if ([segue.identifier isEqualToString:@"player"])
-	{
-        HysteriaPlayer* beplayer = [HysteriaPlayer sharedInstance];
-        [beplayer setupSourceGetter:^BEAlbumItem *(NSUInteger index){
-            return [BEVIPController sharedVIPContentList][index];
-        } ItemsCount:[BEVIPController sharedVIPContentList].count];
-        [beplayer removeAllItems];
-        BEPlayerController *playerController = segue.destinationViewController;
-        playerController.currentItems = [BEVIPController sharedVIPContentList][[self.tableView indexPathForSelectedRow].row];
-        playerController.currentIndex = [self.tableView indexPathForSelectedRow].row;
-        playerController.isClickPlaingBtn = NO;
-    }
-}
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    [self performSegueWithIdentifier:@"player" sender:self];
+    HysteriaPlayer* beplayer = [HysteriaPlayer sharedInstance];
+    [beplayer removeAllItems];
+    
+    [beplayer setupSourceGetter:^BEAlbumItem *(NSUInteger index){
+        return contentList[index];
+    } ItemsCount:contentList.count];
+    
+    [self setHidesBottomBarWhenPushed:YES];
+    BEPlayerController* playerController = [[BEPlayerController alloc] initWithNibName:@"BEPlayerController" bundle:nil];
+    playerController.currentItems = contentList[indexPath.row];
+    playerController.currentIndex = indexPath.row;
+    playerController.isClickPlaingBtn = NO;
+    [self.navigationController pushViewController:playerController animated:YES];
+    [self setHidesBottomBarWhenPushed:NO];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    NSMutableArray* contentList = [BEVIPController sharedVIPContentList];
     return contentList.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-//    static NSString *EIdentifier = @"vipcell";
-//    BEMyAlbumCell *cell = (BEMyAlbumCell *)[tableView dequeueReusableCellWithIdentifier:EIdentifier];
-//    if (!cell) {
-//        [cellNib instantiateWithOwner:self options:nil];
-//        cell = _albumCell;_albumCell = nil;
-//    }
-//    cell.useDarkBackground = (indexPath.row % 2 == 0);
-//    [cell setRadioItems:contentList[indexPath.row]];
-//    return cell;
-    
-    NSMutableArray* contentList = [BEVIPController sharedVIPContentList];
-    [cellNib instantiateWithOwner:self options:nil];
-    BEMyAlbumCell *cell = _albumCell;_albumCell = nil;
-    cell.useDarkBackground = (indexPath.row % 2 == 0);
-    [cell setRadioItems:contentList[indexPath.row]];
+    BEAlbumItem* item = contentList[indexPath.row];
+    static NSString *CellIdentifier = @"Cell";
+    BEListCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+    [cell setRadioItems:item];
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    cell.backgroundColor = ((BEMyAlbumCell *)cell).useDarkBackground ? [UIColor DARK_BACKGROUND] : [UIColor LIGHT_BACKGROUND];
+    cell.backgroundColor = (indexPath.row % 2 == 0) ? [UIColor DARK_BACKGROUND] : [UIColor LIGHT_BACKGROUND];
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath

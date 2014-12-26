@@ -7,13 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "BEMyAlbumCell.h"
+#import "BEListCell.h"
 @interface BEVIPController : BETableViewController
 {
-    UINib *cellNib;
+    
 }
-
-@property (nonatomic,weak)IBOutlet BEMyAlbumCell *albumCell;
-
-+(NSMutableArray*)sharedVIPContentList;
 @end

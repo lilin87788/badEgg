@@ -40,5 +40,12 @@ typedef enum : NSUInteger {
 @property(nonatomic,strong)NSString* listenNum;
 @property(nonatomic,strong)NSString* proId;
 @property(nonatomic,strong)NSString* dowStatus;
+
+//add
 @property(nonatomic,strong)NSURLSessionDownloadTask* downloadTask;
+@property BOOL downloaded;//判断是不是已经下载了
+
+- (instancetype)initWithURL:(NSURL *)URL AlbumItemInfomation:(NSDictionary*)albumItem;
+
+- (instancetype)initWithAlbumItem:(NSDictionary*)albumItem;
 @end

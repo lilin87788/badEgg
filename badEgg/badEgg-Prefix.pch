@@ -27,7 +27,7 @@ typedef void (^BEBaseCompleteBlock)();
     #import "UIKit+AFNetworking.h"
     #import "TFHpple.h"
     #import "NSDate+Utilities.h"
-    #import "FileUtils.h"
+    #import "HNFileManager.h"
     #import "DBQueue.h"
     #import "UIColor+Colours.h"
     #import "EssentialImager.h"

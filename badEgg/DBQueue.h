@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 
 @class BEAlbum;
+@class BEAlbumItem;
 @interface DBQueue : NSObject
 {
     FMDatabaseQueue     *dbQueue;
@@ -23,7 +24,18 @@
  */
 +(DBQueue*)sharedbQueue;
 
+-(NSString*)maxPublishTime;
+
+
 -(void)insertDataToLocalDataBaseWithAlbum:(BEAlbum*)album completeBlock:(BEBaseCompleteBlock)block;
+
+/**
+ *  下载完成 插入新的数据到下载管理表
+ *
+ *  @param albumItem
+ */
+-(void)downloadCompleteWithAlbumItem:(BEAlbumItem*)albumItem;
+
 /**
  *  获取查询sql记录的条数
  *

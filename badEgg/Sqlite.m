@@ -115,6 +115,22 @@ id getColValue(sqlite3_stmt *stmt,int iCol);
     return YES;
 }
 
++(void)createFMDownloadManagerTable
+{
+    NSString* t_badegg_sql  = [NSString stringWithFormat:@"create table  if not exists %@\
+                               (\
+                               id                   INTEGER             PRIMARY KEY AUTOINCREMENT ,\
+                               proId                text UNIQUE);",@"T_BADEGGDOWNLOAD"];
+    
+    char *error = NULL;
+    [self openDb];
+    if (sqlite3_exec(dataBase, [t_badegg_sql UTF8String], 0, 0, &error) != SQLITE_OK) {
+        NSLog(@"create table %@ error:%s",@"T_BADEGGDOWNLOAD",error);
+    }
+    [self closeDb];
+}
+
+
 +(void)setDBVersion
 {
     [self openDb];
@@ -124,14 +140,15 @@ id getColValue(sqlite3_stmt *stmt,int iCol);
         NSLog(@"create indices %@ error:%s",@"T_ORGANIZATIONAL",error);
         [self closeDb];
     }
-    [FileUtils setvalueToPlistWithKey:@"DBVERSION" Value:@"1"];
+    [[HNFileManager defaultManager] setvalueToPlistWithKey:@"DBVERSION" Value:@"1"];
     [self closeDb];
 }
 
 +(BOOL)createAllTable
 {
     [self createFMTables];
-    [FileUtils setvalueToPlistWithKey:@"DBVERSION" Value:@"1"];
+    [self createFMDownloadManagerTable];
+    [[HNFileManager defaultManager] setvalueToPlistWithKey:@"DBVERSION" Value:@"1"];
     return YES;
 }
 

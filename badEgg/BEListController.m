@@ -31,127 +31,90 @@
 @end
 
 @implementation BEListController
-- (void) handleData
-{
-    curPage = 1;
-    [self BERefreshFMDataFromServer:^{
-        maxPublishTime = [self maxPublishTime];
-        [contentList removeAllObjects];
-        [self BEFMDataFromDataBase:^{
-            HysteriaPlayer* beplayer = [HysteriaPlayer sharedInstance];
-            [beplayer setupSourceGetter:^BEAlbumItem *(NSUInteger index){
-                return contentList[index];
-            } ItemsCount:contentList.count];
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [self.tableView reloadData];
-                [self.refreshControl endRefreshing];
-                self.refreshControl.attributedTitle = [[NSAttributedString alloc]initWithString:@"下拉刷新"];
-            });
-        }];
-    }];
-}
-
+//下拉刷新
 -(void)RefreshViewControlEventValueChanged
 {
     if (self.refreshControl.refreshing) {
         self.refreshControl.attributedTitle = [[NSAttributedString alloc]initWithString:@"刷新中"];
-        [self handleData];
+        curPage = 1;
+        [self BERefreshFMDataFromServer:^{
+            maxPublishTime = [[DBQueue sharedbQueue] maxPublishTime];
+            [contentList removeAllObjects];
+            [self BEFMDataFromDataBase:^{
+                [self.tableView reloadData];
+                [self.refreshControl endRefreshing];
+                self.refreshControl.attributedTitle = [[NSAttributedString alloc]initWithString:@"下拉刷新"];
+            }];
+        }];
     }
 }
 
+//非首次更新数据
 -(void)BERefreshFMDataFromServer:(BEBaseCompleteBlock)block
 {
-    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    [manager GET:BADEGGFMDATA_PAGE((long)curPage) parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        BEAlbum* album = [[BEAlbum alloc] initWithDictionary:responseObject];
-        totalPages = album.totalPage.intValue;
-        [[DBQueue sharedbQueue] insertDataToLocalDataBaseWithAlbum:album completeBlock:^{}];
-        NSString* minpublishTime =[(BEAlbumItem*)album.albumItem.lastObject publishTime];
-        curPage++;
-        if (minpublishTime.intValue >= maxPublishTime.intValue) {
-            [self BERefreshFMDataFromServer:block];
-        }
-        if (minpublishTime.intValue <  maxPublishTime.intValue) {
-            if (block) {
-                block();
+    [[BEHttpRequest sharedClient] requestFMDataWithPageNo:curPage responseBlock:^(BOOL isOK, BEAlbum *album, NSError *error) {
+        if (isOK) {
+            totalPages = album.totalPage.intValue;
+            curPage++;
+            NSString* minpublishTime =[(BEAlbumItem*)album.albumItem.lastObject publishTime];
+            NSString* maxServerPublishTime =[(BEAlbumItem*)album.albumItem[0] publishTime];
+            if (maxServerPublishTime == maxPublishTime) {//服务端的时间只可能大于或者等于本地的时间
+                //如果从服务端拿过来的数据最小的时间仍然比本地的最大的时间要大，说明很久没有更新过了，还需要继续从服务端拿数据
+                if (minpublishTime.intValue > maxPublishTime.intValue) {
+                    [self BERefreshFMDataFromServer:block];
+                }else {
+                    maxPublishTime = [(BEAlbumItem*)album.albumItem[0] publishTime];
+                    if (block) {
+                        block();
+                    }
+                }
             }
+        }else{
+            [SVProgressHUD showErrorWithStatus:error.localizedDescription];
         }
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        NSLog(@"Error: %@", error);
     }];
 }
 
+//首次更新数据
 -(void)BEFirstFMDataFromServer:(BEBaseCompleteBlock)block
 {
-    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    [manager GET:BADEGGFMDATA_PAGE((long)curPage) parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        BEAlbum* album = [[BEAlbum alloc] initWithDictionary:responseObject];
-        totalPages = album.totalPage.intValue;
-        [[DBQueue sharedbQueue] insertDataToLocalDataBaseWithAlbum:album completeBlock:^{}];
-        curPage++;
-        if (curPage <= totalPages) {
-            [self BEFirstFMDataFromServer:block];
-        }
-        if (curPage > totalPages) {
-            [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"firstRefreshData"];
-            [[NSUserDefaults standardUserDefaults] synchronize];
-            if (block) {
-                block();
+    [[BEHttpRequest sharedClient] requestFMDataWithPageNo:curPage responseBlock:^(BOOL isOK, BEAlbum *album, NSError *error) {
+        if (isOK) {
+            [SVProgressHUD showProgress:curPage/(float)totalPages status:@"努力加载中..." maskType:SVProgressHUDMaskTypeClear];
+            totalPages = album.totalPage.intValue;
+            curPage++;
+            
+            if (curPage <= totalPages) {
+                [self BEFirstFMDataFromServer:block];
+            } else{
+                [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"haveSynedBEFMData"];
+                [[NSUserDefaults standardUserDefaults] synchronize];
+                maxPublishTime = [[DBQueue sharedbQueue] maxPublishTime];
+                [SVProgressHUD dismiss];
+                if (block) {
+                    block();
+                }
             }
+        }else{
+            [SVProgressHUD showErrorWithStatus:error.localizedDescription];
         }
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        NSLog(@"Error: %@", error);
     }];
-}
-
-- (void)loadMoreButtonPressed:(id)sender
-{
-    [self.tableView reloadData];
 }
 
 -(void)BEFMDataFromDataBase:(BEBaseCompleteBlock)block
 {
-    NSString* sql = [NSString stringWithFormat:@"select * from T_BADEGGALBUMS order by publishTime desc limit %lu,15",(unsigned long)contentList.count];
+    
+    NSString* sql = [NSString stringWithFormat:@"SELECT a.*,(CASE WHEN b.proId NOT NULL THEN 1 ELSE 0 END) AS downloaded\
+                     FROM T_BADEGGALBUMS a\
+                     LEFT JOIN T_BADEGGDOWNLOAD b\
+                     ON a.proId = b.proId order by publishTime desc limit %lu,15",(unsigned long)contentList.count];
     NSArray* array = [[DBQueue sharedbQueue] recordFromTableBySQL:sql];
     for (NSDictionary*dict in array) {
-        BEAlbumItem* item = [[BEAlbumItem alloc] initWithURL:[NSURL URLWithString:dict[@"audioPathHttp"]]];
-        item.proName = dict[@"proName"];
-        item.fileName = dict[@"fileName"];
-        item.proTags = dict[@"proTags"];
-        item.proIntro = dict[@"proIntro"];
-        item.proIntroDto = dict[@"proIntroDto"];
-        item.proIntroToSubString = dict[@"proIntroToSubString"];
-        
-        item.audioPathHttp = dict[@"audioPathHttp"];
-        item.audioPath = dict[@"audioPath"];
-        item.virtualAddress = dict[@"virtualAddress"];
-        item.virtualAddressOld = dict[@"virtualAddressOld"];
-        
-        item.createTime = dict[@"createTime"];
-        item.updateTime = dict[@"updateTime"];
-        item.publishTime = dict[@"publishTime"];
-        item.playTime = dict[@"playTime"];
-        
-        item.proAlbumId = dict[@"proAlbumId"];
-        item.proCreater = dict[@"proCreater"];
-        item.listenNum = dict[@"listenNum"];
-        item.proId = dict[@"proId"];
-        item.dowStatus = dict[@"dowStatus"];
+        BEAlbumItem* item = [[BEAlbumItem alloc] initWithAlbumItem:dict];
         [contentList addObject:item];
     }
     if (block) {
         block();
-    }
-}
-
--(NSString*)maxPublishTime
-{
-    NSString* sql =  @"select max(publishTime) publishTime from T_BADEGGALBUMS;";
-     NSString*result = [[DBQueue sharedbQueue] getSingleRowBySQL:sql][@"publishTime"];
-    if ([result isEqual:[NSNull null]]) {
-        return @"0";
-    }else{
-        return result;
     }
 }
 
@@ -174,96 +137,132 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    maxPublishTime = [self maxPublishTime];
+    maxPublishTime = [[DBQueue sharedbQueue] maxPublishTime];
 
     self.tableView.backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"background"] ];
     self.tableView.tableHeaderView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"introduce.png"]];
-    [[BEHttpRequest sharedClient] requestFMDataWithPageNo:curPage responseBlock:^(BOOL isOK, BEAlbum *album, NSError *error) {
-        [contentList addObjectsFromArray:album.albumItem];
-        curPage++;
-        [self.tableView reloadData];
-    }];
+//    [[BEHttpRequest sharedClient] requestFMDataWithPageNo:curPage responseBlock:^(BOOL isOK, BEAlbum *album, NSError *error) {
+//        if(isOK){
+//            [contentList addObjectsFromArray:album.albumItem];
+//            curPage++;
+//            [self.tableView reloadData];
+//        }else{
+//        
+//        }
+//    }];
+//    
+
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
+        NSString* sql = [NSString stringWithFormat:@"SELECT a.*,(CASE WHEN b.proId NOT NULL THEN 1 ELSE 0 END) AS downloaded\
+                        FROM T_BADEGGALBUMS a\
+                        LEFT JOIN T_BADEGGDOWNLOAD b\
+                        ON a.proId = b.proId order by publishTime desc limit %lu,15",(unsigned long)contentList.count];
+        NSArray* array = [[DBQueue sharedbQueue] recordFromTableBySQL:sql];
+        for (NSDictionary*dict in array) {
+            BEAlbumItem* item = [[BEAlbumItem alloc] initWithAlbumItem:dict];
+            [contentList addObject:item];
+        }
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self.tableView reloadData];
+        });
+    });
+    
+    if ([[NSUserDefaults standardUserDefaults] boolForKey:@"haveSynedBEFMData"]) {
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
+            [self BERefreshFMDataFromServer:^{
+                [contentList removeAllObjects];
+                [self BEFMDataFromDataBase:^{
+                    [[NSNotificationCenter defaultCenter] postNotificationName:@"refreshCompleted" object:0];
+                    [self.tableView reloadData];
+                }];
+            }];
+        });
+    }else{
+        [self BEFirstFMDataFromServer:^{
+            [self BEFMDataFromDataBase:^{
+                [[NSNotificationCenter defaultCenter] postNotificationName:@"refreshCompleted" object:0];
+                [self.tableView reloadData];
+            }];
+        }];
+    }
     
     __unsafe_unretained BEListController* vc1 = self;
     _footer = [MJRefreshFooterView footer];
     _footer.scrollView = self.tableView;
     _footer.beginRefreshingBlock = ^(MJRefreshBaseView *refreshView) {
-        [[BEHttpRequest sharedClient] requestFMDataWithPageNo:vc1->curPage responseBlock:^(BOOL isOK, BEAlbum *album, NSError *error) {
-            [vc1 ->contentList addObjectsFromArray:album.albumItem];
-            vc1 -> curPage++;
-            if ([vc1 ->_footer isRefreshing]) {
-                [vc1 ->_footer endRefreshing];
-            }
-            [vc1.tableView reloadData];
+        [vc1 BEFMDataFromDataBase:^{
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [vc1.tableView reloadData];
+                [vc1.footer endRefreshing];
+            });
         }];
     };
-    return;
-    {
-        maxPublishTime = [self maxPublishTime];
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
-            [self BEFMDataFromDataBase:^{
-                [self.tableView reloadData];
-                HysteriaPlayer* beplayer = [HysteriaPlayer sharedInstance];
-                [beplayer setupSourceGetter:^BEAlbumItem *(NSUInteger index){
-                    return contentList[index];
-                } ItemsCount:contentList.count];
-                
-                
-                if([[NSUserDefaults standardUserDefaults] boolForKey:@"firstRefreshData"] == NO){
-                    [self BEFirstFMDataFromServer:^{
-                        [self BEFMDataFromDataBase:^{
-                            [[NSNotificationCenter defaultCenter] postNotificationName:@"refreshCompleted" object:0];
-                            maxPublishTime = [self maxPublishTime];
-                            HysteriaPlayer* beplayer = [HysteriaPlayer sharedInstance];
-                            [beplayer setupSourceGetter:^BEAlbumItem *(NSUInteger index){
-                                return contentList[index];
-                            } ItemsCount:contentList.count];
-                            [self.tableView reloadData];
-                        }];
-                    }];
-                }else{
-                    [self BERefreshFMDataFromServer:^{
-                        maxPublishTime = [self maxPublishTime];
-                        [contentList removeAllObjects];
-                        [self BEFMDataFromDataBase:^{
-                            [[NSNotificationCenter defaultCenter] postNotificationName:@"refreshCompleted" object:0];
-                            HysteriaPlayer* beplayer = [HysteriaPlayer sharedInstance];
-                            [beplayer setupSourceGetter:^BEAlbumItem *(NSUInteger index){
-                                return contentList[index];
-                            } ItemsCount:contentList.count];
-                            [self.tableView reloadData];
-                        }];
-                    }];
-                }
-            }];
-        });
-        
-        UIRefreshControl* refreshcontrol = [[UIRefreshControl alloc]init];
-        refreshcontrol.tintColor = COLOR(17, 168, 171);
-        refreshcontrol.attributedTitle = [[NSAttributedString alloc]initWithString:@"下拉刷新"];
-        [refreshcontrol addTarget:self action:@selector(RefreshViewControlEventValueChanged)
-                 forControlEvents:UIControlEventValueChanged];
-        self.refreshControl = refreshcontrol;
-        
-        HysteriaPlayer *bePlayer = [HysteriaPlayer sharedInstance];
-        [bePlayer registerHandlerFailed:^(HysteriaPlayerFailed identifier, NSError *error){
-            NSLog(@"%@",error);
-        }];
-        
-        __unsafe_unretained BEListController* vc = self;
-        _footer = [MJRefreshFooterView footer];
-        _footer.scrollView = self.tableView;
-        _footer.beginRefreshingBlock = ^(MJRefreshBaseView *refreshView) {
-            [vc BEFMDataFromDataBase:^{
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    [vc.tableView reloadData];
-                    if ([vc.footer isRefreshing]) {
-                        [vc.footer endRefreshing];
-                    }
-                });
-            }];
-        };
-    }
+    
+//    return;
+//    {
+//        maxPublishTime = [[DBQueue sharedbQueue] maxPublishTime];
+//        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
+//            [self BEFMDataFromDataBase:^{
+//                [self.tableView reloadData];
+//                HysteriaPlayer* beplayer = [HysteriaPlayer sharedInstance];
+//                [beplayer setupSourceGetter:^BEAlbumItem *(NSUInteger index){
+//                    return contentList[index];
+//                } ItemsCount:contentList.count];
+//                
+//                
+//                
+//                
+//                if([[NSUserDefaults standardUserDefaults] boolForKey:@"firstRefreshData"] == NO){
+//                    [self BEFirstFMDataFromServer:^{
+//                        [self BEFMDataFromDataBase:^{
+//                            [[NSNotificationCenter defaultCenter] postNotificationName:@"refreshCompleted" object:0];
+//                            maxPublishTime = [[DBQueue sharedbQueue]  maxPublishTime];
+//                            HysteriaPlayer* beplayer = [HysteriaPlayer sharedInstance];
+//                            [beplayer setupSourceGetter:^BEAlbumItem *(NSUInteger index){
+//                                return contentList[index];
+//                            } ItemsCount:contentList.count];
+//                            [self.tableView reloadData];
+//                        }];
+//                    }];
+//                }else{
+//                    [self BERefreshFMDataFromServer:^{
+//                        maxPublishTime = [[DBQueue sharedbQueue] maxPublishTime];
+//                        [contentList removeAllObjects];
+//                        [self BEFMDataFromDataBase:^{
+//                            [[NSNotificationCenter defaultCenter] postNotificationName:@"refreshCompleted" object:0];
+//                            HysteriaPlayer* beplayer = [HysteriaPlayer sharedInstance];
+//                            [beplayer setupSourceGetter:^BEAlbumItem *(NSUInteger index){
+//                                return contentList[index];
+//                            } ItemsCount:contentList.count];
+//                            [self.tableView reloadData];
+//                        }];
+//                    }];
+//                }
+//            }];
+//        });
+//        
+//        UIRefreshControl* refreshcontrol = [[UIRefreshControl alloc]init];
+//        refreshcontrol.tintColor = COLOR(17, 168, 171);
+//        refreshcontrol.attributedTitle = [[NSAttributedString alloc]initWithString:@"下拉刷新"];
+////        [refreshcontrol addTarget:self action:@selector(RefreshViewControlEventValueChanged)
+////                 forControlEvents:UIControlEventValueChanged];
+////        self.refreshControl = refreshcontrol;
+////        [self.refreshControl setRefreshingWithStateOfTask:<#(NSURLSessionTask *)#>]
+//        
+//        __unsafe_unretained BEListController* vc = self;
+//        _footer = [MJRefreshFooterView footer];
+//        _footer.scrollView = self.tableView;
+//        _footer.beginRefreshingBlock = ^(MJRefreshBaseView *refreshView) {
+//            [vc BEFMDataFromDataBase:^{
+//                dispatch_async(dispatch_get_main_queue(), ^{
+//                    [vc.tableView reloadData];
+//                    if ([vc.footer isRefreshing]) {
+//                        [vc.footer endRefreshing];
+//                    }
+//                });
+//            }];
+//        };
+//    }
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -310,8 +309,32 @@
 
 #pragma mark - Table view data source
 - (IBAction)downloadRadio:(UIButton *)sender {
-    //BEListCell* cell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:sender.tag + 1 inSection:1]];
-    //NSLog(@"%d %@",sender.tag,cell.class);
+    NSIndexPath* indexPath = [NSIndexPath indexPathForRow:sender.tag inSection:0];
+    BEListCell* cell = (BEListCell*)[self.tableView cellForRowAtIndexPath:indexPath];
+    BEAlbumItem* albumItem = contentList[sender.tag];
+    
+    [cell.taskProgressView setHidden:NO];
+    NSString* url = [NSString stringWithString:albumItem.virtualAddress];
+    AFURLSessionManager* manager = [BEHttpRequest sharedClient];
+    NSURL *URL = [NSURL URLWithString:[url stringByAppendingString:@"?dow=true"]];
+    NSURLRequest *request = [NSURLRequest requestWithURL:URL];
+    NSURLSessionDownloadTask *downloadTask =
+    [manager downloadTaskWithRequest:request
+                            progress:nil
+                         destination:^NSURL *(NSURL *targetPath, NSURLResponse *response) {
+                             return [NSURL fileURLWithPath:[[HNFileManager defaultManager] albumPathWithProId:albumItem.proId]];
+                         }
+                   completionHandler:^(NSURLResponse *response, NSURL *filePath, NSError *error) {
+                       albumItem.downloadTask = nil;
+                       albumItem.downloaded = YES;
+                       [self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
+                       [[DBQueue sharedbQueue] downloadCompleteWithAlbumItem:albumItem];
+                   }];
+    [downloadTask resume];
+    
+    albumItem.downloadTask = downloadTask;
+    [cell.taskProgressView setProgressWithDownloadProgressOfTask:downloadTask animated:YES];
+    [cell.downloadBtn setEnabled:NO];
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -330,21 +353,22 @@
     BEAlbumItem* item = contentList[indexPath.row];
     static NSString *CellIdentifier = @"Cell";
     BEListCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
-    cell.useDarkBackground = (indexPath.row % 2 == 0);
+    [cell.downloadBtn addTarget:self action:@selector(downloadRadio:) forControlEvents:UIControlEventTouchUpInside];
+    [cell.downloadBtn setTag:indexPath.row];
+    //cell.useDarkBackground = (indexPath.row % 2 == 0);
     [cell setRadioItems:item];
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
 {
-   cell.backgroundColor = ((BEListCell *)cell).useDarkBackground ? [UIColor DARK_BACKGROUND] : [UIColor LIGHT_BACKGROUND];
+   cell.backgroundColor = (indexPath.row % 2 == 0) ? [UIColor DARK_BACKGROUND] : [UIColor LIGHT_BACKGROUND];
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     HysteriaPlayer* beplayer = [HysteriaPlayer sharedInstance];
     [beplayer removeAllItems];
-
     [beplayer setupSourceGetter:^BEAlbumItem *(NSUInteger index){
         return contentList[index];
     } ItemsCount:contentList.count];

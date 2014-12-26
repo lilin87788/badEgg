@@ -31,6 +31,18 @@ static DBQueue *gSharedInstance = nil;
     return gSharedInstance;
 }
 
+
+-(NSString*)maxPublishTime
+{
+    NSString* sql =  @"select max(publishTime) publishTime from T_BADEGGALBUMS;";
+    NSString*result = [[DBQueue sharedbQueue] getSingleRowBySQL:sql][@"publishTime"];
+    if ([result isEqual:[NSNull null]]) {
+        return @"0";
+    }else{
+        return result;
+    }
+}
+
 //proName         text,\
 //fileName          text,\
 //proTags                text,\
@@ -51,7 +63,7 @@ static DBQueue *gSharedInstance = nil;
 //proId                text
 -(void)insertDataToLocalDataBaseWithAlbum:(BEAlbum*)album completeBlock:(BEBaseCompleteBlock)block
 {
-    [self.dbQueue inTransaction:^(FMDatabase *db,BOOL *roolBack) {
+    [self.dbQueue inDatabase:^(FMDatabase *db){
         for (BEAlbumItem* items in album.albumItem) {
             if ([items.proId intValue] == 60637 || [items.proId intValue] == 70862) {//临时添加的补丁
                     items.proIntro = [items.proIntro stringByReplacingOccurrencesOfString:@"'" withString:@"''"];
@@ -59,10 +71,8 @@ static DBQueue *gSharedInstance = nil;
             }
             NSString* sql = [NSString stringWithFormat:@"INSERT OR REPLACE INTO T_BADEGGALBUMS (proName,fileName,proTags,proIntro,proIntroDto,proIntroToSubString,audioPathHttp,audioPath,virtualAddress,virtualAddressOld,createTime,updateTime,publishTime,playTime,proAlbumId,proCreater,listenNum,proId) VALUES ('%@','%@','%@','%@','%@','%@','%@','%@','%@','%@','%@','%@','%@','%@','%@','%@','%@','%@')",items.proName,items.fileName,items.proTags,items.proIntro,items.proIntroDto,items.proIntroToSubString,items.audioPathHttp,items.audioPathHttp,items.virtualAddress,items.virtualAddressOld,items.createTime,items.updateTime,items.publishTime,items.playTime,items.proAlbumId,items.proCreater,items.listenNum,items.proId];
             [db executeUpdate:sql];
-            if ([db hadError])
-            {
+            if ([db hadError]){
                 if (db.lastErrorCode == SQLITE_CONSTRAINT) {
-                    //NSLog(@"---数据库插入错误:%@ 错误码%d",[db lastErrorMessage],db.lastErrorCode);
                     continue;
                 }else{
                     NSLog(@"数据库插入错误:%@ 错误码%d",[db lastErrorMessage],db.lastErrorCode);
@@ -70,13 +80,28 @@ static DBQueue *gSharedInstance = nil;
             }
         }
     }];
+    if (block) {
+        block();
+    }
 }
 
+-(void)downloadCompleteWithAlbumItem:(BEAlbumItem*)albumItem{
+    [self.dbQueue inDatabase:^(FMDatabase *db){
+        NSString* sql = [NSString stringWithFormat:@"INSERT OR REPLACE INTO T_BADEGGDOWNLOAD (proId) VALUES ('%@')",albumItem.proId];
+        [db executeUpdate:sql];
+        if ([db hadError]){
+            if (db.lastErrorCode == SQLITE_CONSTRAINT) {
+            }else{
+                NSLog(@"数据库插入错误:%@ 错误码%d",[db lastErrorMessage],db.lastErrorCode);
+            }
+        }
+    }];
+}
 
 -(BOOL)updateDataTotableWithSQL:(NSString*)sql
 {
     __block BOOL result = YES;
-    [self.dbQueue inTransaction:^(FMDatabase *db,BOOL *roolBack)
+    [self.dbQueue inDatabase:^(FMDatabase *db)
      {
          [db executeUpdate:sql];
          if ([db hadError]) {
@@ -126,7 +151,7 @@ static DBQueue *gSharedInstance = nil;
 -(NSArray*)recordFromTableBySQL:(NSString*)sql
 {
     __block NSMutableArray* result = [[NSMutableArray alloc] init];
-    [self.dbQueue inTransaction:^(FMDatabase *db,BOOL *roolBack)
+    [self.dbQueue inDatabase:^(FMDatabase *db)
      {
          [db setShouldCacheStatements:YES];
          FMResultSet *rs = [db executeQuery:sql];
@@ -144,7 +169,7 @@ static DBQueue *gSharedInstance = nil;
 -(FMResultSet*)RSFromTableBySQL:(NSString*)sql
 {
     __block FMResultSet* result = nil;
-    [self.dbQueue inTransaction:^(FMDatabase *db,BOOL *roolBack)
+    [self.dbQueue inDatabase:^(FMDatabase *db)
      {
          [db setShouldCacheStatements:YES];
          if ([db hadError]) {
@@ -197,7 +222,7 @@ static DBQueue *gSharedInstance = nil;
 -(NSDate*)dateFromSql:(NSString*)sql
 {
     __block NSDate* result = nil;
-    [self.dbQueue inTransaction:^(FMDatabase *db,BOOL *roolBack)
+    [self.dbQueue inDatabase:^(FMDatabase *db)
      {
          [db setShouldCacheStatements:YES];
          FMResultSet *rs = [db executeQuery:sql];
