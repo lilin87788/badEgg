@@ -149,7 +149,7 @@ NSUInteger DeviceSystemMajorVersion() {
     
     [self creeateDatabase];
     [self customizeAppearance];
-    //[self umengTrack:launchOptions];
+   // [self umengTrack:launchOptions];
     return YES;
 }
 

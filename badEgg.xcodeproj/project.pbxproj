@@ -1539,7 +1539,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				ONLY_ACTIVE_ARCH = YES;
-				PROVISIONING_PROFILE = "904ccc17-423e-4352-a7a4-a3818dffda2e";
+				PROVISIONING_PROFILE = "8cf5fc55-2941-4a67-ae2b-a0808221ff2a";
 				SDKROOT = iphoneos;
 				VALID_ARCHS = "$(inherited)";
 			};
@@ -1575,7 +1575,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				ONLY_ACTIVE_ARCH = NO;
-				PROVISIONING_PROFILE = "904ccc17-423e-4352-a7a4-a3818dffda2e";
+				PROVISIONING_PROFILE = "8cf5fc55-2941-4a67-ae2b-a0808221ff2a";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 				VALID_ARCHS = "$(inherited)";
@@ -1604,7 +1604,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "904ccc17-423e-4352-a7a4-a3818dffda2e";
+				PROVISIONING_PROFILE = "8cf5fc55-2941-4a67-ae2b-a0808221ff2a";
 				VALID_ARCHS = "$(inherited)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -1632,7 +1632,7 @@
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "904ccc17-423e-4352-a7a4-a3818dffda2e";
+				PROVISIONING_PROFILE = "8cf5fc55-2941-4a67-ae2b-a0808221ff2a";
 				VALID_ARCHS = "$(inherited)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -1657,7 +1657,7 @@
 				);
 				INFOPLIST_FILE = "badEggTests/badEggTests-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "904ccc17-423e-4352-a7a4-a3818dffda2e";
+				PROVISIONING_PROFILE = "8cf5fc55-2941-4a67-ae2b-a0808221ff2a";
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = xctest;
 			};
@@ -1678,7 +1678,7 @@
 				GCC_PREFIX_HEADER = "badEgg/badEgg-Prefix.pch";
 				INFOPLIST_FILE = "badEggTests/badEggTests-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "904ccc17-423e-4352-a7a4-a3818dffda2e";
+				PROVISIONING_PROFILE = "8cf5fc55-2941-4a67-ae2b-a0808221ff2a";
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = xctest;
 			};

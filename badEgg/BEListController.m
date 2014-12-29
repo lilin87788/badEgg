@@ -26,6 +26,7 @@
     NSInteger curPage;
     NSInteger totalPages;
     NSString* maxPublishTime;
+  
 }
 @property MJRefreshFooterView *footer;
 @end
@@ -80,10 +81,9 @@
 {
     [[BEHttpRequest sharedClient] requestFMDataWithPageNo:curPage responseBlock:^(BOOL isOK, BEAlbum *album, NSError *error) {
         if (isOK) {
-            [SVProgressHUD showProgress:curPage/(float)totalPages status:@"努力加载中..." maskType:SVProgressHUDMaskTypeClear];
+            [SVProgressHUD showProgress:(curPage - 1)/(float)totalPages status:@"努力加载中..." maskType:SVProgressHUDMaskTypeClear];
             totalPages = album.totalPage.intValue;
             curPage++;
-            
             if (curPage <= totalPages) {
                 [self BEFirstFMDataFromServer:block];
             } else{
@@ -119,10 +119,13 @@
 }
 
 - (IBAction)playingAlbumItem:(UIButton *)sender {
-    BEPlayerController* playerController = [[BEPlayerController alloc] initWithNibName:@"BEPlayerController" bundle:nil];
-    playerController.isClickPlaingBtn = YES;
-    [self.navigationController pushViewController:playerController animated:YES];
-    [self setHidesBottomBarWhenPushed:NO];
+    HysteriaPlayer* beplayer = [HysteriaPlayer sharedInstance];
+    if ([beplayer isPlaying]) {
+        BEPlayerController* playerController = [[BEPlayerController alloc] initWithNibName:@"BEPlayerController" bundle:nil];
+        playerController.isClickPlaingBtn = YES;
+        [self.navigationController pushViewController:playerController animated:YES];
+        [self setHidesBottomBarWhenPushed:NO];
+    }
 }
 
 -(id)initWithCoder:(NSCoder *)aDecoder
@@ -144,21 +147,12 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    maxPublishTime = [[DBQueue sharedbQueue] maxPublishTime];
 
     self.tableView.backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"background"] ];
     self.tableView.tableHeaderView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"introduce.png"]];
-//    [[BEHttpRequest sharedClient] requestFMDataWithPageNo:curPage responseBlock:^(BOOL isOK, BEAlbum *album, NSError *error) {
-//        if(isOK){
-//            [contentList addObjectsFromArray:album.albumItem];
-//            curPage++;
-//            [self.tableView reloadData];
-//        }else{
-//        
-//        }
-//    }];
-//    
 
+    
+    maxPublishTime = [[DBQueue sharedbQueue] maxPublishTime];
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
         NSString* sql = [NSString stringWithFormat:@"SELECT a.*,(CASE WHEN b.proId NOT NULL THEN 1 ELSE 0 END) AS downloaded\
                         FROM T_BADEGGALBUMS a\
@@ -331,6 +325,7 @@
                        albumItem.downloaded = YES;
                        [self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
                        [[DBQueue sharedbQueue] downloadCompleteWithAlbumItem:albumItem];
+                       [[NSNotificationCenter defaultCenter] postNotificationName:@"downloadCompleted" object:nil];//发送通知更新已下载界面
                    }];
     [downloadTask resume];
     

@@ -16,6 +16,7 @@
 @interface BEVIPController ()
 {
     NSMutableArray* contentList;
+    UIView* nomatchesView;
 }
 @end
 
@@ -43,8 +44,26 @@
 {
     [super viewDidLoad];
     contentList = [NSMutableArray array];
+    nomatchesView = [[UIView alloc] initWithFrame:self.view.frame];
+    nomatchesView.backgroundColor = [UIColor redColor];
+    
+    UILabel *matchesLabel = [[UILabel alloc] initWithFrame:CGRectMake(0,0,320,320)];
+    matchesLabel.font = [UIFont boldSystemFontOfSize:18];
+    matchesLabel.numberOfLines = 1;
+    matchesLabel.shadowColor = [UIColor lightTextColor];
+    matchesLabel.textColor = [UIColor darkGrayColor];
+    matchesLabel.shadowOffset = CGSizeMake(0, 1);
+    matchesLabel.backgroundColor = [UIColor clearColor];
+    matchesLabel.text = @"No Matches";
+    nomatchesView.hidden = YES;
+    [nomatchesView addSubview:matchesLabel];
+    [self.tableView insertSubview:nomatchesView aboveSubview:self.tableView];
     [self.tableView setBackgroundColor:COLOR(230, 230, 230)];
     [self BEFMDataFromDataBase];
+    [[NSNotificationCenter defaultCenter] addObserverForName:@"downloadCompleted" object:nil queue:nil usingBlock:^(NSNotification *note) {
+        [contentList removeAllObjects];
+        [self BEFMDataFromDataBase];
+    }];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -80,6 +99,11 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
+    if([contentList count] == 0 ){
+        nomatchesView.hidden = NO;
+    } else {
+        nomatchesView.hidden = YES;
+    }
     return contentList.count;
 }
 

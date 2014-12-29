@@ -34,18 +34,21 @@
 
 -(void)webViewDidFinishLoad:(UIWebView *)webView
 {
+    [SVProgressHUD dismiss];
     [_activity stopAnimating];
     [_indicatorLabel setHidden:YES];
 }
 
 -(void)webViewDidStartLoad:(UIWebView *)webView
 {
-    [_activity startAnimating];
-    [_indicatorLabel setHidden:NO];
+    [SVProgressHUD showWithStatus:@"加载中..."];
+    //[_activity startAnimating];
+    //[_indicatorLabel setHidden:NO];
 }
 
 -(void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error
 {
+    [SVProgressHUD dismiss];
     [_activity stopAnimating];
     [_indicatorLabel setHidden:YES];
 }

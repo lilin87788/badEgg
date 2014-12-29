@@ -13,6 +13,7 @@
     UIPageControl* pageController;
     NSArray *contentList;
     NSMutableArray *viewControllers;
+    NSString* maxPublishTime;
 }
 @end
 
@@ -20,6 +21,7 @@
 
 -(void)initPageController
 {
+
     pageController = [[UIPageControl alloc] initWithFrame:CGRectMake((320 - 150)/2., BottomY - 49 - 40, 150, 40)];
     [pageController setNumberOfPages:3];
     [pageController setHidesForSinglePage:YES];
@@ -36,12 +38,14 @@
 
 -(void)initData
 {
-    NSUInteger numberPages = 3;
-    
-    // view controllers are created lazily
-    // in the meantime, load the array with placeholders which will be replaced on demand
+    [_bgScrollView setContentSize:CGSizeMake(SCREEN_WIDTH * 3,_bgScrollView.frame.size.height)];
+    [_bgScrollView setBackgroundColor:[UIColor colorWithPatternImage:Image(@"background")]];
+    maxPublishTime = [[DBQueue sharedbQueue] maxPublishTime];
+    if ([maxPublishTime integerValue] == 0) {
+        
+    }
     NSMutableArray *controllers = [[NSMutableArray alloc] init];
-    for (NSUInteger i = 0; i < numberPages; i++)
+    for (NSUInteger i = 0; i < 3; i++)
     {
 		[controllers addObject:[NSNull null]];
     }
@@ -52,15 +56,22 @@
 {
     [super viewDidLoad];
     [self initData];
-    [self initPageController];
     
-    [_bgScrollView setContentSize:CGSizeMake(320* 3,_bgScrollView.frame.size.height)];
-    [_bgScrollView setBackgroundColor:[UIColor colorWithPatternImage:Image(@"background")]];
+    [SVProgressHUD showWithStatus:@"加载中..."];
+    [[BEHttpRequest sharedClient] requestFMDataWithPageNo:0 responseBlock:^(BOOL isOK, BEAlbum *album, NSError *error) {
+        if(isOK){
+            [SVProgressHUD dismiss];
+            [self initPageController];
+            [self loadScrollViewWithPage:0];
+            [self loadScrollViewWithPage:1];
+        }else{
+            [SVProgressHUD showErrorWithStatus:error.localizedDescription];
+        }
+    }];
     
-    [self loadScrollViewWithPage:0];
-    [self loadScrollViewWithPage:1];
     
-    [self.tabBarItem setSelectedImage:Image(@"select.png")];
+
+    
 }
 
 - (void)viewWillDisappear:(BOOL)animated {

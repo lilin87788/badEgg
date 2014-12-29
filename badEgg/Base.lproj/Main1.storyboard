@@ -758,7 +758,6 @@ http://afnetworking.com</string>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aDZ-Hz-m09">
                                 <rect key="frame" x="0.0" y="64" width="320" height="367"/>
-                                <color key="backgroundColor" red="0.066666666669999999" green="0.6588235294" blue="0.6705882353" alpha="1" colorSpace="calibratedRGB"/>
                                 <connections>
                                     <outlet property="delegate" destination="787-5L-K6F" id="ty8-Au-9Ec"/>
                                 </connections>
