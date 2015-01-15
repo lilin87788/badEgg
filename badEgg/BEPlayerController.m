@@ -25,7 +25,6 @@
 @end
 
 @implementation BEPlayerController
-
 - (void)configNowPlayingInfoCenter:(BEAlbumItem*)currentItem
 {
     if (NSClassFromString(@"MPNowPlayingInfoCenter"))

@@ -145,7 +145,6 @@ NSUInteger DeviceSystemMajorVersion() {
         NSLog(@"Reachability: %@", AFStringFromNetworkReachabilityStatus(status));
     }];
     [AFNetworkActivityIndicatorManager sharedManager].enabled = YES;
-
     
     [self creeateDatabase];
     [self customizeAppearance];

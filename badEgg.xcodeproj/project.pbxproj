@@ -228,6 +228,8 @@
 
 /* Begin PBXFileReference section */
 		06FD01F0C7CBF0D84C12E2F9 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		3B1179921A675D3300383DFE /* BEsteriaPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BEsteriaPlayer.h; path = badEgg/BEsteriaPlayer.h; sourceTree = SOURCE_ROOT; };
+		3B1179931A675D3300383DFE /* BEsteriaPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BEsteriaPlayer.m; path = badEgg/BEsteriaPlayer.m; sourceTree = SOURCE_ROOT; };
 		3B4EC25A1A4D81D500EEC252 /* HNFileManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNFileManager.h; sourceTree = "<group>"; };
 		3B4EC25B1A4D81D500EEC252 /* HNFileManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNFileManager.m; sourceTree = "<group>"; };
 		3B714CA219E6576D00831C7C /* MJRefresh.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = MJRefresh.bundle; path = openresource/MJRefresh/MJRefresh.bundle; sourceTree = SOURCE_ROOT; };
@@ -984,6 +986,8 @@
 		F2877B511857060F00F0A470 /* HysteriaPlayer */ = {
 			isa = PBXGroup;
 			children = (
+				3B1179921A675D3300383DFE /* BEsteriaPlayer.h */,
+				3B1179931A675D3300383DFE /* BEsteriaPlayer.m */,
 				3BF7A9381A4288C8006D5755 /* playerReadme.h */,
 				3BF7A9391A42B530006D5755 /* HysteriaPlayer.h */,
 				3BF7A93A1A42B530006D5755 /* HysteriaPlayer.m */,
