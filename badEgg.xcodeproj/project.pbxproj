@@ -117,6 +117,7 @@
 		3BBE5B2E1A4A9D580064957D /* music.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 3BBE5B2D1A4A9D580064957D /* music.mp3 */; };
 		3BBE5B301A4A9E280064957D /* tryg.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 3BBE5B2F1A4A9E280064957D /* tryg.mp3 */; };
 		3BBE5B321A4A9ECD0064957D /* BEIntroController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3BBE5B311A4A9ECD0064957D /* BEIntroController.xib */; };
+		3BC70AD91A6CB3970061EA69 /* BEsteriaPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B1179931A675D3300383DFE /* BEsteriaPlayer.m */; };
 		3BC72E551A45224600E24FD9 /* BEPlayerController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3BC72E541A45224600E24FD9 /* BEPlayerController.xib */; };
 		3BD99E641A417BA4002F3650 /* BETabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BD99E631A417BA4002F3650 /* BETabBarController.m */; };
 		3BD99E671A417DFB002F3650 /* BETableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BD99E661A417DFB002F3650 /* BETableViewController.m */; };
@@ -140,8 +141,6 @@
 		3BE513BB1A4BB3E1004A798F /* cm_u_head@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3BE513A91A4BB3E1004A798F /* cm_u_head@2x.png */; };
 		3BE513C11A4BC1F9004A798F /* GBPathImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BE513BE1A4BC1F9004A798F /* GBPathImageView.m */; };
 		3BE513C21A4BC1F9004A798F /* SKPathButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BE513C01A4BC1F9004A798F /* SKPathButton.m */; };
-		3BF7A93C1A42B530006D5755 /* HysteriaPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BF7A93A1A42B530006D5755 /* HysteriaPlayer.m */; };
-		3BF7A93D1A42B530006D5755 /* point1sec.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 3BF7A93B1A42B530006D5755 /* point1sec.mp3 */; };
 		F21551AC180705380020183B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F21551AB180705380020183B /* Foundation.framework */; };
 		F21551AE180705380020183B /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F21551AD180705380020183B /* CoreGraphics.framework */; };
 		F21551B0180705380020183B /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F21551AF180705380020183B /* UIKit.framework */; };
@@ -193,7 +192,6 @@
 		F2877B4A1856E3B700F0A470 /* BESlider.m in Sources */ = {isa = PBXBuildFile; fileRef = F2877B491856E3B700F0A470 /* BESlider.m */; };
 		F2877B4E185705EE00F0A470 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F2877B4D185705EE00F0A470 /* AVFoundation.framework */; };
 		F2877B50185705F500F0A470 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F2877B4F185705F500F0A470 /* CoreMedia.framework */; };
-		F2877B9A185804C300F0A470 /* BEQueuePlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = F2877B99185804C300F0A470 /* BEQueuePlayer.m */; };
 		F28CDEC91844DCF9004C35AE /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F28CDEC81844DCF9004C35AE /* Security.framework */; };
 		F295E42D181023B200E154A4 /* UIImage+rescale.m in Sources */ = {isa = PBXBuildFile; fileRef = F295E42C181023B200E154A4 /* UIImage+rescale.m */; };
 		F295E42F181023CD00E154A4 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F295E42E181023CD00E154A4 /* QuartzCore.framework */; };
@@ -382,9 +380,6 @@
 		3BE513BF1A4BC1F9004A798F /* SKPathButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SKPathButton.h; sourceTree = "<group>"; };
 		3BE513C01A4BC1F9004A798F /* SKPathButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SKPathButton.m; sourceTree = "<group>"; };
 		3BF7A9381A4288C8006D5755 /* playerReadme.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = playerReadme.h; path = badEgg/playerReadme.h; sourceTree = SOURCE_ROOT; };
-		3BF7A9391A42B530006D5755 /* HysteriaPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HysteriaPlayer.h; path = openresource/HysteriaPlayer/HysteriaPlayer.h; sourceTree = SOURCE_ROOT; };
-		3BF7A93A1A42B530006D5755 /* HysteriaPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HysteriaPlayer.m; path = openresource/HysteriaPlayer/HysteriaPlayer.m; sourceTree = SOURCE_ROOT; };
-		3BF7A93B1A42B530006D5755 /* point1sec.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = point1sec.mp3; path = openresource/HysteriaPlayer/point1sec.mp3; sourceTree = SOURCE_ROOT; };
 		4462A6D7EAC93E0753764841 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		A5381B941ED657E8646C5F79 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		F21551A8180705380020183B /* badEgg.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = badEgg.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -472,8 +467,6 @@
 		F2877B491856E3B700F0A470 /* BESlider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BESlider.m; sourceTree = "<group>"; };
 		F2877B4D185705EE00F0A470 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		F2877B4F185705F500F0A470 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
-		F2877B98185804C300F0A470 /* BEQueuePlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BEQueuePlayer.h; sourceTree = "<group>"; };
-		F2877B99185804C300F0A470 /* BEQueuePlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BEQueuePlayer.m; sourceTree = "<group>"; };
 		F28CDEC81844DCF9004C35AE /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		F295E42B181023B200E154A4 /* UIImage+rescale.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+rescale.h"; sourceTree = "<group>"; };
 		F295E42C181023B200E154A4 /* UIImage+rescale.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+rescale.m"; sourceTree = "<group>"; };
@@ -986,12 +979,9 @@
 		F2877B511857060F00F0A470 /* HysteriaPlayer */ = {
 			isa = PBXGroup;
 			children = (
+				3BF7A9381A4288C8006D5755 /* playerReadme.h */,
 				3B1179921A675D3300383DFE /* BEsteriaPlayer.h */,
 				3B1179931A675D3300383DFE /* BEsteriaPlayer.m */,
-				3BF7A9381A4288C8006D5755 /* playerReadme.h */,
-				3BF7A9391A42B530006D5755 /* HysteriaPlayer.h */,
-				3BF7A93A1A42B530006D5755 /* HysteriaPlayer.m */,
-				3BF7A93B1A42B530006D5755 /* point1sec.mp3 */,
 			);
 			path = HysteriaPlayer;
 			sourceTree = "<group>";
@@ -1051,8 +1041,6 @@
 			children = (
 				F2E9E4521858302700AC655E /* BEAudioHelper.h */,
 				F2E9E4531858302700AC655E /* BEAudioHelper.m */,
-				F2877B98185804C300F0A470 /* BEQueuePlayer.h */,
-				F2877B99185804C300F0A470 /* BEQueuePlayer.m */,
 				F2B8411E1851A1C7001DA858 /* BEAlbum.h */,
 				F2B8411F1851A1C7001DA858 /* BEAlbum.m */,
 				F2B841211851A24A001DA858 /* BEAlbumItem.h */,
@@ -1223,7 +1211,6 @@
 			files = (
 				3B714D7319E6586800831C7C /* playing.png in Resources */,
 				3BC72E551A45224600E24FD9 /* BEPlayerController.xib in Resources */,
-				3BF7A93D1A42B530006D5755 /* point1sec.mp3 in Resources */,
 				3B714D3819E6586800831C7C /* board.png in Resources */,
 				3B714D7219E6586800831C7C /* playfm@2x.png in Resources */,
 				3B95389E1A4BF4DD00157DF5 /* chat_bottom_textfield@2x.png in Resources */,
@@ -1395,6 +1382,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3BC70AD91A6CB3970061EA69 /* BEsteriaPlayer.m in Sources */,
 				F2C54AA0184DB9F3003791D3 /* UIColor+FlatUI.m in Sources */,
 				3B714CAD19E6576D00831C7C /* MJRefreshHeaderView.m in Sources */,
 				F299A5F11839EFAB00ACFDC6 /* TFHppleElement.m in Sources */,
@@ -1405,7 +1393,6 @@
 				F22F358E1833801300FE96B5 /* BERegisterController.m in Sources */,
 				3B9538841A4BEE7800157DF5 /* BEMessageCell.m in Sources */,
 				F246DBCB1846DF1700CC64D7 /* AudioButton.m in Sources */,
-				F2877B9A185804C300F0A470 /* BEQueuePlayer.m in Sources */,
 				3BE513C11A4BC1F9004A798F /* GBPathImageView.m in Sources */,
 				F2E9E4541858302700AC655E /* BEAudioHelper.m in Sources */,
 				F281A43818ED42BD00944656 /* UIDevice+IdentifierAddition.m in Sources */,
@@ -1428,7 +1415,6 @@
 				F2B97F6D18E1514D0081E110 /* BEBlogController.m in Sources */,
 				F281A42618ED2A3600944656 /* EIOperationManager.m in Sources */,
 				F22F35381833204700FE96B5 /* BENewsDetailController.m in Sources */,
-				3BF7A93C1A42B530006D5755 /* HysteriaPlayer.m in Sources */,
 				F281A49A18ED802300944656 /* BEMyAlbumCell.m in Sources */,
 				3BE513C21A4BC1F9004A798F /* SKPathButton.m in Sources */,
 				F281A42C18ED336D00944656 /* SKPlaceholderTextView.m in Sources */,

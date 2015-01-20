@@ -9,13 +9,14 @@
 #import <UIKit/UIKit.h>
 #import "BEAlbumItem.h"
 #import "AudioButton.h"
-#import "HysteriaPlayer.h"
+#import "BEsteriaPlayer.h"
 @interface BEPlayerController : BEViewController<HysteriaPlayerDelegate>
 {
     
 }
 
 @property(nonatomic,strong)BEAlbumItem* currentItems;
+@property(nonatomic,strong)NSMutableArray* playerItems;
 @property(nonatomic)NSUInteger currentIndex;
 @property BOOL isClickPlaingBtn;
 @end

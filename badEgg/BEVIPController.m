@@ -11,7 +11,7 @@
 #import "BELoginController.h"
 #import "AFURLSessionManager.h"
 #import "BEURLRequest.h"
-#import "HysteriaPlayer.h"
+#import "BEsteriaPlayer.h"
 #import "BEPlayerController.h"
 @interface BEVIPController ()
 {
@@ -81,17 +81,18 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    HysteriaPlayer* beplayer = [HysteriaPlayer sharedInstance];
+    BEsteriaPlayer* beplayer = [BEsteriaPlayer sharedInstance];
     [beplayer removeAllItems];
-    
-    [beplayer setupSourceGetter:^BEAlbumItem *(NSUInteger index){
-        return contentList[index];
+    [beplayer setupSourceGetter:^NSURL *(NSUInteger index){
+        BEAlbumItem* item = contentList[index];
+        return [NSURL URLWithString:item.audioPathHttp];
     } ItemsCount:contentList.count];
     
     [self setHidesBottomBarWhenPushed:YES];
     BEPlayerController* playerController = [[BEPlayerController alloc] initWithNibName:@"BEPlayerController" bundle:nil];
     playerController.currentItems = contentList[indexPath.row];
     playerController.currentIndex = indexPath.row;
+    playerController.playerItems = contentList;
     playerController.isClickPlaingBtn = NO;
     [self.navigationController pushViewController:playerController animated:YES];
     [self setHidesBottomBarWhenPushed:NO];

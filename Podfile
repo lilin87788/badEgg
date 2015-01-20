@@ -7,7 +7,7 @@ platform :ios,'7.1'
 inhibit_all_warnings!
 link_with 'badEgg', 'badEgg Tests'
 pod 'AFNetworking', '~> 2.5.0'
-#pod 'HysteriaPlayer', '~> 2.0.1'
+pod 'HysteriaPlayer', '~> 2.0.1'
 
 
 #pod 'Baidu-Maps-iOS-SDK', '~> 2.0'

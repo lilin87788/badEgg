@@ -47,41 +47,24 @@
     [_BEPlaySlider setMaximumTrackImage:Image(@"wx") forState:UIControlStateNormal];
 }
 
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    [MobClick beginLogPageView:@"BEPlayerController"];
+    [[BEsteriaPlayer sharedInstance] addDelegate:self];
+}
+
+-(void)viewDidDisappear:(BOOL)animated{
+    [super viewDidDisappear:animated];
+    [MobClick endLogPageView:@"BEPlayerController"];
+
+    [[BEsteriaPlayer sharedInstance] removeDelegate:self];
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     [self initData];
-    
-    HysteriaPlayer *hysteriaPlayer = [HysteriaPlayer sharedInstance];
-    [hysteriaPlayer addDelegate:self];
-    
-    HysteriaPlayer* player = [HysteriaPlayer sharedInstance];
-    BEAlbumItem* curentitem = [player getCurrentItem];
-    if (curentitem) {
-        _titleLabel.text = curentitem.proName;
-        _protrolTextView.text = curentitem.proIntro;
-        if (self.isClickPlaingBtn) {
-            NSLog(@"触发正在播放");
-        }else{
-            [player fetchAndPlayPlayerItem:_currentIndex];
-            [player play];
-        }
-    }else{
-        _titleLabel.text = self.currentItems.proName;
-        _protrolTextView.text = self.currentItems.proIntro;
-        [player fetchAndPlayPlayerItem:_currentIndex];
-    }
-    
-    [player registerHandlerCurrentItemPreLoaded:^(CMTime time){
-        NSLog(@"HysteriaPlayerReadyToPlayPlayer");
-    }];
-
-    [player registerHandlerProgress:^(NSString* currenttime,NSString* duration,float progress){
-        _totalTimeLabel.text = duration;
-        _curTimeLabel.text = currenttime;
-        _BEPlaySlider.value = progress;
-    }];
-
+    BEsteriaPlayer* player = [BEsteriaPlayer sharedInstance];
     [player registerHandlerReadyToPlay:^(HysteriaPlayerReadyToPlay identifier){
         if (identifier == HysteriaPlayerReadyToPlayCurrentItem) {
             NSLog(@"HysteriaPlayerReadyToPlayCurrentItem");
@@ -90,30 +73,67 @@
         }
     }];
     
-    [player registerHandlerCurrentItemPreLoaded:^(CMTime time){
-//        BEAlbumItem* item = [player getCurrentItem];
-//        NSLog(@"registerHandlerCurrentItemPreLoaded %@",item.proName);
-    }];
     
-    [player registerHandlerFailed:^(HysteriaPlayerFailed identifier, NSError *error){
-        NSLog(@"%@",error);
-    }];
-    
-    [player registerHandlerPlayerRateChanged:^{
-        if ([player isPlaying]) {
-            [_PlayButton setImage:Image(@"pausefm") forState:UIControlStateNormal];
+    NSInteger currentIndex = [player getCurrentItemOrder];
+    if (currentIndex == NSNotFound) {
+        _titleLabel.text = self.currentItems.proName;
+        _protrolTextView.text = self.currentItems.proIntro;
+        [player fetchAndPlayPlayerItem:_currentIndex];
+    }else{
+        BEAlbumItem* curentitem = self.playerItems[[player getCurrentItemOrder]]; //;
+        _titleLabel.text = curentitem.proName;
+        _protrolTextView.text = curentitem.proIntro;
+        if (self.isClickPlaingBtn) {
+            
         }else{
-            [_PlayButton setImage:Image(@"playfm") forState:UIControlStateNormal];
+            [player fetchAndPlayPlayerItem:_currentIndex];
+            [player play];
         }
-    } CurrentItemChanged:^(BEAlbumItem* item){
-        NSLog(@"CurrentItemChanged %@",item.proName);
-        [self configNowPlayingInfoCenter:item];
-        _titleLabel.text = item.proName;
-        _protrolTextView.text = item.proIntro;
-    } PlayerDidReachEnd:^{
-        BEAlbumItem* item = [player getCurrentItem];
-        NSLog(@"PlayerDidReachEnd %@",item.proName);
+    }
+    
+//    
+//    [player addPeriodicTimeObserverForInterval:CMTimeMakeWithSeconds(1, 1) queue:nil usingBlock:^(CMTime time) {
+//        float current = [[BEsteriaPlayer sharedInstance] getPlayingItemCurrentTime];
+//        float total = [[BEsteriaPlayer sharedInstance] getPlayingItemDurationTime];
+//        _totalTimeLabel.text = [NSDate convertTimeFromSeconds:total];
+//        _curTimeLabel.text = [NSDate convertTimeFromSeconds:current];
+//        _BEPlaySlider.value = current/total;
+//    }];
+
+//    [player registerHandlerCurrentItemPreLoaded:^(CMTime time){
+//        NSLog(@"HysteriaPlayerReadyToPlayPlayer");
+//    }];
+
+    [player registerHandlerProgress:^(NSString* currenttime,NSString* duration,float progress){
+        _totalTimeLabel.text = duration;
+        _curTimeLabel.text = currenttime;
+        _BEPlaySlider.value = progress;
     }];
+
+//    [player registerHandlerCurrentItemPreLoaded:^(CMTime time){
+////        BEAlbumItem* item = [player getCurrentItem];
+////        NSLog(@"registerHandlerCurrentItemPreLoaded %@",item.proName);
+//    }];
+    
+//    [player registerHandlerFailed:^(HysteriaPlayerFailed identifier, NSError *error){
+//        NSLog(@"%@",error);
+//    }];
+    
+//    [player registerHandlerPlayerRateChanged:^{
+//        if ([player isPlaying]) {
+//            [_PlayButton setImage:Image(@"pausefm") forState:UIControlStateNormal];
+//        }else{
+//            [_PlayButton setImage:Image(@"playfm") forState:UIControlStateNormal];
+//        }
+//    } CurrentItemChanged:^(BEAlbumItem* item){
+//        NSLog(@"CurrentItemChanged %@",item.proName);
+//        [self configNowPlayingInfoCenter:item];
+//        _titleLabel.text = item.proName;
+//        _protrolTextView.text = item.proIntro;
+//    } PlayerDidReachEnd:^{
+//        BEAlbumItem* item = [player getCurrentItem];
+//        NSLog(@"PlayerDidReachEnd %@",item.proName);
+//    }];
     
     if ([player isPlaying]) {
         [_PlayButton setImage:Image(@"pausefm") forState:UIControlStateNormal];
@@ -125,23 +145,10 @@
    //[_PlayButton setProgress:.75];
 }
 
-- (void)viewWillDisappear:(BOOL)animated {
-    [super viewWillDisappear:animated];
-    [MobClick endLogPageView:@"BEPlayerController"];
-}
-
-- (void)viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:animated];
-    [MobClick beginLogPageView:@"BEPlayerController"];
-}
-
-
 - (IBAction)sliderValueChanged:(UISlider*)slider
 {
-    HysteriaPlayer* player = [HysteriaPlayer sharedInstance];
-    NSDictionary* dict =[player getPlayerTime];
-    CGFloat durationtime = [dict[@"DurationTime"] floatValue];
+    BEsteriaPlayer* player = [BEsteriaPlayer sharedInstance];
+    CGFloat durationtime = [player getPlayingItemDurationTime];
     CGFloat currenttime = durationtime * slider.value;
     [player seekToTime:currenttime withCompletionBlock:^(BOOL complete){
         
@@ -151,9 +158,8 @@
 - (IBAction)rewind:(id)sender
 {
     
-    HysteriaPlayer* player = [HysteriaPlayer sharedInstance];
-    NSDictionary* dict =[player getPlayerTime];
-    CGFloat currenttime = [dict[@"CurrentTime"] floatValue];
+    BEsteriaPlayer* player = [BEsteriaPlayer sharedInstance];
+    CGFloat currenttime=[player getPlayingItemCurrentTime];
     currenttime -= 30;
     [player seekToTime:currenttime withCompletionBlock:^(BOOL complete){
     
@@ -162,10 +168,9 @@
 
 - (IBAction)Fastforward:(id)sender
 {
-    HysteriaPlayer* player = [HysteriaPlayer sharedInstance];
-    NSDictionary* dict =[player getPlayerTime];
-    CGFloat durationtime = [dict[@"DurationTime"] floatValue];
-    CGFloat currenttime = [dict[@"CurrentTime"] floatValue];
+    BEsteriaPlayer* player = [BEsteriaPlayer sharedInstance];
+    CGFloat durationtime = [player getPlayingItemDurationTime];
+    CGFloat currenttime = [player getPlayingItemCurrentTime];
     CGFloat seektime = currenttime + 30;
     if (seektime > durationtime) {
         seektime =  durationtime - 5;
@@ -176,9 +181,9 @@
 }
 
 - (IBAction)playFMMusic:(id)sender {
-    HysteriaPlayer *bePlayer = [HysteriaPlayer sharedInstance];
+    BEsteriaPlayer *bePlayer = [BEsteriaPlayer sharedInstance];
     if ([bePlayer isPlaying]) {
-         [bePlayer pausePlayerForcibly:YES];
+        [bePlayer pausePlayerForcibly:YES];
         [bePlayer pause];
     }else{
         [bePlayer pausePlayerForcibly:NO];
@@ -193,17 +198,22 @@
 #pragma -mark 播放器代理函数
 - (void)hysteriaPlayerCurrentItemChanged:(AVPlayerItem *)item
 {
-    NSLog(@"当前播放项目发生改变");
+//    NSLog(@"CurrentItemChanged %@",item.proName);
+//    [self configNowPlayingInfoCenter:item];
+//    _titleLabel.text = item.proName;
+//    _protrolTextView.text = item.proIntro;
 }
 
 - (void)hysteriaPlayerCurrentItemPreloaded:(CMTime)time
 {
-    NSLog(@"current item pre-loaded time: %f", CMTimeGetSeconds(time));
-    NSLog(@"当前项目已经预加载: %f", CMTimeGetSeconds(time));
+    //NSLog(@"current item pre-loaded time: %f", CMTimeGetSeconds(time));
+    //NSLog(@"当前项目已经预加载: %f", CMTimeGetSeconds(time));
 }
 
 - (void)hysteriaPlayerDidReachEnd
 {
+    //BEAlbumItem* item = [[HysteriaPlayer sharedInstance] getCurrentItem];
+    //NSLog(@"PlayerDidReachEnd %@",item.proName);
     UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"所有节目播放完成"
                                                    message:nil
                                                   delegate:self
@@ -214,6 +224,10 @@
 
 - (void)hysteriaPlayerRateChanged:(BOOL)isPlaying
 {
-    NSLog(@"player rate changed");
+    if (isPlaying) {
+        [_PlayButton setImage:Image(@"pausefm") forState:UIControlStateNormal];
+    }else{
+        [_PlayButton setImage:Image(@"playfm") forState:UIControlStateNormal];
+    }
 }
 @end

@@ -13,7 +13,7 @@
 #import "BEAlbum.h"
 #import "BEAlbumItem.h"
 #import "MJRefresh.h"
-#import "HysteriaPlayer.h"
+#import "BEsteriaPlayer.h"
 #import "AFURLSessionManager.h"
 #import "UIProgressView+AFNetworking.h"
 #import "AFHTTPRequestOperationManager.h"
@@ -119,10 +119,11 @@
 }
 
 - (IBAction)playingAlbumItem:(UIButton *)sender {
-    HysteriaPlayer* beplayer = [HysteriaPlayer sharedInstance];
+    BEsteriaPlayer* beplayer = [BEsteriaPlayer sharedInstance];
     if ([beplayer isPlaying]) {
         BEPlayerController* playerController = [[BEPlayerController alloc] initWithNibName:@"BEPlayerController" bundle:nil];
         playerController.isClickPlaingBtn = YES;
+        playerController.playerItems = contentList;
         [self.navigationController pushViewController:playerController animated:YES];
         [self setHidesBottomBarWhenPushed:NO];
     }
@@ -198,72 +199,6 @@
             });
         }];
     };
-    
-//    return;
-//    {
-//        maxPublishTime = [[DBQueue sharedbQueue] maxPublishTime];
-//        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
-//            [self BEFMDataFromDataBase:^{
-//                [self.tableView reloadData];
-//                HysteriaPlayer* beplayer = [HysteriaPlayer sharedInstance];
-//                [beplayer setupSourceGetter:^BEAlbumItem *(NSUInteger index){
-//                    return contentList[index];
-//                } ItemsCount:contentList.count];
-//                
-//                
-//                
-//                
-//                if([[NSUserDefaults standardUserDefaults] boolForKey:@"firstRefreshData"] == NO){
-//                    [self BEFirstFMDataFromServer:^{
-//                        [self BEFMDataFromDataBase:^{
-//                            [[NSNotificationCenter defaultCenter] postNotificationName:@"refreshCompleted" object:0];
-//                            maxPublishTime = [[DBQueue sharedbQueue]  maxPublishTime];
-//                            HysteriaPlayer* beplayer = [HysteriaPlayer sharedInstance];
-//                            [beplayer setupSourceGetter:^BEAlbumItem *(NSUInteger index){
-//                                return contentList[index];
-//                            } ItemsCount:contentList.count];
-//                            [self.tableView reloadData];
-//                        }];
-//                    }];
-//                }else{
-//                    [self BERefreshFMDataFromServer:^{
-//                        maxPublishTime = [[DBQueue sharedbQueue] maxPublishTime];
-//                        [contentList removeAllObjects];
-//                        [self BEFMDataFromDataBase:^{
-//                            [[NSNotificationCenter defaultCenter] postNotificationName:@"refreshCompleted" object:0];
-//                            HysteriaPlayer* beplayer = [HysteriaPlayer sharedInstance];
-//                            [beplayer setupSourceGetter:^BEAlbumItem *(NSUInteger index){
-//                                return contentList[index];
-//                            } ItemsCount:contentList.count];
-//                            [self.tableView reloadData];
-//                        }];
-//                    }];
-//                }
-//            }];
-//        });
-//        
-//        UIRefreshControl* refreshcontrol = [[UIRefreshControl alloc]init];
-//        refreshcontrol.tintColor = COLOR(17, 168, 171);
-//        refreshcontrol.attributedTitle = [[NSAttributedString alloc]initWithString:@"下拉刷新"];
-////        [refreshcontrol addTarget:self action:@selector(RefreshViewControlEventValueChanged)
-////                 forControlEvents:UIControlEventValueChanged];
-////        self.refreshControl = refreshcontrol;
-////        [self.refreshControl setRefreshingWithStateOfTask:<#(NSURLSessionTask *)#>]
-//        
-//        __unsafe_unretained BEListController* vc = self;
-//        _footer = [MJRefreshFooterView footer];
-//        _footer.scrollView = self.tableView;
-//        _footer.beginRefreshingBlock = ^(MJRefreshBaseView *refreshView) {
-//            [vc BEFMDataFromDataBase:^{
-//                dispatch_async(dispatch_get_main_queue(), ^{
-//                    [vc.tableView reloadData];
-//                    if ([vc.footer isRefreshing]) {
-//                        [vc.footer endRefreshing];
-//                    }
-//                });
-//            }];
-//        };
-//    }
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -276,32 +211,6 @@
     [super viewWillAppear:animated];
     [MobClick beginLogPageView:@"BEListController"];
 }
-
--(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    if ([segue.identifier isEqualToString:@"player"])
-	{
-        HysteriaPlayer* beplayer = [HysteriaPlayer sharedInstance];
-        [beplayer setupSourceGetter:^BEAlbumItem *(NSUInteger index){
-            return contentList[index];
-        } ItemsCount:contentList.count];
-        [beplayer removeAllItems];
-        BEPlayerController *playerController = segue.destinationViewController;
-        playerController.currentItems = contentList[[self.tableView indexPathForSelectedRow].row-1];
-        playerController.currentIndex = [self.tableView indexPathForSelectedRow].row-1;
-        playerController.isClickPlaingBtn = NO;
-    }
-    
-    if ([segue.identifier isEqualToString:@"playing"])
-	{
-        HysteriaPlayer *player = [HysteriaPlayer sharedInstance];
-         NSUInteger index = [[player getHysteriaOrder:[player getCurrentItem]] unsignedIntegerValue];
-        BEPlayerController *playerController = segue.destinationViewController;
-        playerController.currentIndex = index;
-        playerController.isClickPlaingBtn = YES;
-    }
-}
-
 
 #pragma mark - Table view data source
 - (IBAction)downloadRadio:(UIButton *)sender {
@@ -364,16 +273,18 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    HysteriaPlayer* beplayer = [HysteriaPlayer sharedInstance];
+    BEsteriaPlayer* beplayer = [BEsteriaPlayer sharedInstance];
     [beplayer removeAllItems];
-    [beplayer setupSourceGetter:^BEAlbumItem *(NSUInteger index){
-        return contentList[index];
+    [beplayer setupSourceGetter:^NSURL *(NSUInteger index){
+        BEAlbumItem* item = contentList[index];
+        return [NSURL URLWithString:item.audioPathHttp];
     } ItemsCount:contentList.count];
     
     [self setHidesBottomBarWhenPushed:YES];
     BEPlayerController* playerController = [[BEPlayerController alloc] initWithNibName:@"BEPlayerController" bundle:nil];
     playerController.currentItems = contentList[indexPath.row];
     playerController.currentIndex = indexPath.row;
+    playerController.playerItems = contentList;
     playerController.isClickPlaingBtn = NO;
     [self.navigationController pushViewController:playerController animated:YES];
     [self setHidesBottomBarWhenPushed:NO];

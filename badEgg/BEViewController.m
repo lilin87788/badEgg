@@ -7,7 +7,6 @@
 //
 
 #import "BEViewController.h"
-#import "HysteriaPlayer.h"
 @interface BEViewController ()
 
 @end

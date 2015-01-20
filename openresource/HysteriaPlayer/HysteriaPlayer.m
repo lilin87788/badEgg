@@ -140,7 +140,7 @@ static HysteriaPlayer *sharedInstance = nil;
 -(void)registerHandlerPlayerRateChanged:(PlayerRateChanged)playerRateChanged CurrentItemChanged:(CurrentItemChanged)currentItemChanged PlayerDidReachEnd:(PlayerDidReachEnd)playerDidReachEnd
 {
     _playerRateChanged = playerRateChanged;
-    _currentItemChanged = currentItemChanged;
+    _currentItemChanged = currentItem/Users/linli/Desktop/untitled folder/badEgg/openresource/HysteriaPlayer/HysteriaPlayer.hChanged;
     _playerDidReachEnd = playerDidReachEnd;
 }
 
@@ -210,12 +210,12 @@ static HysteriaPlayer *sharedInstance = nil;
        // playerItem = [AVPlayerItem playerItemWithURL:[NSURL URLWithString:@"http://y1.eoews.com/assets/ringtones/2012/6/29/36195/mx8an3zgp2k4s5aywkr7wkqtqj0dh1vxcvii287a.mp3"]];
         audioPlayer = [AVQueuePlayer queuePlayerWithItems:@[playerItem]];
         __weak HysteriaPlayer* this = self;
-        [audioPlayer addPeriodicTimeObserverForInterval:CMTimeMakeWithSeconds(1, 1)
-                                                  queue:nil
-                                             usingBlock:^(CMTime time)
-         {
-             [this updateProgress];
-         }];
+//        [audioPlayer addPeriodicTimeObserverForInterval:CMTimeMakeWithSeconds(1, 1)
+//                                                  queue:nil
+//                                             usingBlock:^(CMTime time)
+//         {
+//             [this updateProgress];
+//         }];
     }
 }
 
@@ -729,10 +729,9 @@ static HysteriaPlayer *sharedInstance = nil;
                               usingBlock:(void (^)(CMTime time))block;
 {
     id mTimeObserver = [audioPlayer addPeriodicTimeObserverForInterval:interval queue:queue usingBlock:block];
-    NSLog(@"audioPlayer is %@", audioPlayer);
-    NSLog(@"inside HysterialPlayer: mTimeObserver is : %@", mTimeObserver);
     return mTimeObserver;
 }
+
 #pragma mark -
 #pragma mark ===========  Interruption, Route changed  =========
 #pragma mark -

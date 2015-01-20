@@ -149,6 +149,10 @@ typedef void (^ CurrentItemPreLoaded)(CMTime time);
 - (float)getPlayingItemCurrentTime;
 - (float)getPlayingItemDurationTime;
 - (float)getPlayerRate;
+- (id)addPeriodicTimeObserverForInterval:(CMTime)interval
+                                   queue:(dispatch_queue_t)queue
+                              usingBlock:(void (^)(CMTime time))block;
+
 
 - (BOOL)isPlaying;
 - (BEAlbumItem *)getCurrentItem;
